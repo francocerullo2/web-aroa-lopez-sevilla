@@ -1,0 +1,118 @@
+{
+  "header": {
+    "collection": "Colección",
+    "about": "Sobre mí",
+    "contact": "Contacto",
+    "openMenu": "Abrir menú"
+  },
+
+  "home": {
+    "hero": {
+      "alt": "Colección Reimaginada",
+      "label": "COLECCIÓN",
+      "title": "Reimaginada",
+      "button": "VER COLECCIÓN"
+    },
+
+    "news": {
+      "title": "Novedades",
+      "subtitle": "Últimas piezas reelaboradas",
+      "button": "VER LISTA COMPLETA"
+    },
+
+    "products": {
+      "product1": "Producto 1",
+      "product2": "Producto 2",
+      "product3": "Producto 3",
+      "product4": "Producto 4"
+    },
+
+    "history": {
+      "alt": "Prendas con historia",
+      "title": "Prendas con historia",
+      "button": "SABER MÁS",
+      "text1": "Trabajo con prendas de segunda mano que vuelven a convertirse en un punto de partida. Cada pieza se selecciona, se transforma y se reimagina para darle algo nuevo, manteniendo parte de la historia que llevan consigo.",
+      "text2": "Una prenda no termina cuando deja de usarse. A veces, simplemente está esperando una nueva forma."
+    },
+
+    "newsletter": {
+      "title": "Newsletter",
+      "text": "Regístrate para no perderte las nuevas piezas y próximos lanzamientos <3",
+      "placeholder": "Dirección de email",
+      "button": "Registrarme"
+    },
+
+    "gallery": {
+      "alt": "Detalle de la colección"
+    }
+  },
+
+  "collection": {
+    "all": "TODO",
+    "tops": "TOPS",
+    "blazers": "BLAZERS",
+    "skirts": "FALDAS",
+    "consultPiece": "Consultar pieza"
+  },
+
+  "product": {
+    "notFound": "Producto no encontrado",
+    "description": "Pieza única creada a partir de prendas seleccionadas y transformadas.",
+    "uniquePiece": "PIEZA ÚNICA",
+    "contactText": "Para consultar disponibilidad, precio y medidas, ponte en contacto conmigo.",
+    "consultPiece": "CONSULTAR ESTA PIEZA",
+    "backToCollection": "VOLVER A LA COLECCIÓN",
+
+    "status": {
+      "available": "DISPONIBLE",
+      "comingSoon": "PRÓXIMAMENTE",
+      "sold": "VENDIDA"
+    }
+  },
+
+  "contact": {
+    "title": "Contacto",
+    "introStart": "Para cualquier consulta puedes escribirme a",
+    "introEnd": "o rellenar el formulario de contacto que encontrarás a continuación. El plazo de respuesta es de 24-48 horas.",
+    "instagramText": "Si te resulta más cómodo también puedes escribirme por Instagram. Estaré encantada de ayudarte.",
+    "followUs": "Síguenos",
+
+    "firstName": "Nombre",
+    "lastName": "Apellidos",
+    "email": "Email",
+    "subject": "Asunto",
+    "message": "Mensaje",
+    "required": "obligatorio",
+    "send": "Enviar",
+
+    "pieceSubject": "Consulta sobre la pieza: {{piece}}",
+
+    "pieceMessage": "Hola,\n\nMe gustaría recibir más información sobre la pieza \"{{piece}}\".\n\n¿Está disponible actualmente?\n¿Cuál es su precio?\n¿Qué tallaje tiene o cuáles son sus medidas?\n\nGracias."
+  },
+
+  "about": {
+    "title": "¿Quién está detrás?",
+
+    "intro1": "Soy Aroa, diseñadora y creadora de esta marca.",
+
+    "intro2": "Desde Sevilla desarrollo este proyecto como una forma de explorar mi manera de entender la moda: trabajar con lo que ya existe y descubrir todas las posibilidades que puede tener.",
+
+    "intro3": "Mi interés por la moda siempre ha estado ligado a crear, transformar y experimentar.",
+
+    "intro4": "Aroa López Sevilla nace de esas ganas de hacer las cosas de una manera más personal y construir una identidad propia a través de cada creación.",
+
+    "projectImageAlt": "Proceso de creación",
+
+    "projectTitle": "El proyecto",
+
+    "project1": "Este proyecto está basado en la transformación de prendas de segunda mano.",
+
+    "project2": "Selecciono piezas que ya tienen una historia y trabajo sobre ellas para darles una nueva identidad.",
+
+    "project3": "No se trata simplemente de reutilizar una prenda sino de imaginar qué puede llegar a ser. Cambiar su forma, combinar materiales, modificar detalles o incluso transformar completamente su función.",
+
+    "project4": "El resultado son creaciones que conservan parte de su pasado, pero empiezan una nueva etapa.",
+
+    "manifesto": "“Cada pieza comienza con una búsqueda. Después viene el proceso de probar, descoser, cortar, coser y volver a construir. No sigo siempre un camino definido; muchas veces es la propia prenda la que marca hacia dónde puede ir.”"
+  }
+}

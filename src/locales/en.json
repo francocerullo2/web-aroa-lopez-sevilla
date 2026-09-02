@@ -1,0 +1,118 @@
+{
+  "header": {
+    "collection": "Collection",
+    "about": "About",
+    "contact": "Contact",
+    "openMenu": "Open menu"
+  },
+
+  "home": {
+    "hero": {
+      "alt": "Reimagined Collection",
+      "label": "COLLECTION",
+      "title": "Reimagined",
+      "button": "VIEW COLLECTION"
+    },
+
+    "news": {
+      "title": "New Arrivals",
+      "subtitle": "Latest reworked pieces",
+      "button": "VIEW FULL COLLECTION"
+    },
+
+    "products": {
+      "product1": "Product 1",
+      "product2": "Product 2",
+      "product3": "Product 3",
+      "product4": "Product 4"
+    },
+
+    "history": {
+      "alt": "Garments with a story",
+      "title": "Garments with a story",
+      "button": "LEARN MORE",
+      "text1": "I work with second-hand garments that become a starting point once again. Each piece is selected, transformed and reimagined to create something new while preserving part of the story it carries.",
+      "text2": "A garment does not end when it stops being worn. Sometimes, it is simply waiting for a new form."
+    },
+
+    "newsletter": {
+      "title": "Newsletter",
+      "text": "Sign up so you don't miss new pieces and upcoming launches <3",
+      "placeholder": "Email address",
+      "button": "Subscribe"
+    },
+
+    "gallery": {
+      "alt": "Collection detail"
+    }
+  },
+
+  "collection": {
+    "all": "ALL",
+    "tops": "TOPS",
+    "blazers": "BLAZERS",
+    "skirts": "SKIRTS",
+    "consultPiece": "Enquire about this piece"
+  },
+
+  "product": {
+    "notFound": "Product not found",
+    "description": "A unique piece created from carefully selected and transformed garments.",
+    "uniquePiece": "ONE OF A KIND",
+    "contactText": "To enquire about availability, price and measurements, please get in touch.",
+    "consultPiece": "ENQUIRE ABOUT THIS PIECE",
+    "backToCollection": "BACK TO COLLECTION",
+
+    "status": {
+      "available": "AVAILABLE",
+      "comingSoon": "COMING SOON",
+      "sold": "SOLD"
+    }
+  },
+
+  "contact": {
+    "title": "Contact",
+    "introStart": "For any enquiries, you can email me at",
+    "introEnd": "or fill in the contact form below. I usually respond within 24-48 hours.",
+    "instagramText": "If it is more convenient for you, you can also contact me via Instagram. I will be happy to help.",
+    "followUs": "Follow us",
+
+    "firstName": "First name",
+    "lastName": "Last name",
+    "email": "Email",
+    "subject": "Subject",
+    "message": "Message",
+    "required": "required",
+    "send": "Send",
+
+    "pieceSubject": "Enquiry about the piece: {{piece}}",
+
+    "pieceMessage": "Hello,\n\nI would like to receive more information about the piece \"{{piece}}\".\n\nIs it currently available?\nWhat is the price?\nWhat size is it or what are its measurements?\n\nThank you."
+  },
+
+  "about": {
+    "title": "Who is behind it?",
+
+    "intro1": "I’m Aroa, the designer and creator behind this brand.",
+
+    "intro2": "From Seville, I develop this project as a way of exploring my own understanding of fashion: working with what already exists and discovering all the possibilities it can hold.",
+
+    "intro3": "My interest in fashion has always been connected to creating, transforming and experimenting.",
+
+    "intro4": "Aroa López Sevilla was born from the desire to do things in a more personal way and to build a distinct identity through each creation.",
+
+    "projectImageAlt": "Creative process",
+
+    "projectTitle": "The project",
+
+    "project1": "This project is based on transforming second-hand garments.",
+
+    "project2": "I select pieces that already have a story and work with them to give them a new identity.",
+
+    "project3": "It is not simply about reusing a garment, but about imagining what it could become. Changing its shape, combining materials, altering details or even completely transforming its purpose.",
+
+    "project4": "The result is a collection of creations that preserve part of their past while beginning a new chapter.",
+
+    "manifesto": "“Every piece begins with a search. Then comes the process of trying, unpicking, cutting, sewing and rebuilding. I do not always follow a defined path; often, it is the garment itself that shows where it can go.”"
+  }
+}

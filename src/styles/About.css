@@ -1,0 +1,468 @@
+.about-page {
+  width: 100%;
+}
+
+
+/* QUIÉN ESTÁ DETRÁS */
+
+.about-intro {
+  width: min(
+    calc(100% - 90px),
+    var(--content-width)
+  );
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+
+  align-items: start;
+
+  padding-top: 90px;
+  padding-bottom: 120px;
+}
+
+
+.about-intro-text {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.about-intro h1 {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(30px, 2.5vw, 42px);
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  margin-bottom: 65px;
+}
+
+
+.about-description {
+  max-width: 500px;
+}
+
+
+.about-description p {
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  margin-bottom: 18px;
+}
+
+
+.about-intro-image {
+  width: 100%;
+
+  height: 380px;
+
+  overflow: hidden;
+}
+
+
+.about-intro-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+/* EL PROYECTO */
+
+.about-project {
+  width: min(
+    calc(100% - 90px),
+    var(--content-width)
+  );
+
+  margin: 0 auto;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 80px;
+
+  align-items: start;
+
+  min-height: auto;
+
+  padding-bottom: 120px;
+}
+
+
+.about-project-image {
+  width: 100%;
+
+  height: 380px;
+
+  overflow: hidden;
+}
+
+
+.about-project-image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  display: block;
+}
+
+
+.about-project-content {
+  display: flex;
+  flex-direction: column;
+}
+
+
+.about-project h2 {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(30px, 2.5vw, 42px);
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  margin-bottom: 65px;
+}
+
+
+.about-project-text {
+  max-width: 550px;
+}
+
+
+.about-project-text p {
+  font-size: 13px;
+
+  line-height: 1.7;
+
+  margin-bottom: 20px;
+}
+
+
+/* MANIFIESTO */
+
+.about-manifesto {
+  width: min(
+    calc(100% - 90px),
+    var(--content-width)
+  );
+
+  margin: 0 auto;
+
+  padding: 90px 8% 100px;
+
+  border-top: 1px solid var(--color-red);
+
+  text-align: center;
+}
+
+
+.about-manifesto p {
+  max-width: 950px;
+
+  margin: 0 auto;
+
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(28px, 2.8vw, 44px);
+
+  font-weight: 400;
+
+  line-height: 1.2;
+}
+
+
+/* NEWSLETTER */
+
+.newsletter {
+  width: min(
+    calc(100% - 90px),
+    var(--content-width)
+  );
+
+  margin: 0 auto;
+
+  padding-top: 90px;
+  padding-bottom: 80px;
+}
+
+
+.newsletter-content {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 80px;
+
+  padding-bottom: 80px;
+
+  border-bottom: 1px solid var(--color-red);
+}
+
+
+.newsletter-text {
+  max-width: 600px;
+}
+
+
+.newsletter h2 {
+  font-family: Georgia, "Times New Roman", serif;
+
+  font-size: clamp(30px, 2.5vw, 40px);
+
+  font-weight: 400;
+
+  line-height: 1;
+
+  margin-bottom: 18px;
+}
+
+
+.newsletter p {
+  font-size: 13px;
+
+  line-height: 1.6;
+}
+
+
+.newsletter-form {
+  display: flex;
+
+  align-items: stretch;
+
+  flex-shrink: 0;
+}
+
+
+.newsletter-form input {
+  width: 280px;
+
+  padding: 16px 22px;
+
+  border: 1px solid var(--color-red);
+
+  background: transparent;
+
+  color: inherit;
+
+  font-size: 12px;
+
+  outline: none;
+}
+
+
+.newsletter-form input::placeholder {
+  color: inherit;
+
+  opacity: 0.7;
+}
+
+
+.newsletter-form input:focus {
+  border-color: var(--color-red);
+}
+
+
+.newsletter-form button {
+  min-width: 140px;
+
+  padding: 16px 28px;
+
+  background: transparent;
+
+  border: 1px solid var(--color-red);
+
+  color: inherit;
+
+  font-size: 11px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.3px;
+
+  cursor: pointer;
+
+  transition: 0.3s ease;
+}
+
+
+.newsletter-form button:hover {
+  background: var(--color-red);
+
+  color: var(--color-beige);
+}
+
+
+/* TABLET */
+
+@media (max-width: 900px) {
+
+  .about-intro,
+  .about-project,
+  .about-manifesto,
+  .newsletter {
+    width: min(
+      calc(100% - 50px),
+      var(--content-width)
+    );
+  }
+
+
+  .about-intro {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+
+    padding-top: 80px;
+    padding-bottom: 100px;
+  }
+
+
+  .about-intro-image {
+    order: 1;
+
+    min-height: 450px;
+  }
+
+
+  .about-intro-text {
+    order: 2;
+  }
+
+
+  .about-intro h1 {
+    margin-bottom: 50px;
+  }
+
+
+  .about-project {
+    grid-template-columns: 1fr;
+
+    gap: 50px;
+
+    padding-bottom: 100px;
+  }
+
+  .about-project h2 {
+    margin-bottom: 45px;
+  }
+
+
+  .about-manifesto {
+    padding: 80px 5%;
+  }
+
+
+  .newsletter-content {
+    flex-direction: column;
+
+    align-items: flex-start;
+
+    gap: 50px;
+  }
+
+}
+
+
+/* MÓVIL */
+
+@media (max-width: 600px) {
+
+  .about-intro,
+  .about-project,
+  .about-manifesto,
+  .newsletter {
+    width: calc(100% - 40px);
+  }
+
+
+  .about-intro {
+    padding-top: 60px;
+    padding-bottom: 80px;
+  }
+
+
+  .about-intro h1 {
+    font-size: 34px;
+
+    margin-bottom: 40px;
+  }
+
+
+  .about-description p,
+  .about-project-text p {
+    font-size: 13px;
+  }
+
+
+  .about-intro-image {
+    min-height: 360px;
+  }
+
+
+  .about-project {
+    gap: 40px;
+
+    padding-bottom: 75px;
+  }
+
+
+  .about-project-image {
+    min-height: 380px;
+  }
+
+
+  .about-project h2 {
+    font-size: 34px;
+
+    margin-bottom: 30px;
+  }
+
+
+  .about-manifesto {
+    padding: 70px 0;
+  }
+
+
+  .about-manifesto p {
+    font-size: clamp(28px, 8vw, 38px);
+  }
+
+
+  .newsletter {
+    padding-top: 70px;
+    padding-bottom: 70px;
+  }
+
+
+  .newsletter-content {
+    padding-bottom: 65px;
+  }
+
+
+  .newsletter-form {
+    width: 100%;
+
+    flex-direction: column;
+  }
+
+
+  .newsletter-form input,
+  .newsletter-form button {
+    width: 100%;
+  }
+
+}
