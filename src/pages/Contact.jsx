@@ -1,4 +1,5 @@
-import { useLocation } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
+import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/Contact.css";
 
@@ -9,6 +10,22 @@ import tiktokIcon from "../assets/images/tiktok.svg";
 function Contact() {
   const { t } = useTranslation();
   const location = useLocation();
+  const navigate = useNavigate();
+
+  const [messageSent, setMessageSent] = useState(
+    new URLSearchParams(location.search).get("sent") === "true"
+  );
+
+  useEffect(() => {
+    if (messageSent) {
+      const timer = setTimeout(() => {
+        setMessageSent(false);
+        navigate("/contacto", { replace: true });
+      }, 5000);
+
+      return () => clearTimeout(timer);
+    }
+  }, [messageSent, navigate]);
 
   const params = new URLSearchParams(location.search);
   const pieza = params.get("pieza");
@@ -31,6 +48,7 @@ function Contact() {
         <h1>{t("contact.title")}</h1>
 
         <div className="contact-text">
+
           <p>
             {t("contact.introStart")}{" "}
             <a href="mailto:aroalopezsevilla@gmail.com">
@@ -42,9 +60,11 @@ function Contact() {
           <p>
             {t("contact.instagramText")}
           </p>
+
         </div>
 
         <div className="contact-socials">
+
           <p>{t("contact.followUs")}</p>
 
           <div className="contact-social-icons">
@@ -77,6 +97,7 @@ function Contact() {
             </a>
 
           </div>
+
         </div>
 
       </section>
@@ -86,121 +107,145 @@ function Contact() {
 
       <section className="contact-form-section">
 
+        {messageSent && (
+          <p className="contact-success">
+            {t("contact.success")}
+          </p>
+        )}
+
         <form
-  className="contact-form"
-  action="https://formsubmit.co/aroalopezsevilla@gmail.com"
-  method="POST"
->
+          className="contact-form"
+          action="https://formsubmit.co/aroalopezsevilla@gmail.com"
+          method="POST"
+        >
 
-  <input
-    type="hidden"
-    name="_subject"
-    value="Nueva consulta desde Aroa López Sevilla"
-  />
+          <input
+            type="hidden"
+            name="_next"
+            value={`${window.location.origin}/contacto?sent=true`}
+          />
 
-  <input
-    type="hidden"
-    name="_template"
-    value="table"
-  />
+          <input
+            type="hidden"
+            name="_subject"
+            value="Nueva consulta desde Aroa López Sevilla"
+          />
 
-  <input
-    type="hidden"
-    name="_captcha"
-    value="false"
-  />
+          <input
+            type="hidden"
+            name="_template"
+            value="table"
+          />
 
-  <input
-    type="hidden"
-    name="_replyto"
-    value="email"
-  />
+          <input
+            type="hidden"
+            name="_captcha"
+            value="false"
+          />
 
-
-  <div className="form-row">
-
-    <div className="form-group">
-      <label htmlFor="firstName">
-        {t("contact.firstName")}{" "}
-        <span>({t("contact.required")})</span>
-      </label>
-
-      <input
-        type="text"
-        id="firstName"
-        name="Nombre"
-        required
-      />
-    </div>
-
-    <div className="form-group">
-      <label htmlFor="lastName">
-        {t("contact.lastName")}{" "}
-        <span>({t("contact.required")})</span>
-      </label>
-
-      <input
-        type="text"
-        id="lastName"
-        name="Apellidos"
-        required
-      />
-    </div>
-
-  </div>
+          <input
+            type="hidden"
+            name="_replyto"
+            value="email"
+          />
 
 
-  <div className="form-group">
-    <label htmlFor="email">
-      {t("contact.email")}{" "}
-      <span>({t("contact.required")})</span>
-    </label>
+          <div className="form-row">
 
-    <input
-      type="email"
-      id="email"
-      name="email"
-      required
-    />
-  </div>
+            <div className="form-group">
 
+              <label htmlFor="firstName">
+                {t("contact.firstName")}{" "}
+                <span>({t("contact.required")})</span>
+              </label>
 
-  <div className="form-group">
-    <label htmlFor="subject">
-      {t("contact.subject")}{" "}
-      <span>({t("contact.required")})</span>
-    </label>
+              <input
+                type="text"
+                id="firstName"
+                name="Nombre"
+                required
+              />
 
-    <input
-      type="text"
-      id="subject"
-      name="Asunto"
-      defaultValue={subject}
-      required
-    />
-  </div>
+            </div>
 
 
-  <div className="form-group">
-    <label htmlFor="message">
-      {t("contact.message")}{" "}
-      <span>({t("contact.required")})</span>
-    </label>
+            <div className="form-group">
 
-    <textarea
-      id="message"
-      name="Mensaje"
-      defaultValue={message}
-      required
-    ></textarea>
-  </div>
+              <label htmlFor="lastName">
+                {t("contact.lastName")}{" "}
+                <span>({t("contact.required")})</span>
+              </label>
+
+              <input
+                type="text"
+                id="lastName"
+                name="Apellidos"
+                required
+              />
+
+            </div>
+
+          </div>
 
 
-  <button type="submit" className="contact-submit">
-    {t("contact.send")}
-  </button>
+          <div className="form-group">
 
-</form>
+            <label htmlFor="email">
+              {t("contact.email")}{" "}
+              <span>({t("contact.required")})</span>
+            </label>
+
+            <input
+              type="email"
+              id="email"
+              name="email"
+              required
+            />
+
+          </div>
+
+
+          <div className="form-group">
+
+            <label htmlFor="subject">
+              {t("contact.subject")}{" "}
+              <span>({t("contact.required")})</span>
+            </label>
+
+            <input
+              type="text"
+              id="subject"
+              name="Asunto"
+              defaultValue={subject}
+              required
+            />
+
+          </div>
+
+
+          <div className="form-group">
+
+            <label htmlFor="message">
+              {t("contact.message")}{" "}
+              <span>({t("contact.required")})</span>
+            </label>
+
+            <textarea
+              id="message"
+              name="Mensaje"
+              defaultValue={message}
+              required
+            ></textarea>
+
+          </div>
+
+
+          <button type="submit" className="contact-submit">
+            {t("contact.send")}
+          </button>
+
+        </form>
+
       </section>
 
 
@@ -211,24 +256,41 @@ function Contact() {
         <div className="newsletter-content">
 
           <div className="newsletter-text">
+
             <h2>{t("home.newsletter.title")}</h2>
 
             <p>
               {t("home.newsletter.text")}
             </p>
+
           </div>
 
-          <form className="newsletter-form">
-            <input
-              type="email"
-              placeholder={t("home.newsletter.placeholder")}
-              aria-label={t("contact.email")}
-            />
 
-            <button type="submit">
-              {t("home.newsletter.button")}
-            </button>
-          </form>
+          <div className="newsletter-form-wrapper">
+
+            <form className="newsletter-form">
+
+              <input
+                type="email"
+                placeholder={t("home.newsletter.placeholder")}
+                aria-label={t("contact.email")}
+              />
+
+              <button type="submit">
+                {t("home.newsletter.button")}
+              </button>
+
+            </form>
+
+
+            <a
+              href="/politica-privacidad"
+              className="newsletter-privacy"
+            >
+              {t("home.newsletter.privacy")}
+            </a>
+
+          </div>
 
         </div>
 

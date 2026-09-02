@@ -39,7 +39,10 @@
       "title": "Newsletter",
       "text": "Sign up so you don't miss new pieces and upcoming launches <3",
       "placeholder": "Email address",
-      "button": "Subscribe"
+      "button": "Subscribe",
+      "success": "Thank you for subscribing!",
+      "error": "Something went wrong. Please try again.",
+      "privacy": "By signing up, you agree to receive news and marketing emails. See our Privacy Policy for more information."
     },
 
     "gallery": {
@@ -84,6 +87,7 @@
     "message": "Message",
     "required": "required",
     "send": "Send",
+    "success": "Your message has been sent successfully.",
 
     "pieceSubject": "Enquiry about the piece: {{piece}}",
 
@@ -114,5 +118,29 @@
     "project4": "The result is a collection of creations that preserve part of their past while beginning a new chapter.",
 
     "manifesto": "“Every piece begins with a search. Then comes the process of trying, unpicking, cutting, sewing and rebuilding. I do not always follow a defined path; often, it is the garment itself that shows where it can go.”"
-  }
+  },
+  "privacy": {
+  "title": "Privacy Policy",
+  "updated": "Last updated: September 2026",
+  "responsibleTitle": "1. Data Controller",
+  "responsibleText": "The data controller responsible for the personal data collected through this website is Aroa López Sevilla. Email: aroalopezsevilla@gmail.com.",
+  "dataTitle": "2. Personal Data Collected",
+  "dataText": "This website may collect your email address when you subscribe to the newsletter, as well as your first name, last name, email address, subject and message when you use the contact form.",
+  "purposeTitle": "3. Purpose of Processing",
+  "purposeText": "Newsletter data is used to manage your subscription and send you news, new pieces, launches and other communications related to Aroa López Sevilla. Contact form data is used to respond to your enquiries and requests.",
+  "legalTitle": "4. Legal Basis",
+  "legalText": "The legal basis for sending the newsletter is your consent, given when you subscribe. The legal basis for responding to contact form enquiries is the management of your request.",
+  "providersTitle": "5. Service Providers",
+  "providersText": "Brevo is used to manage the newsletter. FormSubmit is used to manage contact form submissions. These providers may process personal data necessary to provide their services.",
+  "retentionTitle": "6. Data Retention",
+  "retentionText": "Newsletter data will be retained while you remain subscribed or until you request its deletion or withdraw your consent. Contact form data will be retained for as long as necessary to manage the enquiry and, where applicable, for the legally required periods.",
+  "unsubscribeTitle": "7. Newsletter Unsubscription",
+  "unsubscribeText": "You can unsubscribe from the newsletter at any time by using the unsubscribe link included in communications or by contacting aroalopezsevilla@gmail.com.",
+  "rightsTitle": "8. Your Rights",
+  "rightsText": "You may request access, rectification, deletion, restriction, objection and portability of your data where applicable, as well as withdraw your consent. To exercise your rights, contact aroalopezsevilla@gmail.com. You may also lodge a complaint with the Spanish Data Protection Agency.",
+  "securityTitle": "9. Security",
+  "securityText": "Technical and organisational measures are applied to protect personal data against loss, alteration, unauthorised access and other risks associated with processing.",
+  "changesTitle": "10. Changes to this Privacy Policy",
+  "changesText": "This Privacy Policy may be updated when necessary to reflect legal, technical or service changes affecting the website. The current version will always be published on this page."
+}
 }

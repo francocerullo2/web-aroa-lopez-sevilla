@@ -17,40 +17,40 @@ function Home() {
   const { t } = useTranslation()
 
   const [newsletterEmail, setNewsletterEmail] = useState('')
-const [newsletterStatus, setNewsletterStatus] = useState('')
+  const [newsletterStatus, setNewsletterStatus] = useState('')
 
-const handleNewsletterSubmit = async (e) => {
-  e.preventDefault()
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault()
 
-  setNewsletterStatus('loading')
+    setNewsletterStatus('loading')
 
-  try {
-    const response = await fetch('/api/newsletter', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
-      },
-      body: JSON.stringify({
-        email: newsletterEmail,
-      }),
-    })
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: newsletterEmail,
+        }),
+      })
 
-    if (!response.ok) {
-      throw new Error('Error al registrar el email')
+      if (!response.ok) {
+        throw new Error('Error al registrar el email')
+      }
+
+      setNewsletterEmail('')
+      setNewsletterStatus('success')
+    } catch (error) {
+      console.error(error)
+      setNewsletterStatus('error')
     }
-
-    setNewsletterEmail('')
-    setNewsletterStatus('success')
-  } catch (error) {
-    console.error(error)
-    setNewsletterStatus('error')
   }
-}
 
   const statusText = {
-  disponible: t('product.status.available'),
-  proximamente: t('product.status.comingSoon'),
-  vendida: t('product.status.sold'),
+    disponible: t('product.status.available'),
+    proximamente: t('product.status.comingSoon'),
+    vendida: t('product.status.sold'),
   }
 
   return (
@@ -181,37 +181,53 @@ const handleNewsletterSubmit = async (e) => {
 
           </div>
 
-         <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
-          <input
-            type="email"
-            placeholder={t('home.newsletter.placeholder')}
-            aria-label={t('home.newsletter.placeholder')}
-            value={newsletterEmail}
-            onChange={(e) => setNewsletterEmail(e.target.value)}
-            required
-          />
+          <div className="newsletter-form-wrapper">
 
-          <button
-            type="submit"
-            disabled={newsletterStatus === 'loading'}
-          >
-            {newsletterStatus === 'loading'
-              ? '...'
-              : t('home.newsletter.button')}
-          </button>
+            <form
+              className="newsletter-form"
+              onSubmit={handleNewsletterSubmit}
+            >
 
-          {newsletterStatus === 'success' && (
-            <p className="newsletter-message">
-              ¡Gracias por suscribirte!
-            </p>
-          )}
+              <input
+                type="email"
+                placeholder={t('home.newsletter.placeholder')}
+                aria-label={t('home.newsletter.placeholder')}
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                required
+              />
 
-          {newsletterStatus === 'error' && (
-            <p className="newsletter-message">
-              Ha ocurrido un error. Inténtalo de nuevo.
-            </p>
-          )}
-        </form>
+              <button
+                type="submit"
+                disabled={newsletterStatus === 'loading'}
+              >
+                {newsletterStatus === 'loading'
+                  ? '...'
+                  : t('home.newsletter.button')}
+              </button>
+
+              {newsletterStatus === 'success' && (
+                <p className="newsletter-message">
+                  {t('home.newsletter.success')}
+                </p>
+              )}
+
+              {newsletterStatus === 'error' && (
+                <p className="newsletter-message">
+                  {t('home.newsletter.error')}
+                </p>
+              )}
+
+            </form>
+
+            <Link
+              to="/politica-privacidad"
+              className="newsletter-privacy"
+            >
+              {t('home.newsletter.privacy')}
+            </Link>
+
+          </div>
 
         </div>
 

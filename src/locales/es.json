@@ -35,11 +35,14 @@
       "text2": "Una prenda no termina cuando deja de usarse. A veces, simplemente está esperando una nueva forma."
     },
 
-    "newsletter": {
+   "newsletter": {
       "title": "Newsletter",
       "text": "Regístrate para no perderte las nuevas piezas y próximos lanzamientos <3",
       "placeholder": "Dirección de email",
-      "button": "Registrarme"
+      "button": "Registrarme",
+      "success": "¡Gracias por suscribirte!",
+      "error": "Ha ocurrido un error. Inténtalo de nuevo.",
+      "privacy": "Al suscribirte, aceptas recibir novedades y comunicaciones comerciales por email. Consulta nuestra Política de Privacidad para más información."
     },
 
     "gallery": {
@@ -84,6 +87,7 @@
     "message": "Mensaje",
     "required": "obligatorio",
     "send": "Enviar",
+    "success": "Tu mensaje se ha enviado correctamente.",
 
     "pieceSubject": "Consulta sobre la pieza: {{piece}}",
 
@@ -114,5 +118,29 @@
     "project4": "El resultado son creaciones que conservan parte de su pasado, pero empiezan una nueva etapa.",
 
     "manifesto": "“Cada pieza comienza con una búsqueda. Después viene el proceso de probar, descoser, cortar, coser y volver a construir. No sigo siempre un camino definido; muchas veces es la propia prenda la que marca hacia dónde puede ir.”"
-  }
+  },
+  "privacy": {
+  "title": "Política de Privacidad",
+  "updated": "Última actualización: septiembre de 2026",
+  "responsibleTitle": "1. Responsable del tratamiento",
+  "responsibleText": "El responsable del tratamiento de los datos personales recogidos a través de este sitio web es Aroa López Sevilla. Email: aroalopezsevilla@gmail.com.",
+  "dataTitle": "2. Datos personales que se recogen",
+  "dataText": "A través de este sitio web pueden recogerse la dirección de correo electrónico cuando te suscribes a la newsletter y el nombre, apellidos, dirección de correo electrónico, asunto y contenido del mensaje cuando utilizas el formulario de contacto.",
+  "purposeTitle": "3. Finalidad del tratamiento",
+  "purposeText": "Los datos de la newsletter se utilizan para gestionar tu suscripción y enviarte novedades, nuevas piezas, lanzamientos y otras comunicaciones relacionadas con Aroa López Sevilla. Los datos del formulario de contacto se utilizan para responder a las consultas y solicitudes que envíes.",
+  "legalTitle": "4. Base jurídica",
+  "legalText": "Para el envío de la newsletter, la base jurídica es tu consentimiento, que manifiestas al suscribirte. Para responder a las consultas enviadas mediante el formulario de contacto, la base jurídica es la gestión de tu solicitud.",
+  "providersTitle": "5. Proveedores de servicios",
+  "providersText": "Para gestionar la newsletter se utiliza Brevo. Para gestionar el envío de los mensajes del formulario de contacto se utiliza FormSubmit. Estos proveedores pueden tratar datos personales necesarios para prestar sus servicios.",
+  "retentionTitle": "6. Conservación de los datos",
+  "retentionText": "Los datos utilizados para la newsletter se conservarán mientras mantengas tu suscripción o hasta que solicites su supresión o retires tu consentimiento. Los datos del formulario de contacto se conservarán durante el tiempo necesario para gestionar la consulta y, cuando corresponda, durante los plazos legales aplicables.",
+  "unsubscribeTitle": "7. Baja de la newsletter",
+  "unsubscribeText": "Puedes darte de baja de la newsletter en cualquier momento utilizando el enlace de baja incluido en las comunicaciones o contactando con aroalopezsevilla@gmail.com.",
+  "rightsTitle": "8. Derechos",
+  "rightsText": "Puedes solicitar el acceso, rectificación, supresión, limitación, oposición y portabilidad de tus datos cuando corresponda, así como retirar tu consentimiento. Para ejercer tus derechos puedes escribir a aroalopezsevilla@gmail.com. También puedes presentar una reclamación ante la Agencia Española de Protección de Datos.",
+  "securityTitle": "9. Seguridad",
+  "securityText": "Se aplican medidas técnicas y organizativas destinadas a proteger los datos personales frente a pérdida, alteración, acceso no autorizado y otros riesgos asociados al tratamiento.",
+  "changesTitle": "10. Cambios en esta Política de Privacidad",
+  "changesText": "Esta Política de Privacidad podrá actualizarse cuando sea necesario para adaptarla a cambios legales, técnicos o en los servicios utilizados en el sitio web. La versión vigente será la publicada en esta página."
+}
 }

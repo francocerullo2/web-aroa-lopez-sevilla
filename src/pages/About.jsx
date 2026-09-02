@@ -105,38 +105,49 @@ function About() {
       </section>
 
 
-     {/* NEWSLETTER */}
+      {/* NEWSLETTER */}
 
-<section className="newsletter">
+      <section className="newsletter">
 
-  <div className="newsletter-content">
+        <div className="newsletter-content">
 
-    <div className="newsletter-text">
+          <div className="newsletter-text">
 
-      <h2>{t('home.newsletter.title')}</h2>
+            <h2>{t('home.newsletter.title')}</h2>
 
-      <p>
-        {t('home.newsletter.text')}
-      </p>
+            <p>
+              {t('home.newsletter.text')}
+            </p>
 
-    </div>
+          </div>
 
-    <form className="newsletter-form">
+          <div className="newsletter-form-wrapper">
 
-      <input
-        type="email"
-        placeholder={t('home.newsletter.placeholder')}
-      />
+            <form className="newsletter-form">
 
-      <button type="submit">
-        {t('home.newsletter.button')}
-      </button>
+              <input
+                type="email"
+                placeholder={t('home.newsletter.placeholder')}
+              />
 
-    </form>
+              <button type="submit">
+                {t('home.newsletter.button')}
+              </button>
 
-  </div>
+            </form>
 
-</section>
+            <a
+              href="/politica-privacidad"
+              className="newsletter-privacy"
+            >
+              {t('home.newsletter.privacy')}
+            </a>
+
+          </div>
+
+        </div>
+
+      </section>
 
     </main>
   )

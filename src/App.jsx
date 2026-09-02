@@ -6,6 +6,7 @@ import Product from './pages/Product'
 import About from './pages/About'
 import Contact from './pages/Contact'
 import Footer from './components/Footer'
+import PrivacyPolicy from './pages/PrivacyPolicy'
 import ScrollToTop from './components/ScrollToTop'
 
 function App() {
@@ -22,6 +23,7 @@ function App() {
         <Route path="/producto/:id" element={<Product />} />
         <Route path="/sobre-mi" element={<About />} />
         <Route path="/contacto" element={<Contact />} />
+        <Route path="/politica-privacidad" element={<PrivacyPolicy />} />
       </Routes>
 
       <Footer />
