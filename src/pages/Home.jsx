@@ -2,19 +2,41 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import heroImage from '../assets/images/hero.PNG'
+import heroImage from '../assets/images/home/hero.PNG'
 import products from '../data/products'
 import ProductCarousel from '../components/ProductCarousel'
-import historyImage from '../assets/images/product-02.PNG'
-import galleryImage1 from '../assets/images/product-01.PNG'
-import galleryImage2 from '../assets/images/product-02.PNG'
-import galleryImage3 from '../assets/images/product-01.PNG'
-import galleryImage4 from '../assets/images/product-02.PNG'
+import historyImage from '../assets/images/products/product-02.PNG'
+
+import InspirationCarousel from '../components/InspirationCarousel'
+
+import inspiration01 from '../assets/images/inspiration/inspiration-01.jpeg'
+import inspiration02 from '../assets/images/inspiration/inspiration-02.jpg'
+import inspiration03 from '../assets/images/inspiration/inspiration-03.jpeg'
+import inspiration04 from '../assets/images/inspiration/inspiration-04.jpg'
+import inspiration05 from '../assets/images/inspiration/inspiration-05.jpeg'
+import inspiration06 from '../assets/images/inspiration/inspiration-06.jpg'
+import inspiration07 from '../assets/images/inspiration/inspiration-07.jpeg'
+import inspiration08 from '../assets/images/inspiration/inspiration-08.jpg'
+import inspiration09 from '../assets/images/inspiration/inspiration-09.jpeg'
+import inspiration10 from '../assets/images/inspiration/inspiration-10.jpg'
 
 import '../styles/Home.css'
 
 function Home() {
   const { t } = useTranslation()
+
+  const inspirationImages = [
+  inspiration01,
+  inspiration02,
+  inspiration03,
+  inspiration04,
+  inspiration05,
+  inspiration06,
+  inspiration07,
+  inspiration08,
+  inspiration09,
+  inspiration10,
+]
 
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [newsletterStatus, setNewsletterStatus] = useState('')
@@ -236,27 +258,7 @@ function Home() {
 
       {/* GALERÍA */}
       <section className="home-gallery">
-
-        <img
-          src={galleryImage1}
-          alt={t('home.gallery.alt')}
-        />
-
-        <img
-          src={galleryImage2}
-          alt={t('home.gallery.alt')}
-        />
-
-        <img
-          src={galleryImage3}
-          alt={t('home.gallery.alt')}
-        />
-
-        <img
-          src={galleryImage4}
-          alt={t('home.gallery.alt')}
-        />
-
+        <InspirationCarousel images={inspirationImages} />
       </section>
 
     </main>

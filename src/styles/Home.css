@@ -489,19 +489,8 @@
 /* GALERÍA */
 
 .home-gallery {
-  display: grid;
-
-  grid-template-columns: repeat(4, 1fr);
-}
-
-.home-gallery img {
   width: 100%;
-
-  aspect-ratio: 1 / 1;
-
-  object-fit: cover;
-
-  display: block;
+  padding: 0 45px;
 }
 
 

@@ -2,8 +2,8 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import '../styles/About.css'
 
-import aboutImage from '../assets/images/product-01.PNG'
-import projectImage from '../assets/images/product-01.PNG'
+import aboutImage from '../assets/images/products/product-01.PNG'
+import projectImage from '../assets/images/products/product-01.PNG'
 
 function About() {
   const { t } = useTranslation()

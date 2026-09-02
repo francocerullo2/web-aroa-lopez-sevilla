@@ -1,0 +1,88 @@
+.inspiration-carousel {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 20px;
+}
+
+.inspiration-window {
+  flex: 1;
+  min-width: 0;
+  overflow: hidden;
+}
+
+.inspiration-track {
+  display: flex;
+  gap: 5px;
+  width: 100%;
+}
+
+.inspiration-slide {
+  flex: 0 0 calc(25% - 3.75px);
+  min-width: 0;
+  aspect-ratio: 3 / 4;
+  overflow: hidden;
+}
+
+.inspiration-slide img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  display: block;
+}
+
+.inspiration-arrow {
+  flex-shrink: 0;
+  width: 35px;
+  height: 35px;
+  border: none;
+  background: transparent;
+  color: var(--color-red);
+  font-size: 25px;
+  font-family: Arial, sans-serif;
+  cursor: pointer;
+  padding: 0;
+}
+
+.inspiration-arrow:hover {
+  opacity: 0.6;
+}
+
+@media (max-width: 900px) {
+  .home-gallery {
+    padding: 0 25px;
+  }
+
+  .inspiration-carousel {
+    gap: 12px;
+  }
+
+  .inspiration-slide {
+    flex-basis: calc(50% - 2.5px);
+  }
+
+  .inspiration-arrow {
+    width: 25px;
+    font-size: 21px;
+  }
+}
+
+@media (max-width: 600px) {
+  .home-gallery {
+    padding: 0 20px;
+  }
+
+  .inspiration-carousel {
+    gap: 5px;
+  }
+
+  .inspiration-slide {
+    flex-basis: calc(50% - 2.5px);
+  }
+
+  .inspiration-arrow {
+    width: 20px;
+    font-size: 18px;
+  }
+}

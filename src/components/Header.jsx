@@ -1,11 +1,10 @@
 import { useState } from 'react'
 import { Link, NavLink, useLocation } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-
-import logo from '../assets/images/logo.png'
-import instagram from '../assets/images/instagram.svg'
-import pinterest from '../assets/images/pinterest.svg'
-import tiktok from '../assets/images/tiktok.svg'
+import logo from '../assets/images/brand/logo.png'
+import instagram from '../assets/images/social/instagram.svg'
+import pinterest from '../assets/images/social/pinterest.svg'
+import tiktok from '../assets/images/social/tiktok.svg'
 
 function Header() {
   const { t, i18n } = useTranslation()

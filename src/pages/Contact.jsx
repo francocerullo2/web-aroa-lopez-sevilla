@@ -3,9 +3,9 @@ import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
 import "../styles/Contact.css";
 
-import instagramIcon from "../assets/images/instagram.svg";
-import pinterestIcon from "../assets/images/pinterest.svg";
-import tiktokIcon from "../assets/images/tiktok.svg";
+import instagramIcon from "../assets/images/social/instagram.svg";
+import pinterestIcon from "../assets/images/social/pinterest.svg";
+import tiktokIcon from "../assets/images/social/tiktok.svg";
 
 function Contact() {
   const { t } = useTranslation();

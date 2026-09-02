@@ -1,14 +1,14 @@
-import product01 from '../assets/images/product-01.PNG'
-import product02 from '../assets/images/product-02.PNG'
-import product03 from '../assets/images/product-03.PNG'
-import product04 from '../assets/images/product-04.jpeg'
-import product05 from '../assets/images/product-05.jpg'
-import product06 from '../assets/images/product-06.jpg'
-import product07 from '../assets/images/product-07.jpeg'
-import product08 from '../assets/images/product-08.jpg'
-import dolores01 from '../assets/images/product-01.PNG'
-import dolores02 from '../assets/images/product-01.PNG'
-import dolores03 from '../assets/images/product-01.PNG'
+import product02 from '../assets/images/products/product-02.PNG'
+import product03 from '../assets/images/products/product-03.PNG'
+import product04 from '../assets/images/products/product-04.jpeg'
+import product05 from '../assets/images/products/product-05.jpg'
+import product06 from '../assets/images/products/product-06.jpg'
+import product07 from '../assets/images/products/product-07.jpeg'
+import product08 from '../assets/images/products/product-08.jpg'
+
+import dolores01 from '../assets/images/products/product-01.PNG'
+import dolores02 from '../assets/images/products/product-01.PNG'
+import dolores03 from '../assets/images/products/product-01.PNG'
 
 const products = [
 
