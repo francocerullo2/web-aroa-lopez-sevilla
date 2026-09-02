@@ -1,3 +1,4 @@
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import '../styles/About.css'
 
@@ -6,6 +7,37 @@ import projectImage from '../assets/images/product-01.PNG'
 
 function About() {
   const { t } = useTranslation()
+
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+  const [newsletterStatus, setNewsletterStatus] = useState('')
+
+  const handleNewsletterSubmit = async (e) => {
+    e.preventDefault()
+
+    setNewsletterStatus('loading')
+
+    try {
+      const response = await fetch('/api/newsletter', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          email: newsletterEmail,
+        }),
+      })
+
+      if (!response.ok) {
+        throw new Error('Error al registrar el email')
+      }
+
+      setNewsletterEmail('')
+      setNewsletterStatus('success')
+    } catch (error) {
+      console.error(error)
+      setNewsletterStatus('error')
+    }
+  }
 
   return (
     <main className="about-page">
@@ -123,16 +155,40 @@ function About() {
 
           <div className="newsletter-form-wrapper">
 
-            <form className="newsletter-form">
+            <form
+              className="newsletter-form"
+              onSubmit={handleNewsletterSubmit}
+            >
 
               <input
                 type="email"
                 placeholder={t('home.newsletter.placeholder')}
+                aria-label={t('home.newsletter.placeholder')}
+                value={newsletterEmail}
+                onChange={(e) => setNewsletterEmail(e.target.value)}
+                required
               />
 
-              <button type="submit">
-                {t('home.newsletter.button')}
+              <button
+                type="submit"
+                disabled={newsletterStatus === 'loading'}
+              >
+                {newsletterStatus === 'loading'
+                  ? '...'
+                  : t('home.newsletter.button')}
               </button>
+
+              {newsletterStatus === 'success' && (
+                <p className="newsletter-message">
+                  {t('home.newsletter.success')}
+                </p>
+              )}
+
+              {newsletterStatus === 'error' && (
+                <p className="newsletter-message">
+                  {t('home.newsletter.error')}
+                </p>
+              )}
 
             </form>
 
