@@ -1,4 +1,5 @@
 import { Link } from 'react-router-dom'
+import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
 import heroImage from '../assets/images/hero.PNG'
@@ -14,6 +15,37 @@ import '../styles/Home.css'
 
 function Home() {
   const { t } = useTranslation()
+
+  const [newsletterEmail, setNewsletterEmail] = useState('')
+const [newsletterStatus, setNewsletterStatus] = useState('')
+
+const handleNewsletterSubmit = async (e) => {
+  e.preventDefault()
+
+  setNewsletterStatus('loading')
+
+  try {
+    const response = await fetch('/api/newsletter', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        email: newsletterEmail,
+      }),
+    })
+
+    if (!response.ok) {
+      throw new Error('Error al registrar el email')
+    }
+
+    setNewsletterEmail('')
+    setNewsletterStatus('success')
+  } catch (error) {
+    console.error(error)
+    setNewsletterStatus('error')
+  }
+}
 
   const statusText = {
   disponible: t('product.status.available'),
@@ -149,19 +181,37 @@ function Home() {
 
           </div>
 
-          <form className="newsletter-form">
+         <form className="newsletter-form" onSubmit={handleNewsletterSubmit}>
+          <input
+            type="email"
+            placeholder={t('home.newsletter.placeholder')}
+            aria-label={t('home.newsletter.placeholder')}
+            value={newsletterEmail}
+            onChange={(e) => setNewsletterEmail(e.target.value)}
+            required
+          />
 
-            <input
-              type="email"
-              placeholder={t('home.newsletter.placeholder')}
-              aria-label={t('home.newsletter.placeholder')}
-            />
+          <button
+            type="submit"
+            disabled={newsletterStatus === 'loading'}
+          >
+            {newsletterStatus === 'loading'
+              ? '...'
+              : t('home.newsletter.button')}
+          </button>
 
-            <button type="submit">
-              {t('home.newsletter.button')}
-            </button>
+          {newsletterStatus === 'success' && (
+            <p className="newsletter-message">
+              ¡Gracias por suscribirte!
+            </p>
+          )}
 
-          </form>
+          {newsletterStatus === 'error' && (
+            <p className="newsletter-message">
+              Ha ocurrido un error. Inténtalo de nuevo.
+            </p>
+          )}
+        </form>
 
         </div>
 
