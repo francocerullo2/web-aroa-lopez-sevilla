@@ -1,35 +1,114 @@
-import { useState } from 'react'
+import { useLayoutEffect, useRef, useState } from 'react'
 import '../styles/InspirationCarousel.css'
 
 function InspirationCarousel({ images }) {
-  const visibleImages = 4
   const totalImages = images.length
 
-  // Repetimos las imágenes para crear el efecto infinito
   const extendedImages = [
     ...images,
     ...images,
     ...images,
   ]
 
-  // Empezamos en la copia central
   const [currentIndex, setCurrentIndex] = useState(totalImages)
   const [transitionEnabled, setTransitionEnabled] = useState(true)
+  const [slideStep, setSlideStep] = useState(0)
+
+  const windowRef = useRef(null)
+  const slideRef = useRef(null)
+
+  /*
+   * Calculamos el ancho real de una imagen + el espacio
+   * entre imágenes. Así el desplazamiento siempre es exacto.
+   */
+  useLayoutEffect(() => {
+    const calculateStep = () => {
+      if (!slideRef.current) return
+
+      const slideWidth = slideRef.current.getBoundingClientRect().width
+      const track = slideRef.current.parentElement
+
+      if (!track) return
+
+      const styles = window.getComputedStyle(track)
+      const gap = parseFloat(styles.columnGap || styles.gap) || 0
+
+      setSlideStep(slideWidth + gap)
+    }
+
+    calculateStep()
+
+    const observer = new ResizeObserver(calculateStep)
+
+    if (windowRef.current) {
+      observer.observe(windowRef.current)
+    }
+
+    return () => observer.disconnect()
+  }, [])
+
+  if (!images.length) {
+    return null
+  }
 
   const next = () => {
-    setCurrentIndex((prev) => prev + 1)
+    setCurrentIndex((prev) => {
+      /*
+       * Si estamos en la última posición de la copia central,
+       * primero nos recolocamos silenciosamente en el centro.
+       */
+      if (prev >= totalImages * 2) {
+        setTransitionEnabled(false)
+
+        requestAnimationFrame(() => {
+          setCurrentIndex(totalImages)
+
+          requestAnimationFrame(() => {
+            setTransitionEnabled(true)
+            setCurrentIndex(totalImages + 1)
+          })
+        })
+
+        return totalImages
+      }
+
+      return prev + 1
+    })
   }
 
   const previous = () => {
-    setCurrentIndex((prev) => prev - 1)
+    setCurrentIndex((prev) => {
+      /*
+       * Si estamos en la primera posición de la copia izquierda,
+       * volvemos silenciosamente a la copia central.
+       */
+      if (prev <= 0) {
+        setTransitionEnabled(false)
+
+        requestAnimationFrame(() => {
+          setCurrentIndex(totalImages)
+
+          requestAnimationFrame(() => {
+            setTransitionEnabled(true)
+            setCurrentIndex(totalImages - 1)
+          })
+        })
+
+        return totalImages
+      }
+
+      return prev - 1
+    })
   }
 
   const handleTransitionEnd = () => {
-    // Si hemos llegado demasiado lejos hacia delante,
-    // volvemos silenciosamente a la copia central.
-    if (currentIndex >= totalImages * 2) {
+    /*
+     * Hemos llegado al principio de la copia izquierda.
+     * La posición visual es idéntica a la copia central.
+     */
+    if (currentIndex <= 0) {
       setTransitionEnabled(false)
-      setCurrentIndex(currentIndex - totalImages)
+      setCurrentIndex(totalImages)
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -38,10 +117,13 @@ function InspirationCarousel({ images }) {
       })
     }
 
-    // Lo mismo hacia atrás.
-    if (currentIndex < totalImages) {
+    /*
+     * Hemos llegado al final de la copia central.
+     * La posición visual es idéntica a la copia central.
+     */
+    if (currentIndex >= totalImages * 2) {
       setTransitionEnabled(false)
-      setCurrentIndex(currentIndex + totalImages)
+      setCurrentIndex(totalImages)
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
@@ -62,12 +144,17 @@ function InspirationCarousel({ images }) {
         ←
       </button>
 
-      <div className="inspiration-window">
+      <div
+        className="inspiration-window"
+        ref={windowRef}
+      >
         <div
           className="inspiration-track"
           onTransitionEnd={handleTransitionEnd}
           style={{
-            transform: `translateX(calc(-${currentIndex} * (25% + 1.25px)))`,
+            transform: slideStep
+              ? `translate3d(-${currentIndex * slideStep}px, 0, 0)`
+              : 'translate3d(0, 0, 0)',
             transition: transitionEnabled
               ? 'transform 0.5s ease'
               : 'none',
@@ -77,6 +164,7 @@ function InspirationCarousel({ images }) {
             <div
               className="inspiration-slide"
               key={`${index}-${image}`}
+              ref={index === totalImages ? slideRef : null}
             >
               <img
                 src={image}

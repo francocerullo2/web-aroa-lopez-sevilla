@@ -1,7 +1,13 @@
 .footer {
-  width: 100%;
+  width: min(
+    calc(100% - (var(--content-padding) * 2)),
+    var(--content-width)
+  );
 
-  padding: 70px 40px 35px;
+  margin-left: auto;
+  margin-right: auto;
+
+  padding: 70px 0 35px;
 
   background: var(--color-beige);
 
@@ -101,7 +107,7 @@
 @media (max-width: 900px) {
 
   .footer {
-    padding: 60px 30px 35px;
+    padding: 60px 0 35px;
 
     grid-template-columns: 1fr;
 
@@ -118,7 +124,7 @@
 @media (max-width: 600px) {
 
   .footer {
-    padding: 55px 20px 30px;
+    padding: 55px 0 30px;
   }
 
   .footer-brand {
