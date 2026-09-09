@@ -1,8 +1,12 @@
 import { useState } from 'react'
 import '../styles/ProductCarousel.css'
 
-function ProductCarousel({ images, alt }) {
+function ProductCarousel({ images = [], alt }) {
   const [currentImage, setCurrentImage] = useState(0)
+
+  if (!images.length) {
+    return null
+  }
 
   const hasMultipleImages = images.length > 1
 

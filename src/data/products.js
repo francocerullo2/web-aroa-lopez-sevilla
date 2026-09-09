@@ -1,101 +1,104 @@
-import product02 from '../assets/images/products/product-02.PNG'
-import product03 from '../assets/images/products/product-03.PNG'
-import product04 from '../assets/images/products/product-04.jpeg'
-import product05 from '../assets/images/products/product-05.jpg'
-import product06 from '../assets/images/products/product-06.jpg'
-import product07 from '../assets/images/products/product-07.jpeg'
-import product08 from '../assets/images/products/product-08.jpg'
+const productImages = import.meta.glob(
+  '../assets/images/products/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  {
+    eager: true,
+    import: 'default',
+  }
+)
 
-import dolores01 from '../assets/images/products/product-01.PNG'
-import dolores02 from '../assets/images/products/product-01.PNG'
-import dolores03 from '../assets/images/products/product-01.PNG'
+function getImagesByPrefix(prefix) {
+  return Object.entries(productImages)
+    .filter(([path]) => {
+      const fileName = path.split('/').pop().toLowerCase()
+
+      return fileName.startsWith(`${prefix.toLowerCase()}-`)
+    })
+    .sort(([pathA], [pathB]) => {
+      const fileA = pathA.split('/').pop()
+      const fileB = pathB.split('/').pop()
+
+      return fileA.localeCompare(fileB, undefined, {
+        numeric: true,
+      })
+    })
+    .map(([, image]) => image)
+}
+
+function getProductImages(name, legacyFile) {
+  const newImages = getImagesByPrefix(name)
+
+  if (newImages.length > 0) {
+    return newImages
+  }
+
+  const legacyImage = Object.entries(productImages).find(
+    ([path]) => {
+      const fileName = path.split('/').pop().toLowerCase()
+
+      return fileName === legacyFile.toLowerCase()
+    }
+  )
+
+  return legacyImage ? [legacyImage[1]] : []
+}
 
 const products = [
-
- {
-  id: 1,
-  name: 'Dolores',
-  category: 'tops',
-
-  images: [
-    dolores01,
-    dolores02,
-    dolores03
-  ],
-
-  status: 'disponible',
-},
-
+  {
+    id: 1,
+    name: 'Dolores',
+    category: 'tops',
+    images: getProductImages('Dolores', 'product-01.PNG'),
+    status: 'disponible',
+  },
   {
     id: 2,
     name: 'Carmen',
     category: 'tops',
-    images: [
-      product02
-    ],
+    images: getProductImages('Carmen', 'product-02.PNG'),
     status: 'disponible',
   },
-
   {
     id: 3,
     name: 'Salina',
-    category: 'blazers',
-    images: [
-      product03
-    ],
+    category: 'tops',
+    images: getProductImages('Salina', 'product-03.PNG'),
     status: 'disponible',
   },
-
   {
     id: 4,
     name: 'Hechura',
-    category: 'blazers',
-    images: [
-      product04
-    ],
+    category: 'tops',
+    images: getProductImages('Hechura', 'product-04.jpeg'),
     status: 'disponible',
   },
-
   {
     id: 5,
     name: 'Albero',
-    category: 'faldas',
-    images: [
-      product05
-    ],
+    category: 'tops',
+    images: getProductImages('Albero', 'product-05.jpg'),
     status: 'disponible',
   },
-
   {
     id: 6,
     name: 'Oliva',
-    category: 'faldas',
-    images: [
-      product06
-    ],
+    category: 'tops',
+    images: getProductImages('Oliva', 'product-06.jpg'),
     status: 'disponible',
   },
-
   {
     id: 7,
     name: 'Candela',
     category: 'tops',
-    images: [
-      product07
-    ],
+    images: getProductImages('Candela', 'product-07.jpeg'),
     status: 'disponible',
   },
-
   {
     id: 8,
     name: 'Solera',
-    category: 'blazers',
-    images: [
-      product08
-    ],
+    category: 'tops',
+    images: getProductImages('Solera', 'product-08.jpg'),
     status: 'disponible',
   },
-
 ]
 
 export default products

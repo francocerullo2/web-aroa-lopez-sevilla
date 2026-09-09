@@ -16,12 +16,16 @@ function Collection() {
     vendida: t('product.status.sold'),
   }
 
+  const isComingSoon =
+    activeFilter === 'blazers' || activeFilter === 'vestidos'
+
   const filteredProducts =
-    activeFilter === 'all'
-      ? products
-      : products.filter(
-          (product) => product.category === activeFilter
+    activeFilter === 'all' || activeFilter === 'tops'
+      ? products.filter(
+          (product) =>
+            activeFilter === 'all' || product.category === activeFilter
         )
+      : []
 
   return (
     <main className="collection-page">
@@ -50,51 +54,76 @@ function Collection() {
         </button>
 
         <button
-          onClick={() => setActiveFilter('faldas')}
-          className={activeFilter === 'faldas' ? 'active' : ''}
+          onClick={() => setActiveFilter('vestidos')}
+          className={activeFilter === 'vestidos' ? 'active' : ''}
         >
-          {t('collection.skirts')}
+          {t('collection.dresses')}
         </button>
 
       </div>
 
-      <section className="collection-grid">
+      {isComingSoon ? (
+        <section className="collection-coming-soon">
 
-        {filteredProducts.map((product) => (
+          <h1>
+            {t('collection.comingSoon.title')}
+          </h1>
 
-          <article
-            className="collection-item"
-            key={product.id}
+          <p>
+            {t('collection.comingSoon.text')}
+          </p>
+
+          <p>
+            {t('collection.comingSoon.newsletter')}
+          </p>
+
+          <Link
+            to="/#newsletter"
+            className="collection-coming-soon-link"
           >
+            {t('collection.comingSoon.button')}
+          </Link>
 
-            <Link to={`/producto/${product.id}`}>
+        </section>
+      ) : (
+        <section className="collection-grid">
 
-              <div className="collection-image">
+          {filteredProducts.map((product) => (
 
-                <ProductCarousel
-                  images={product.images}
-                  alt={product.name}
-                />
+            <article
+              className="collection-item"
+              key={product.id}
+            >
 
-              </div>
+              <Link to={`/producto/${product.id}`}>
 
-              <div className="collection-info">
+                <div className="collection-image">
 
-                <h2>{product.name}</h2>
+                  <ProductCarousel
+                    images={product.images}
+                    alt={product.name}
+                  />
 
-                <p className={`collection-status ${product.status}`}>
-                  {statusText[product.status]}
-                </p>
+                </div>
 
-              </div>
+                <div className="collection-info">
 
-            </Link>
+                  <h2>{product.name}</h2>
 
-          </article>
+                  <p className={`collection-status ${product.status}`}>
+                    {statusText[product.status]}
+                  </p>
 
-        ))}
+                </div>
 
-      </section>
+              </Link>
+
+            </article>
+
+          ))}
+
+        </section>
+      )}
 
     </main>
   )

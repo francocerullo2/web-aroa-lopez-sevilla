@@ -50,13 +50,19 @@
     }
   },
 
-  "collection": {
-    "all": "ALL",
-    "tops": "TOPS",
-    "blazers": "BLAZERS",
-    "skirts": "SKIRTS",
-    "consultPiece": "Enquire about this piece"
-  },
+ "collection": {
+  "all": "ALL",
+  "tops": "TOPS",
+  "blazers": "BLAZERS",
+  "dresses": "DRESSES",
+
+  "comingSoon": {
+    "title": "COMING SOON",
+    "text": "New pieces will be available very soon.",
+    "newsletter": "Subscribe to our newsletter so you don't miss any updates.",
+    "button": "SUBSCRIBE TO THE NEWSLETTER"
+  }
+},
 
   "product": {
     "notFound": "Product not found",
