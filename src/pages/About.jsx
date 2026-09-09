@@ -2,8 +2,64 @@ import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import '../styles/About.css'
 
-import aboutImage from '../assets/images/products/product-01.PNG'
-import projectImage from '../assets/images/products/product-01.PNG'
+
+// =====================================================
+// IMÁGENES DE SOBRE MÍ
+// =====================================================
+
+const aboutFiles = import.meta.glob(
+  '../assets/images/about/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  {
+    eager: true,
+    import: 'default',
+  }
+)
+
+const productFiles = import.meta.glob(
+  '../assets/images/products/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  {
+    eager: true,
+    import: 'default',
+  }
+)
+
+function findImage(files, fileName) {
+  const targetName = fileName.toLowerCase()
+
+  const match = Object.entries(files).find(([path]) => {
+    const currentFileName = path.split('/').pop().toLowerCase()
+
+    const currentName = currentFileName.replace(
+      /\.(jpg|jpeg|png)$/,
+      ''
+    )
+
+    return currentName === targetName
+  })
+
+  return match ? match[1] : null
+}
+
+
+// Quién está detrás:
+// busca about-01 independientemente de la extensión
+// si no existe, utiliza product-01.PNG
+const aboutImage =
+  findImage(aboutFiles, 'about-01') ||
+  findImage(productFiles, 'product-01')
+
+
+// El proyecto:
+// busca project-01 independientemente de la extensión
+// si no existe, utiliza product-01.PNG
+const projectImage =
+  findImage(aboutFiles, 'project-01') ||
+  findImage(productFiles, 'product-01')
+
+
+// =====================================================
+// ABOUT
+// =====================================================
 
 function About() {
   const { t } = useTranslation()
@@ -48,7 +104,9 @@ function About() {
 
         <div className="about-intro-text">
 
-          <h1>{t('about.title')}</h1>
+          <h1>
+            {t('about.title')}
+          </h1>
 
           <div className="about-description">
 
@@ -99,7 +157,9 @@ function About() {
 
         <div className="about-project-content">
 
-          <h2>{t('about.projectTitle')}</h2>
+          <h2>
+            {t('about.projectTitle')}
+          </h2>
 
           <div className="about-project-text">
 
@@ -145,7 +205,9 @@ function About() {
 
           <div className="newsletter-text">
 
-            <h2>{t('home.newsletter.title')}</h2>
+            <h2>
+              {t('home.newsletter.title')}
+            </h2>
 
             <p>
               {t('home.newsletter.text')}
@@ -179,15 +241,19 @@ function About() {
               </button>
 
               {newsletterStatus === 'success' && (
+
                 <p className="newsletter-message">
                   {t('home.newsletter.success')}
                 </p>
+
               )}
 
               {newsletterStatus === 'error' && (
+
                 <p className="newsletter-message">
                   {t('home.newsletter.error')}
                 </p>
+
               )}
 
             </form>

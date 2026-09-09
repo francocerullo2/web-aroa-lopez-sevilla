@@ -2,14 +2,70 @@ import { Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 
-import heroImage from '../assets/images/home/hero.PNG'
 import products from '../data/products'
 import ProductCarousel from '../components/ProductCarousel'
-import historyImage from '../assets/images/products/product-02.PNG'
-
 import InspirationCarousel from '../components/InspirationCarousel'
 
 import '../styles/Home.css'
+
+
+// =====================================================
+// IMÁGENES DEL HOME
+// =====================================================
+
+const homeFiles = import.meta.glob(
+  '../assets/images/home/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  {
+    eager: true,
+    import: 'default',
+  }
+)
+
+const productFiles = import.meta.glob(
+  '../assets/images/products/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  {
+    eager: true,
+    import: 'default',
+  }
+)
+
+function findImage(files, fileName) {
+  const targetName = fileName.toLowerCase()
+
+  const match = Object.entries(files).find(([path]) => {
+    const currentFileName = path.split('/').pop().toLowerCase()
+
+    const currentName = currentFileName.replace(
+      /\.(jpg|jpeg|png)$/,
+      ''
+    )
+
+    return currentName === targetName
+  })
+
+  return match ? match[1] : null
+}
+
+
+// Hero:
+// busca hero-01 independientemente de la extensión
+// si no existe, utiliza hero.PNG
+const heroImage =
+  findImage(homeFiles, 'hero-01') ||
+  findImage(homeFiles, 'hero')
+
+
+// Prendas con historia:
+// busca history-01 independientemente de la extensión
+// si no existe, utiliza product-02.PNG
+const historyImage =
+  findImage(homeFiles, 'history-01') ||
+  findImage(productFiles, 'product-02')
+
+
+// =====================================================
+// INSPIRACIÓN
+// =====================================================
 
 const inspirationFiles = import.meta.glob(
   '../assets/images/inspiration/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
@@ -29,6 +85,11 @@ const inspirationImages = Object.entries(inspirationFiles)
     })
   })
   .map(([, image]) => image)
+
+
+// =====================================================
+// HOME
+// =====================================================
 
 function Home() {
   const { t } = useTranslation()
@@ -74,6 +135,7 @@ function Home() {
     <main className="home">
 
       {/* HERO */}
+
       <section className="hero">
 
         <div className="hero-image">
@@ -84,28 +146,40 @@ function Home() {
         </div>
 
         <div className="hero-content">
-          <p>{t('home.hero.label')}</p>
 
-          <h1>{t('home.hero.title')}</h1>
+          <p>
+            {t('home.hero.label')}
+          </p>
+
+          <h1>
+            {t('home.hero.title')}
+          </h1>
 
           <Link to="/coleccion">
             {t('home.hero.button')}
           </Link>
+
         </div>
 
       </section>
 
 
       {/* NOVEDADES */}
+
       <section className="home-news">
 
         <div className="home-news-header">
-          <h2>{t('home.news.title')}</h2>
+
+          <h2>
+            {t('home.news.title')}
+          </h2>
 
           <p>
             {t('home.news.subtitle')}
           </p>
+
         </div>
+
 
         <div className="home-products">
 
@@ -124,9 +198,13 @@ function Home() {
 
               <div className="home-product-info">
 
-                <h3>{product.name}</h3>
+                <h3>
+                  {product.name}
+                </h3>
 
-                <p className={`home-product-status ${product.status}`}>
+                <p
+                  className={`home-product-status ${product.status}`}
+                >
                   {statusText[product.status]}
                 </p>
 
@@ -138,24 +216,31 @@ function Home() {
 
         </div>
 
+
         <div className="home-news-button">
+
           <Link to="/coleccion">
             {t('home.news.button')}
           </Link>
+
         </div>
 
       </section>
 
 
       {/* PRENDAS CON HISTORIA */}
+
       <section className="history">
 
         <div className="history-background">
+
           <img
             src={historyImage}
             alt={t('home.history.alt')}
           />
+
         </div>
+
 
         <div className="history-content">
 
@@ -184,6 +269,7 @@ function Home() {
 
 
       {/* NEWSLETTER */}
+
       <section
         className="newsletter"
         id="newsletter"
@@ -193,13 +279,16 @@ function Home() {
 
           <div className="newsletter-text">
 
-            <h2>{t('home.newsletter.title')}</h2>
+            <h2>
+              {t('home.newsletter.title')}
+            </h2>
 
             <p>
               {t('home.newsletter.text')}
             </p>
 
           </div>
+
 
           <div className="newsletter-form-wrapper">
 
@@ -226,19 +315,26 @@ function Home() {
                   : t('home.newsletter.button')}
               </button>
 
+
               {newsletterStatus === 'success' && (
+
                 <p className="newsletter-message">
                   {t('home.newsletter.success')}
                 </p>
+
               )}
 
+
               {newsletterStatus === 'error' && (
+
                 <p className="newsletter-message">
                   {t('home.newsletter.error')}
                 </p>
+
               )}
 
             </form>
+
 
             <Link
               to="/politica-privacidad"
@@ -255,8 +351,13 @@ function Home() {
 
 
       {/* GALERÍA */}
+
       <section className="home-gallery">
-        <InspirationCarousel images={inspirationImages} />
+
+        <InspirationCarousel
+          images={inspirationImages}
+        />
+
       </section>
 
     </main>
