@@ -127,19 +127,23 @@ function About() {
 
         </div>
 
+
         <div className="about-intro-image">
 
           {aboutImage && (
+
             <img
               src={aboutImage}
               alt="Aroa López Sevilla"
               loading="lazy"
             />
+
           )}
 
         </div>
 
       </section>
+
 
       {/* EL PROYECTO */}
 
@@ -148,14 +152,17 @@ function About() {
         <div className="about-project-image">
 
           {projectImage && (
+
             <img
               src={projectImage}
               alt={t('about.projectImageAlt')}
               loading="lazy"
             />
+
           )}
 
         </div>
+
 
         <div className="about-project-content">
 
@@ -187,6 +194,7 @@ function About() {
 
       </section>
 
+
       {/* MANIFIESTO */}
 
       <section className="about-manifesto">
@@ -196,6 +204,7 @@ function About() {
         </p>
 
       </section>
+
 
       {/* NEWSLETTER */}
 
@@ -214,6 +223,7 @@ function About() {
             </p>
 
           </div>
+
 
           <div className="newsletter-form-wrapper">
 
@@ -242,19 +252,26 @@ function About() {
                   : t('home.newsletter.button')}
               </button>
 
+
               {newsletterStatus === 'success' && (
+
                 <p className="newsletter-message">
                   {t('home.newsletter.success')}
                 </p>
+
               )}
 
+
               {newsletterStatus === 'error' && (
+
                 <p className="newsletter-message">
                   {t('home.newsletter.error')}
                 </p>
+
               )}
 
             </form>
+
 
             <a
               href="/politica-privacidad"

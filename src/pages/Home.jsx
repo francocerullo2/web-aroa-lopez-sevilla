@@ -1,4 +1,4 @@
-import { useNavigate, Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import products from '../data/products'
@@ -43,16 +43,18 @@ function findImage(files, fileName) {
   return match ? match[1] : null
 }
 
-// Hero:
-// busca hero-01 independientemente de la extensión
-// si no existe, utiliza hero
+// =====================================================
+// HERO
+// =====================================================
+
 const heroImage =
   findImage(homeFiles, 'hero-01') ||
   findImage(homeFiles, 'hero')
 
-// Prendas con historia:
-// busca history-01 independientemente de la extensión
-// si no existe, utiliza product-02
+// =====================================================
+// PRENDAS CON HISTORIA
+// =====================================================
+
 const historyImage =
   findImage(homeFiles, 'history-01') ||
   findImage(productFiles, 'product-02')
@@ -144,11 +146,13 @@ function Home() {
       <section className="hero">
 
         <div className="hero-image">
+
           <img
             src={heroImage}
             alt={t('home.hero.alt')}
             fetchPriority="high"
           />
+
         </div>
 
         <div className="hero-content">
