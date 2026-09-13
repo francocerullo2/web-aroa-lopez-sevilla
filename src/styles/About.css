@@ -64,7 +64,8 @@
 .about-intro-image {
   width: 100%;
 
-  aspect-ratio: 3 / 2.25;
+  /* Más alto sin modificar el ancho */
+  aspect-ratio: 3 / 2.5;
 
   overflow: hidden;
 }
@@ -76,6 +77,7 @@
 
   object-fit: cover;
 
+  /* Mantiene la cabeza más visible */
   object-position: center 25%;
 
   display: block;
@@ -111,7 +113,8 @@
 .about-project-image {
   width: 100%;
 
-  aspect-ratio: 3 / 2.25;
+  /* Más alto sin modificar el ancho */
+  aspect-ratio: 3 / 2.5;
 
   overflow: hidden;
 }
@@ -123,6 +126,7 @@
 
   object-fit: cover;
 
+  /* Sube ligeramente el encuadre */
   object-position: center 35%;
 
   display: block;
@@ -352,7 +356,7 @@
   .about-intro-image {
     order: 1;
 
-    aspect-ratio: 3 / 2.25;
+    aspect-ratio: 3 / 2.5;
   }
 
 
@@ -376,7 +380,7 @@
 
 
   .about-project-image {
-    aspect-ratio: 3 / 2.25;
+    aspect-ratio: 3 / 2.5;
   }
 
 
@@ -435,7 +439,7 @@
 
 
   .about-intro-image {
-    aspect-ratio: 3 / 2.25;
+    aspect-ratio: 3 / 2.5;
   }
 
 
@@ -447,7 +451,7 @@
 
 
   .about-project-image {
-    aspect-ratio: 3 / 2.25;
+    aspect-ratio: 3 / 2.5;
   }
 
 
