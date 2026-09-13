@@ -1,20 +1,17 @@
-import { Link } from 'react-router-dom'
+import { useNavigate, Link } from 'react-router-dom'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-
 import products from '../data/products'
 import ProductCarousel from '../components/ProductCarousel'
 import InspirationCarousel from '../components/InspirationCarousel'
-
 import '../styles/Home.css'
-
 
 // =====================================================
 // IMÁGENES DEL HOME
 // =====================================================
 
 const homeFiles = import.meta.glob(
-  '../assets/images/home/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  '../assets/images/home/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
   {
     eager: true,
     import: 'default',
@@ -22,7 +19,7 @@ const homeFiles = import.meta.glob(
 )
 
 const productFiles = import.meta.glob(
-  '../assets/images/products/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  '../assets/images/products/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
   {
     eager: true,
     import: 'default',
@@ -36,7 +33,7 @@ function findImage(files, fileName) {
     const currentFileName = path.split('/').pop().toLowerCase()
 
     const currentName = currentFileName.replace(
-      /\.(jpg|jpeg|png)$/,
+      /\.(jpg|jpeg|png|webp)$/,
       ''
     )
 
@@ -46,29 +43,26 @@ function findImage(files, fileName) {
   return match ? match[1] : null
 }
 
-
 // Hero:
 // busca hero-01 independientemente de la extensión
-// si no existe, utiliza hero.PNG
+// si no existe, utiliza hero
 const heroImage =
   findImage(homeFiles, 'hero-01') ||
   findImage(homeFiles, 'hero')
 
-
 // Prendas con historia:
 // busca history-01 independientemente de la extensión
-// si no existe, utiliza product-02.PNG
+// si no existe, utiliza product-02
 const historyImage =
   findImage(homeFiles, 'history-01') ||
   findImage(productFiles, 'product-02')
-
 
 // =====================================================
 // INSPIRACIÓN
 // =====================================================
 
 const inspirationFiles = import.meta.glob(
-  '../assets/images/inspiration/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  '../assets/images/inspiration/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
   {
     eager: true,
     import: 'default',
@@ -86,12 +80,12 @@ const inspirationImages = Object.entries(inspirationFiles)
   })
   .map(([, image]) => image)
 
-
 // =====================================================
 // HOME
 // =====================================================
 
 function Home() {
+  const navigate = useNavigate()
   const { t } = useTranslation()
 
   const [newsletterEmail, setNewsletterEmail] = useState('')
@@ -131,6 +125,17 @@ function Home() {
     vendida: t('product.status.sold'),
   }
 
+  const handleProductClick = (productId) => {
+    navigate(`/producto/${productId}`)
+  }
+
+  const handleProductKeyDown = (event, productId) => {
+    if (event.key === 'Enter' || event.key === ' ') {
+      event.preventDefault()
+      navigate(`/producto/${productId}`)
+    }
+  }
+
   return (
     <main className="home">
 
@@ -142,6 +147,7 @@ function Home() {
           <img
             src={heroImage}
             alt={t('home.hero.alt')}
+            fetchPriority="high"
           />
         </div>
 
@@ -185,10 +191,15 @@ function Home() {
 
           {products.slice(0, 4).map((product) => (
 
-            <Link
+            <div
               key={product.id}
-              to={`/producto/${product.id}`}
               className="home-product"
+              onClick={() => handleProductClick(product.id)}
+              onKeyDown={(event) =>
+                handleProductKeyDown(event, product.id)
+              }
+              role="link"
+              tabIndex="0"
             >
 
               <ProductCarousel
@@ -210,7 +221,7 @@ function Home() {
 
               </div>
 
-            </Link>
+            </div>
 
           ))}
 
@@ -237,6 +248,7 @@ function Home() {
           <img
             src={historyImage}
             alt={t('home.history.alt')}
+            loading="lazy"
           />
 
         </div>
@@ -302,7 +314,9 @@ function Home() {
                 placeholder={t('home.newsletter.placeholder')}
                 aria-label={t('home.newsletter.placeholder')}
                 value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
+                onChange={(e) =>
+                  setNewsletterEmail(e.target.value)
+                }
                 required
               />
 

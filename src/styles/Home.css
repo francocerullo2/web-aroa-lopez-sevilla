@@ -29,6 +29,8 @@
   display: block;
 
   object-fit: cover;
+
+  object-position: center top;
 }
 
 
@@ -273,6 +275,8 @@
 
   object-fit: cover;
 
+  object-position: right center;
+
   display: block;
 }
 
@@ -386,8 +390,11 @@
 
 .newsletter-form-wrapper {
   display: flex;
+
   flex-direction: column;
+
   align-items: flex-start;
+
   flex-shrink: 0;
 }
 
@@ -468,17 +475,20 @@
 
 .newsletter-privacy {
   display: block;
-  margin-top: 2px;
-  font-size: 8px;
-  line-height: 1.4;
-  text-decoration: none;
-  color: #c98f8f;
-  opacity: 1;
-  max-width: 420px;
-}
 
-.newsletter-privacy:hover {
-  text-decoration: underline;
+  margin-top: 2px;
+
+  font-size: 8px;
+
+  line-height: 1.4;
+
+  text-decoration: none;
+
+  color: #c98f8f;
+
+  opacity: 1;
+
+  max-width: 420px;
 }
 
 .newsletter-privacy:hover {
@@ -495,6 +505,7 @@
   );
 
   margin-left: auto;
+
   margin-right: auto;
 
   padding: 0;
@@ -535,6 +546,10 @@
     height: 80vh;
 
     min-height: 550px;
+  }
+
+  .hero-image img {
+    object-position: center top;
   }
 
   .hero-content {

@@ -1,8 +1,15 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import '../styles/ProductCarousel.css'
 
 function ProductCarousel({ images = [], alt }) {
   const [currentImage, setCurrentImage] = useState(0)
+
+  useEffect(() => {
+    images.forEach((image) => {
+      const preloadedImage = new Image()
+      preloadedImage.src = image
+    })
+  }, [images])
 
   if (!images.length) {
     return null
@@ -15,7 +22,7 @@ function ProductCarousel({ images = [], alt }) {
     event.stopPropagation()
 
     setCurrentImage((current) =>
-      current === images.length - 1 ? 0 : current + 1
+      current + 1 >= images.length ? 0 : current + 1
     )
   }
 
@@ -24,21 +31,35 @@ function ProductCarousel({ images = [], alt }) {
     event.stopPropagation()
 
     setCurrentImage((current) =>
-      current === 0 ? images.length - 1 : current - 1
+      current - 1 < 0 ? images.length - 1 : current - 1
     )
   }
 
   return (
     <div className="product-carousel">
 
-      <img
-        src={images[currentImage]}
-        alt={alt}
-      />
+      <div className="product-carousel-images">
+        {images.map((image, index) => (
+          <img
+            key={`${image}-${index}`}
+            src={image}
+            alt={index === currentImage ? alt : ''}
+            aria-hidden={index !== currentImage}
+            loading="eager"
+            decoding="async"
+            className={
+              index === currentImage
+                ? 'product-carousel-image active'
+                : 'product-carousel-image'
+            }
+          />
+        ))}
+      </div>
 
       {hasMultipleImages && (
         <>
           <button
+            type="button"
             className="carousel-arrow carousel-arrow-left"
             onClick={previousImage}
             aria-label="Previous image"
@@ -47,6 +68,7 @@ function ProductCarousel({ images = [], alt }) {
           </button>
 
           <button
+            type="button"
             className="carousel-arrow carousel-arrow-right"
             onClick={nextImage}
             aria-label="Next image"

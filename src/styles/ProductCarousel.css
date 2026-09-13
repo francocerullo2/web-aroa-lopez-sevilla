@@ -1,21 +1,34 @@
 .product-carousel {
   position: relative;
-
   width: 100%;
-
   aspect-ratio: 1 / 1.35;
-
   overflow: hidden;
 }
 
-.product-carousel img {
+.product-carousel-images {
+  position: relative;
   width: 100%;
+  height: 100%;
+}
 
+.product-carousel-image {
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 100%;
   height: 100%;
 
   object-fit: cover;
-
   display: block;
+
+  opacity: 0;
+  visibility: hidden;
+}
+
+.product-carousel-image.active {
+  opacity: 1;
+  visibility: visible;
 }
 
 
@@ -29,13 +42,10 @@
   transform: translateY(-50%);
 
   width: 38px;
-
   height: 38px;
 
   display: flex;
-
   align-items: center;
-
   justify-content: center;
 
   background: rgba(246, 244, 240, 0.85);
@@ -78,11 +88,8 @@
 
   .carousel-arrow {
     width: 32px;
-
     height: 32px;
-
     font-size: 17px;
-
     opacity: 1;
   }
 

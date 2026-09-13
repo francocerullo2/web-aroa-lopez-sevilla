@@ -1,5 +1,5 @@
 const productImages = import.meta.glob(
-  '../assets/images/products/*.{jpg,jpeg,png,JPG,JPEG,PNG}',
+  '../assets/images/products/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
   {
     eager: true,
     import: 'default',

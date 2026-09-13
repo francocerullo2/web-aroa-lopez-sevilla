@@ -4,18 +4,51 @@ import '../styles/InspirationCarousel.css'
 function InspirationCarousel({ images = [] }) {
   const totalImages = images.length
 
-  const extendedImages = [
-    ...images,
-    ...images,
-    ...images,
-  ]
+  const [visibleCount, setVisibleCount] = useState(
+    typeof window !== 'undefined' && window.innerWidth <= 900 ? 2 : 4
+  )
 
-  const [currentIndex, setCurrentIndex] = useState(totalImages)
+  const [currentIndex, setCurrentIndex] = useState(visibleCount)
   const [transitionEnabled, setTransitionEnabled] = useState(true)
   const [slideStep, setSlideStep] = useState(0)
 
   const windowRef = useRef(null)
   const slideRef = useRef(null)
+  const isAnimatingRef = useRef(false)
+
+  useLayoutEffect(() => {
+    if (!totalImages) return
+
+    const updateVisibleCount = () => {
+      const newVisibleCount = window.innerWidth <= 900 ? 2 : 4
+
+      setVisibleCount((previous) => {
+        if (previous === newVisibleCount) {
+          return previous
+        }
+
+        setTransitionEnabled(false)
+        setCurrentIndex(newVisibleCount)
+        isAnimatingRef.current = false
+
+        requestAnimationFrame(() => {
+          requestAnimationFrame(() => {
+            setTransitionEnabled(true)
+          })
+        })
+
+        return newVisibleCount
+      })
+    }
+
+    updateVisibleCount()
+
+    window.addEventListener('resize', updateVisibleCount)
+
+    return () => {
+      window.removeEventListener('resize', updateVisibleCount)
+    }
+  }, [totalImages])
 
   useLayoutEffect(() => {
     if (!totalImages) return
@@ -47,68 +80,80 @@ function InspirationCarousel({ images = [] }) {
     }
 
     return () => observer.disconnect()
-  }, [totalImages])
+  }, [totalImages, visibleCount])
 
   if (!totalImages) {
     return null
   }
 
+  const canSlide = totalImages > visibleCount
+
+  const leftClones = images.slice(-visibleCount)
+  const rightClones = images.slice(0, visibleCount)
+
+  const extendedImages = [
+    ...leftClones,
+    ...images,
+    ...rightClones,
+  ]
+
   const next = () => {
-    setCurrentIndex((prev) => {
-      if (prev >= totalImages * 2) {
-        setTransitionEnabled(false)
+    if (!canSlide || isAnimatingRef.current) return
 
-        requestAnimationFrame(() => {
-          setCurrentIndex(totalImages)
+    isAnimatingRef.current = true
+    setTransitionEnabled(true)
 
-          requestAnimationFrame(() => {
-            setTransitionEnabled(true)
-            setCurrentIndex(totalImages + 1)
-          })
-        })
-
-        return totalImages
-      }
-
-      return prev + 1
-    })
+    setCurrentIndex((previous) => previous + 1)
   }
 
   const previous = () => {
-    setCurrentIndex((prev) => {
-      if (prev <= 0) {
-        setTransitionEnabled(false)
+    if (!canSlide || isAnimatingRef.current) return
 
-        requestAnimationFrame(() => {
-          setCurrentIndex(totalImages)
+    isAnimatingRef.current = true
+    setTransitionEnabled(true)
 
-          requestAnimationFrame(() => {
-            setTransitionEnabled(true)
-            setCurrentIndex(totalImages - 1)
-          })
-        })
-
-        return totalImages
-      }
-
-      return prev - 1
-    })
+    setCurrentIndex((previous) => previous - 1)
   }
 
   const handleTransitionEnd = () => {
-    if (
-      currentIndex <= 0 ||
-      currentIndex >= totalImages * 2
-    ) {
+    if (!canSlide) {
+      isAnimatingRef.current = false
+      return
+    }
+
+    const firstOriginalIndex = visibleCount
+    const lastOriginalIndex =
+      visibleCount + totalImages - 1
+
+    if (currentIndex > lastOriginalIndex) {
       setTransitionEnabled(false)
-      setCurrentIndex(totalImages)
+      setCurrentIndex(firstOriginalIndex)
 
       requestAnimationFrame(() => {
         requestAnimationFrame(() => {
           setTransitionEnabled(true)
+          isAnimatingRef.current = false
         })
       })
+
+      return
     }
+
+    if (currentIndex < firstOriginalIndex) {
+      setTransitionEnabled(false)
+      setCurrentIndex(lastOriginalIndex)
+
+      requestAnimationFrame(() => {
+        requestAnimationFrame(() => {
+          setTransitionEnabled(true)
+          isAnimatingRef.current = false
+        })
+      })
+
+      return
+    }
+
+    isAnimatingRef.current = false
   }
 
   return (
@@ -118,6 +163,7 @@ function InspirationCarousel({ images = [] }) {
         className="inspiration-arrow inspiration-arrow-left"
         onClick={previous}
         aria-label="Previous images"
+        disabled={!canSlide}
       >
         ←
       </button>
@@ -134,9 +180,10 @@ function InspirationCarousel({ images = [] }) {
               ? `translate3d(-${currentIndex * slideStep}px, 0, 0)`
               : 'translate3d(0, 0, 0)',
 
-            transition: transitionEnabled
-              ? 'transform 0.5s ease'
-              : 'none',
+            transition:
+              transitionEnabled && canSlide
+                ? 'transform 0.5s ease'
+                : 'none',
           }}
         >
           {extendedImages.map((image, index) => (
@@ -144,14 +191,20 @@ function InspirationCarousel({ images = [] }) {
               className="inspiration-slide"
               key={`${index}-${image}`}
               ref={
-                index === totalImages
+                index === visibleCount
                   ? slideRef
                   : null
               }
             >
               <img
                 src={image}
-                alt={`Inspiration ${(index % totalImages) + 1}`}
+                alt={`Inspiration ${
+                  ((index - visibleCount + totalImages) %
+                    totalImages) +
+                  1
+                }`}
+                loading={index < visibleCount + 4 ? 'eager' : 'lazy'}
+                decoding="async"
               />
             </div>
           ))}
@@ -162,6 +215,7 @@ function InspirationCarousel({ images = [] }) {
         className="inspiration-arrow inspiration-arrow-right"
         onClick={next}
         aria-label="Next images"
+        disabled={!canSlide}
       >
         →
       </button>
