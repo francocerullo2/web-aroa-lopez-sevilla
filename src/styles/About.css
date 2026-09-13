@@ -64,7 +64,7 @@
 .about-intro-image {
   width: 100%;
 
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 3 / 2.25;
 
   overflow: hidden;
 }
@@ -111,7 +111,7 @@
 .about-project-image {
   width: 100%;
 
-  aspect-ratio: 3 / 2;
+  aspect-ratio: 3 / 2.25;
 
   overflow: hidden;
 }
@@ -352,7 +352,7 @@
   .about-intro-image {
     order: 1;
 
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 3 / 2.25;
   }
 
 
@@ -376,7 +376,7 @@
 
 
   .about-project-image {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 3 / 2.25;
   }
 
 
@@ -435,7 +435,7 @@
 
 
   .about-intro-image {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 3 / 2.25;
   }
 
 
@@ -447,7 +447,7 @@
 
 
   .about-project-image {
-    aspect-ratio: 3 / 2;
+    aspect-ratio: 3 / 2.25;
   }
 
 
