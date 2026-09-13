@@ -64,8 +64,8 @@
 .about-intro-image {
   width: 100%;
 
-  /* Más alto sin modificar el ancho */
-  aspect-ratio: 3 / 2.5;
+  /* Más alto para mostrar más fotografía */
+  aspect-ratio: 3 / 2.7;
 
   overflow: hidden;
 }
@@ -77,8 +77,9 @@
 
   object-fit: cover;
 
-  /* Mantiene la cabeza más visible */
-  object-position: center 25%;
+  /* Baja el encuadre para mostrar más por abajo,
+     dejando todavía espacio suficiente sobre la cabeza */
+  object-position: center 55%;
 
   display: block;
 }
@@ -113,7 +114,6 @@
 .about-project-image {
   width: 100%;
 
-  /* Más alto sin modificar el ancho */
   aspect-ratio: 3 / 2.5;
 
   overflow: hidden;
@@ -126,7 +126,6 @@
 
   object-fit: cover;
 
-  /* Sube ligeramente el encuadre */
   object-position: center 35%;
 
   display: block;
@@ -356,7 +355,7 @@
   .about-intro-image {
     order: 1;
 
-    aspect-ratio: 3 / 2.5;
+    aspect-ratio: 3 / 2.7;
   }
 
 
@@ -439,7 +438,7 @@
 
 
   .about-intro-image {
-    aspect-ratio: 3 / 2.5;
+    aspect-ratio: 3 / 2.7;
   }
 
 
