@@ -34,7 +34,7 @@
 
   object-fit: cover;
 
-  object-position: center 35%;
+  object-position: center top;
 }
 
 
@@ -613,7 +613,7 @@
 
 
   .hero-image img {
-    object-position: center 35%;
+    object-position: center top;
   }
 
 
