@@ -10,9 +10,9 @@
 .hero {
   position: relative;
 
-  height: 95vh;
+  height: 110vh;
 
-  min-height: 700px;
+  min-height: 850px;
 
   overflow: hidden;
 }
@@ -34,10 +34,7 @@
 
   object-fit: cover;
 
-  /* No corta la parte superior.
-     Al aumentar la altura del bloque,
-     se muestra más imagen por abajo. */
-  object-position: center top;
+  object-position: center center;
 }
 
 
@@ -616,7 +613,7 @@
 
 
   .hero-image img {
-    object-position: center top;
+    object-position: center center;
   }
 
 
