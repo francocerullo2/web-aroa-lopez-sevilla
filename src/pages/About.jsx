@@ -3,11 +3,11 @@ import { useTranslation } from 'react-i18next'
 import '../styles/About.css'
 
 // =====================================================
-// IMÁGENES DE SOBRE MÍ
+// IMÁGENES
 // =====================================================
 
 const aboutFiles = import.meta.glob(
-  '../assets/images/about/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+  '../assets/images/about/*',
   {
     eager: true,
     import: 'default',
@@ -15,7 +15,7 @@ const aboutFiles = import.meta.glob(
 )
 
 const productFiles = import.meta.glob(
-  '../assets/images/products/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
+  '../assets/images/products/*',
   {
     eager: true,
     import: 'default',
@@ -26,10 +26,13 @@ function findImage(files, fileName) {
   const targetName = fileName.toLowerCase()
 
   const match = Object.entries(files).find(([path]) => {
-    const currentFileName = path.split('/').pop().toLowerCase()
+    const currentFileName = path
+      .split('/')
+      .pop()
+      .toLowerCase()
 
     const currentName = currentFileName.replace(
-      /\.(jpg|jpeg|png|webp)$/,
+      /\.(jpg|jpeg|png|webp)$/i,
       ''
     )
 
@@ -40,20 +43,12 @@ function findImage(files, fileName) {
 }
 
 // =====================================================
-// IMÁGENES
+// IMÁGENES DE LA PÁGINA
 // =====================================================
-
-// Quién está detrás:
-// busca about-01 independientemente de la extensión
-// si no existe, utiliza product-01
 
 const aboutImage =
   findImage(aboutFiles, 'about-01') ||
   findImage(productFiles, 'product-01')
-
-// El proyecto:
-// busca project-01 independientemente de la extensión
-// si no existe, utiliza product-01
 
 const projectImage =
   findImage(aboutFiles, 'project-01') ||
@@ -132,19 +127,19 @@ function About() {
 
         </div>
 
-
         <div className="about-intro-image">
 
-          <img
-            src={aboutImage}
-            alt="Aroa López Sevilla"
-            loading="lazy"
-          />
+          {aboutImage && (
+            <img
+              src={aboutImage}
+              alt="Aroa López Sevilla"
+              loading="lazy"
+            />
+          )}
 
         </div>
 
       </section>
-
 
       {/* EL PROYECTO */}
 
@@ -152,14 +147,15 @@ function About() {
 
         <div className="about-project-image">
 
-          <img
-            src={projectImage}
-            alt={t('about.projectImageAlt')}
-            loading="lazy"
-          />
+          {projectImage && (
+            <img
+              src={projectImage}
+              alt={t('about.projectImageAlt')}
+              loading="lazy"
+            />
+          )}
 
         </div>
-
 
         <div className="about-project-content">
 
@@ -191,7 +187,6 @@ function About() {
 
       </section>
 
-
       {/* MANIFIESTO */}
 
       <section className="about-manifesto">
@@ -201,7 +196,6 @@ function About() {
         </p>
 
       </section>
-
 
       {/* NEWSLETTER */}
 
@@ -220,7 +214,6 @@ function About() {
             </p>
 
           </div>
-
 
           <div className="newsletter-form-wrapper">
 
@@ -249,26 +242,19 @@ function About() {
                   : t('home.newsletter.button')}
               </button>
 
-
               {newsletterStatus === 'success' && (
-
                 <p className="newsletter-message">
                   {t('home.newsletter.success')}
                 </p>
-
               )}
 
-
               {newsletterStatus === 'error' && (
-
                 <p className="newsletter-message">
                   {t('home.newsletter.error')}
                 </p>
-
               )}
 
             </form>
-
 
             <a
               href="/politica-privacidad"
