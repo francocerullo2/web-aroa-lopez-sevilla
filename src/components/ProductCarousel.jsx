@@ -1,48 +1,62 @@
 import { useEffect, useState } from 'react'
 import '../styles/ProductCarousel.css'
 
+function preloadImage(src) {
+  return new Promise((resolve) => {
+    const image = new Image()
+
+    image.onload = () => {
+      resolve(image)
+    }
+
+    image.onerror = () => {
+      resolve(null)
+    }
+
+    image.src = src
+  })
+}
+
 function ProductCarousel({ images = [], alt }) {
   const [currentImage, setCurrentImage] = useState(0)
-  const [loadedImages, setLoadedImages] = useState([])
+  const [displayedImage, setDisplayedImage] = useState(0)
 
   useEffect(() => {
-    setCurrentImage(0)
-
     if (!images.length) {
-      setLoadedImages([])
+      setCurrentImage(0)
+      setDisplayedImage(0)
       return
     }
 
-    let cancelled = false
+    setCurrentImage(0)
+    setDisplayedImage(0)
 
-    const preloadImages = async () => {
-      const loaded = await Promise.all(
-        images.map(
-          (src) =>
-            new Promise((resolve) => {
-              const image = new Image()
-
-              image.onload = () => resolve(src)
-              image.onerror = () => resolve(null)
-
-              image.src = src
-            })
-        )
-      )
-
-      if (!cancelled) {
-        setLoadedImages(
-          loaded.filter(Boolean)
-        )
-      }
-    }
-
-    preloadImages()
-
-    return () => {
-      cancelled = true
-    }
+    // Precargamos todas las imágenes.
+    images.forEach((src) => {
+      const image = new Image()
+      image.src = src
+    })
   }, [images])
+
+  useEffect(() => {
+    if (!images.length) {
+      return
+    }
+
+    // Precargamos especialmente la siguiente y anterior.
+    const nextIndex =
+      currentImage + 1 >= images.length
+        ? 0
+        : currentImage + 1
+
+    const previousIndex =
+      currentImage - 1 < 0
+        ? images.length - 1
+        : currentImage - 1
+
+    preloadImage(images[nextIndex])
+    preloadImage(images[previousIndex])
+  }, [currentImage, images])
 
   if (!images.length) {
     return null
@@ -50,26 +64,45 @@ function ProductCarousel({ images = [], alt }) {
 
   const hasMultipleImages = images.length > 1
 
+  const showImage = async (newIndex) => {
+    if (newIndex === displayedImage) {
+      return
+    }
+
+    // La imagen actual permanece visible mientras
+    // esperamos a que la nueva esté completamente lista.
+    const loadedImage = await preloadImage(images[newIndex])
+
+    if (!loadedImage) {
+      return
+    }
+
+    setDisplayedImage(newIndex)
+    setCurrentImage(newIndex)
+  }
+
   const nextImage = (event) => {
     event.preventDefault()
     event.stopPropagation()
 
-    setCurrentImage((current) =>
-      current + 1 >= images.length
+    const nextIndex =
+      currentImage + 1 >= images.length
         ? 0
-        : current + 1
-    )
+        : currentImage + 1
+
+    showImage(nextIndex)
   }
 
   const previousImage = (event) => {
     event.preventDefault()
     event.stopPropagation()
 
-    setCurrentImage((current) =>
-      current - 1 < 0
+    const previousIndex =
+      currentImage - 1 < 0
         ? images.length - 1
-        : current - 1
-    )
+        : currentImage - 1
+
+    showImage(previousIndex)
   }
 
   return (
@@ -81,12 +114,12 @@ function ProductCarousel({ images = [], alt }) {
           <img
             key={`${image}-${index}`}
             src={image}
-            alt={index === currentImage ? alt : ''}
-            aria-hidden={index !== currentImage}
+            alt={index === displayedImage ? alt : ''}
+            aria-hidden={index !== displayedImage}
             loading="eager"
-            decoding="async"
+            decoding="sync"
             className={
-              index === currentImage
+              index === displayedImage
                 ? 'product-carousel-image active'
                 : 'product-carousel-image'
             }
