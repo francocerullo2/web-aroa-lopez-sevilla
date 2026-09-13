@@ -1,15 +1,9 @@
 import { useState } from 'react'
-
 import { useTranslation } from 'react-i18next'
-
 import '../styles/About.css'
 
-
-
 // =====================================================
-
 // IMÁGENES DE SOBRE MÍ
-
 // =====================================================
 
 const aboutFiles = import.meta.glob(
@@ -45,45 +39,35 @@ function findImage(files, fileName) {
   return match ? match[1] : null
 }
 
-
+// =====================================================
+// IMÁGENES
+// =====================================================
 
 // Quién está detrás:
-
 // busca about-01 independientemente de la extensión
-
 // si no existe, utiliza product-01
 
 const aboutImage =
   findImage(aboutFiles, 'about-01') ||
   findImage(productFiles, 'product-01')
 
-
-
 // El proyecto:
-
 // busca project-01 independientemente de la extensión
-
 // si no existe, utiliza product-01
 
 const projectImage =
   findImage(aboutFiles, 'project-01') ||
   findImage(productFiles, 'product-01')
 
-
-
 // =====================================================
-
 // ABOUT
-
 // =====================================================
 
 function About() {
   const { t } = useTranslation()
 
   const [newsletterEmail, setNewsletterEmail] = useState('')
-
   const [newsletterStatus, setNewsletterStatus] = useState('')
-
 
   const handleNewsletterSubmit = async (e) => {
     e.preventDefault()
@@ -93,11 +77,9 @@ function About() {
     try {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
-
         headers: {
           'Content-Type': 'application/json',
         },
-
         body: JSON.stringify({
           email: newsletterEmail,
         }),
@@ -108,15 +90,12 @@ function About() {
       }
 
       setNewsletterEmail('')
-
       setNewsletterStatus('success')
     } catch (error) {
       console.error(error)
-
       setNewsletterStatus('error')
     }
   }
-
 
   return (
     <main className="about-page">
@@ -167,7 +146,6 @@ function About() {
       </section>
 
 
-
       {/* EL PROYECTO */}
 
       <section className="about-project">
@@ -214,7 +192,6 @@ function About() {
       </section>
 
 
-
       {/* MANIFIESTO */}
 
       <section className="about-manifesto">
@@ -224,7 +201,6 @@ function About() {
         </p>
 
       </section>
-
 
 
       {/* NEWSLETTER */}
@@ -258,7 +234,9 @@ function About() {
                 placeholder={t('home.newsletter.placeholder')}
                 aria-label={t('home.newsletter.placeholder')}
                 value={newsletterEmail}
-                onChange={(e) => setNewsletterEmail(e.target.value)}
+                onChange={(e) =>
+                  setNewsletterEmail(e.target.value)
+                }
                 required
               />
 
@@ -266,20 +244,16 @@ function About() {
                 type="submit"
                 disabled={newsletterStatus === 'loading'}
               >
-
                 {newsletterStatus === 'loading'
                   ? '...'
                   : t('home.newsletter.button')}
-
               </button>
 
 
               {newsletterStatus === 'success' && (
 
                 <p className="newsletter-message">
-
                   {t('home.newsletter.success')}
-
                 </p>
 
               )}
@@ -288,9 +262,7 @@ function About() {
               {newsletterStatus === 'error' && (
 
                 <p className="newsletter-message">
-
                   {t('home.newsletter.error')}
-
                 </p>
 
               )}
