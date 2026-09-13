@@ -84,7 +84,33 @@
 
   text-transform: uppercase;
 
-  margin-bottom: 30px;
+  margin-bottom: 24px;
+}
+
+
+/* PRECIO */
+
+.product-price {
+  font-size: 14px;
+
+  letter-spacing: 1px;
+
+  margin-bottom: 12px;
+}
+
+
+/* TALLA */
+
+.product-size {
+  max-width: 400px;
+
+  font-size: 13px;
+
+  line-height: 1.6;
+
+  margin-bottom: 32px;
+
+  text-align: center;
 }
 
 
@@ -219,6 +245,22 @@
     font-size: 9px;
 
     margin-bottom: 25px;
+  }
+
+  .product-price {
+    font-size: 13px;
+
+    margin-bottom: 10px;
+  }
+
+  .product-size {
+    max-width: 330px;
+
+    font-size: 12px;
+
+    line-height: 1.6;
+
+    margin-bottom: 28px;
   }
 
   .product-button {

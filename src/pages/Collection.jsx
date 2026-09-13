@@ -53,12 +53,12 @@ function Collection() {
           {t('collection.blazers')}
         </button>
 
-        <button
+        {/* <button
           onClick={() => setActiveFilter('vestidos')}
           className={activeFilter === 'vestidos' ? 'active' : ''}
         >
           {t('collection.dresses')}
-        </button>
+        </button> */}
 
       </div>
 

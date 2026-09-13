@@ -31,13 +31,15 @@ function getProductImages(name, legacyFile) {
     return newImages
   }
 
-  const legacyImage = Object.entries(productImages).find(
-    ([path]) => {
-      const fileName = path.split('/').pop().toLowerCase()
+  if (!legacyFile) {
+    return []
+  }
 
-      return fileName === legacyFile.toLowerCase()
-    }
-  )
+  const legacyImage = Object.entries(productImages).find(([path]) => {
+    const fileName = path.split('/').pop().toLowerCase()
+
+    return fileName === legacyFile.toLowerCase()
+  })
 
   return legacyImage ? [legacyImage[1]] : []
 }
@@ -49,6 +51,7 @@ const products = [
     category: 'tops',
     images: getProductImages('Dolores', 'product-01.PNG'),
     status: 'disponible',
+    price: 60,
   },
   {
     id: 2,
@@ -56,6 +59,7 @@ const products = [
     category: 'tops',
     images: getProductImages('Carmen', 'product-02.PNG'),
     status: 'disponible',
+    price: 50,
   },
   {
     id: 3,
@@ -63,6 +67,7 @@ const products = [
     category: 'tops',
     images: getProductImages('Salina', 'product-03.PNG'),
     status: 'disponible',
+    price: 50,
   },
   {
     id: 4,
@@ -70,6 +75,7 @@ const products = [
     category: 'tops',
     images: getProductImages('Hechura', 'product-04.jpeg'),
     status: 'disponible',
+    price: 45,
   },
   {
     id: 5,
@@ -77,6 +83,7 @@ const products = [
     category: 'tops',
     images: getProductImages('Albero', 'product-05.jpg'),
     status: 'disponible',
+    price: 50,
   },
   {
     id: 6,
@@ -84,6 +91,7 @@ const products = [
     category: 'tops',
     images: getProductImages('Oliva', 'product-06.jpg'),
     status: 'disponible',
+    price: 45,
   },
   {
     id: 7,
@@ -91,6 +99,7 @@ const products = [
     category: 'tops',
     images: getProductImages('Candela', 'product-07.jpeg'),
     status: 'disponible',
+    price: 50,
   },
   {
     id: 8,
@@ -98,6 +107,23 @@ const products = [
     category: 'tops',
     images: getProductImages('Solera', 'product-08.jpg'),
     status: 'disponible',
+    price: 50,
+  },
+  {
+    id: 9,
+    name: 'Azahar',
+    category: 'tops',
+    images: getProductImages('Azahar'),
+    status: 'disponible',
+    price: 50,
+  },
+  {
+    id: 10,
+    name: 'Jara',
+    category: 'tops',
+    images: getProductImages('Jara'),
+    status: 'disponible',
+    price: 45,
   },
 ]
 

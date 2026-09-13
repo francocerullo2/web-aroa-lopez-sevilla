@@ -45,6 +45,14 @@ function Product() {
           {statusText[product.status]}
         </p>
 
+        <p className="product-price">
+          {product.price} €
+        </p>
+
+        <p className="product-size">
+          {t('product.approximateSize')}
+        </p>
+
         <Link
           to={`/contacto?pieza=${encodeURIComponent(product.name)}`}
           className="product-button"

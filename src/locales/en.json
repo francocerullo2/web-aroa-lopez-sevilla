@@ -64,13 +64,14 @@
   }
 },
 
-  "product": {
-    "notFound": "Product not found",
-    "description": "A unique piece created from carefully selected and transformed garments.",
-    "uniquePiece": "ONE OF A KIND",
-    "contactText": "To enquire about availability, price and measurements, please get in touch.",
-    "consultPiece": "ENQUIRE ABOUT THIS PIECE",
-    "backToCollection": "BACK TO COLLECTION",
+ "product": {
+  "notFound": "Product not found",
+  "description": "A unique piece created from carefully selected and transformed garments.",
+  "uniquePiece": "ONE OF A KIND",
+  "contactText": "To enquire about availability, price and measurements, please get in touch.",
+  "approximateSize": "Approximate size: S. For exact measurements, please contact us.",
+  "consultPiece": "ENQUIRE ABOUT THIS PIECE",
+  "backToCollection": "BACK TO COLLECTION",
 
     "status": {
       "available": "AVAILABLE",
