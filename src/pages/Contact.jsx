@@ -176,9 +176,10 @@ function Contact() {
 
           <input
             type="hidden"
-            name="_replyto"
-            value="email"
+            name="_url"
+            value={`${window.location.origin}/contacto`}
           />
+
 
           <div className="form-row">
 
@@ -269,7 +270,10 @@ function Contact() {
           </div>
 
 
-          <button type="submit" className="contact-submit">
+          <button
+            type="submit"
+            className="contact-submit"
+          >
             {t("contact.send")}
           </button>
 
