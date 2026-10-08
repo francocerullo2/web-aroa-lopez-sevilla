@@ -30,6 +30,10 @@ function Collection() {
   return (
     <main className="collection-page">
 
+      <h1 className="visually-hidden">
+        {t('collection.title')}
+      </h1>
+
       <div className="collection-filters">
 
         <button
@@ -101,7 +105,7 @@ function Collection() {
 
                   <ProductCarousel
                     images={product.images}
-                    alt={product.name}
+                    alt={t('product.imageAlt', { name: product.name })}
                   />
 
                 </div>

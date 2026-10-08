@@ -3,10 +3,12 @@ import { useTranslation } from 'react-i18next'
 import products from '../data/products'
 import '../styles/Product.css'
 import ProductCarousel from '../components/ProductCarousel'
+import { getFaqParams } from '../data/faq'
 
 function Product() {
   const { t } = useTranslation()
   const { id } = useParams()
+  const params = getFaqParams()
 
   const product = products.find(
     (product) => product.id === Number(id)
@@ -30,7 +32,7 @@ function Product() {
 
         <ProductCarousel
           images={product.images}
-          alt={product.name}
+          alt={t('product.imageAlt', { name: product.name })}
         />
 
       </section>
@@ -64,6 +66,30 @@ function Product() {
           <p>
             {t('product.description')}
           </p>
+        </div>
+
+        <div className="product-faq">
+
+          <h2>
+            {t('faq.items.where.question')}
+          </h2>
+
+          <p>
+            {t('faq.items.where.answer')}
+          </p>
+
+          <h2>
+            {t('faq.items.buy.question')}
+          </h2>
+
+          <p>
+            {t('faq.items.buy.answer', params)}
+          </p>
+
+          <Link to="/preguntas-frecuentes">
+            {t('faq.homeButton')}
+          </Link>
+
         </div>
 
         <Link

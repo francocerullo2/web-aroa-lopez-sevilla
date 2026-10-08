@@ -4,6 +4,8 @@ import { useTranslation } from 'react-i18next'
 import products from '../data/products'
 import ProductCarousel from '../components/ProductCarousel'
 import InspirationCarousel from '../components/InspirationCarousel'
+import FaqList from '../components/FaqList'
+import { HOME_FAQ_IDS } from '../data/faq'
 import '../styles/Home.css'
 
 // =====================================================
@@ -208,7 +210,7 @@ function Home() {
 
               <ProductCarousel
                 images={product.images}
-                alt={product.name}
+                alt={t('product.imageAlt', { name: product.name })}
               />
 
               <div className="home-product-info">
@@ -278,6 +280,30 @@ function Home() {
           <p>
             {t('home.history.text2')}
           </p>
+
+        </div>
+
+      </section>
+
+
+      {/* PREGUNTAS FRECUENTES */}
+
+      <section className="home-faq">
+
+        <h2>
+          {t('faq.homeTitle')}
+        </h2>
+
+        <FaqList
+          ids={HOME_FAQ_IDS}
+          headingLevel="h3"
+        />
+
+        <div className="home-faq-button">
+
+          <Link to="/preguntas-frecuentes">
+            {t('faq.homeButton')}
+          </Link>
 
         </div>
 
@@ -374,6 +400,7 @@ function Home() {
 
         <InspirationCarousel
           images={inspirationImages}
+          alt={t('home.gallery.alt')}
         />
 
       </section>

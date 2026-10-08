@@ -31,6 +31,10 @@ function Footer() {
             {t('header.about')}
           </Link>
 
+          <Link to="/preguntas-frecuentes">
+            {t('header.faq')}
+          </Link>
+
           <Link to="/contacto">
             {t('header.contact')}
           </Link>

@@ -3,6 +3,7 @@
     "collection": "Collection",
     "about": "About",
     "contact": "Contact",
+    "faq": "FAQ",
     "openMenu": "Open menu"
   },
 
@@ -51,6 +52,7 @@
   },
 
  "collection": {
+    "title": "Collection of upcycled tops made in Seville",
   "all": "ALL",
   "tops": "TOPS",
   "blazers": "BLAZERS",
@@ -66,7 +68,8 @@
 
  "product": {
   "notFound": "Product not found",
-  "description": "A unique piece created from carefully selected and transformed garments.",
+    "imageAlt": "{{name}} top, one-of-a-kind piece by Aroa López Sevilla",
+  "description": "One-of-a-kind top handmade in Seville from carefully selected and transformed second-hand garments. There is no other like it and, once sold, it is not made again.",
   "uniquePiece": "ONE OF A KIND",
   "contactText": "To enquire about availability, price and measurements, please get in touch.",
   "approximateSize": "Approximate size: S. For exact measurements, please contact us.",
@@ -126,6 +129,97 @@
 
     "manifesto": "“Every piece begins with a search. Then comes the process of trying, unpicking, cutting, sewing and rebuilding. I do not always follow a defined path; often, it is the garment itself that shows where it can go.”"
   },
+
+  "faq": {
+    "title": "Frequently asked questions",
+    "homeTitle": "FAQ",
+    "homeButton": "SEE ALL QUESTIONS",
+    "intro": "Everything you need to know about Aroa López Sevilla pieces: what upcycled fashion is, where the garments are made, prices, sizes and how to buy.",
+    "moreQuestions": "Can't find your answer? Write to me and I'll reply within 24-48 hours.",
+    "contactButton": "CONTACT",
+
+    "items": {
+      "whatIs": {
+        "question": "What is Aroa López Sevilla?",
+        "answer": "Aroa López Sevilla is a fashion brand from Seville (Spain) created by designer Aroa. It makes one-of-a-kind pieces by transforming second-hand garments: each garment is selected, unpicked, cut and rebuilt to give it a new life."
+      },
+      "upcycling": {
+        "question": "What is upcycled fashion?",
+        "answer": "Upcycled fashion means transforming garments that already exist into new pieces, instead of making them from scratch. Aroa starts from second-hand clothing and changes its shape, combines materials or alters details until it becomes a different creation."
+      },
+      "unique": {
+        "question": "Is every piece unique?",
+        "answer": "Yes. Every piece is born from a different second-hand garment, so no two are the same. Once a piece is sold, it is not made again."
+      },
+      "where": {
+        "question": "Where are the garments designed and made?",
+        "answer": "All pieces are designed and made in Seville. Aroa handles the whole process: finding the garment, trying, unpicking, cutting, sewing and rebuilding."
+      },
+      "price": {
+        "question": "How much does a piece cost?",
+        "answer": "Tops in the current collection cost between €{{min}} and €{{max}}. Each piece's price is shown on its page within the collection."
+      },
+      "size": {
+        "question": "What size are the garments?",
+        "answer": "Current pieces are approximately size S. Since every garment is unique, the best way to get exact measurements is to ask by email or through the contact form."
+      },
+      "buy": {
+        "question": "How can I buy a piece?",
+        "answer": "Open the piece's page and click \"Enquire about this piece\": the contact form opens with your enquiry ready. You can also email {{email}} or message on Instagram (@aroalopezsevilla). You'll get a reply within 24-48 hours."
+      },
+      "types": {
+        "question": "What kind of garments are in the collection?",
+        "answer": "Right now the collection is made up of {{count}} upcycled tops, all one-of-a-kind. Blazers are coming soon."
+      },
+      "sustainable": {
+        "question": "Why is it a more sustainable fashion choice?",
+        "answer": "Because it uses clothing that already exists instead of producing new garments from scratch. Each piece extends the life of a second-hand garment that might otherwise stop being worn."
+      },
+      "news": {
+        "question": "How can I hear about new pieces?",
+        "answer": "Subscribe to the newsletter on the website to get new launches first. News is also posted on Instagram and TikTok (@aroalopezsevilla) and on Pinterest."
+      }
+    }
+  },
+
+  "seo": {
+    "organization": "Upcycled fashion brand from Seville, Spain. One-of-a-kind pieces created by designer Aroa López Sevilla from hand-transformed second-hand garments.",
+    "person": "Fashion designer based in Seville. Creates one-of-a-kind pieces by transforming second-hand garments.",
+    "jobTitle": "Fashion designer",
+    "knowsAbout": ["Fashion design", "Upcycling", "Upcycled fashion", "Sustainable fashion", "Second-hand clothing", "Garment making"],
+
+    "home": {
+      "title": "Aroa López Sevilla | Upcycled fashion and one-of-a-kind pieces made in Seville",
+      "description": "Upcycled fashion brand from Seville: one-of-a-kind tops made from hand-transformed second-hand garments. From €{{min}}."
+    },
+    "collection": {
+      "title": "Upcycled tops collection | Aroa López Sevilla",
+      "description": "{{count}} one-of-a-kind tops made in Seville from second-hand garments, between €{{min}} and €{{max}}. Check price and availability of each piece."
+    },
+    "about": {
+      "title": "About: the designer behind the brand | Aroa López Sevilla",
+      "description": "I'm Aroa, a fashion designer in Seville. I transform second-hand garments into one-of-a-kind pieces: this is how Aroa López Sevilla was born and how it works."
+    },
+    "faq": {
+      "title": "Frequently asked questions | Aroa López Sevilla",
+      "description": "Prices, sizes, how to buy and what upcycled fashion is: clear answers about Aroa López Sevilla's one-of-a-kind pieces."
+    },
+    "contact": {
+      "title": "Contact | Aroa López Sevilla",
+      "description": "Email {{email}}, use the form or get in touch on Instagram. Reply within 24-48 hours."
+    },
+    "privacy": {
+      "title": "Privacy policy | Aroa López Sevilla",
+      "description": "How Aroa López Sevilla handles personal data from the newsletter and the contact form."
+    },
+    "product": {
+      "name": "{{name}} top",
+      "category": "Clothing > Tops",
+      "title": "{{name}} top, one-of-a-kind upcycled piece | Aroa López Sevilla",
+      "description": "{{name}} top: one-of-a-kind piece handmade in Seville from second-hand garments. €{{price}}. Approximate size S."
+    }
+  },
+
   "privacy": {
   "title": "Privacy Policy",
   "updated": "Last updated: September 2026",

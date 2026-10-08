@@ -7,6 +7,12 @@ import instagramIcon from "../assets/images/social/instagram.svg";
 import pinterestIcon from "../assets/images/social/pinterest.svg";
 import tiktokIcon from "../assets/images/social/tiktok.svg";
 
+// En el prerenderizado no existe window: usamos el dominio real.
+const origin =
+  typeof window !== "undefined"
+    ? window.location.origin
+    : "https://www.aroalopezsevilla.com";
+
 function Contact() {
   const { t } = useTranslation();
   const location = useLocation();
@@ -153,7 +159,7 @@ function Contact() {
           <input
             type="hidden"
             name="_next"
-            value={`${window.location.origin}/contacto?sent=true`}
+            value={`${origin}/contacto?sent=true`}
           />
 
           <input
@@ -177,7 +183,7 @@ function Contact() {
           <input
             type="hidden"
             name="_url"
-            value={`${window.location.origin}/contacto`}
+            value={`${origin}/contacto`}
           />
 
 

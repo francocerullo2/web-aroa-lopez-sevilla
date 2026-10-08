@@ -1,7 +1,7 @@
 import { useLayoutEffect, useRef, useState } from 'react'
 import '../styles/InspirationCarousel.css'
 
-function InspirationCarousel({ images = [] }) {
+function InspirationCarousel({ images = [], alt = 'Inspiration' }) {
   const totalImages = images.length
 
   const [visibleCount, setVisibleCount] = useState(
@@ -198,7 +198,7 @@ function InspirationCarousel({ images = [] }) {
             >
               <img
                 src={image}
-                alt={`Inspiration ${
+                alt={`${alt} ${
                   ((index - visibleCount + totalImages) %
                     totalImages) +
                   1

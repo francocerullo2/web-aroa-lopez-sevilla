@@ -3,6 +3,7 @@
     "collection": "Colección",
     "about": "Sobre mí",
     "contact": "Contacto",
+    "faq": "Preguntas frecuentes",
     "openMenu": "Abrir menú"
   },
 
@@ -51,6 +52,7 @@
   },
 
   "collection": {
+    "title": "Colección de tops reelaborados hechos en Sevilla",
     "all": "TODO",
     "tops": "TOPS",
     "blazers": "BLAZERS",
@@ -66,7 +68,8 @@
 
   "product": {
     "notFound": "Producto no encontrado",
-    "description": "Pieza única creada a partir de prendas seleccionadas y transformadas.",
+    "imageAlt": "Top {{name}}, pieza única de Aroa López Sevilla",
+    "description": "Top único hecho a mano en Sevilla a partir de prendas de segunda mano seleccionadas y transformadas. Es una pieza única: no hay otra igual y, cuando se vende, no se vuelve a hacer.",
     "uniquePiece": "PIEZA ÚNICA",
     "contactText": "Para consultar disponibilidad, precio y medidas, ponte en contacto conmigo.",
     "consultPiece": "CONSULTAR ESTA PIEZA",
@@ -125,6 +128,96 @@
     "project4": "El resultado son creaciones que conservan parte de su pasado, pero empiezan una nueva etapa.",
 
     "manifesto": "“Cada pieza comienza con una búsqueda. Después viene el proceso de probar, descoser, cortar, coser y volver a construir. No sigo siempre un camino definido; muchas veces es la propia prenda la que marca hacia dónde puede ir.”"
+  },
+
+  "faq": {
+    "title": "Preguntas frecuentes",
+    "homeTitle": "Preguntas frecuentes",
+    "homeButton": "VER TODAS LAS PREGUNTAS",
+    "intro": "Todo lo que necesitas saber sobre las piezas de Aroa López Sevilla: qué es la moda reelaborada, dónde se hacen las prendas, precios, tallas y cómo comprar.",
+    "moreQuestions": "¿No encuentras tu respuesta? Escríbeme y te contesto en 24-48 horas.",
+    "contactButton": "CONTACTAR",
+
+    "items": {
+      "whatIs": {
+        "question": "¿Qué es Aroa López Sevilla?",
+        "answer": "Aroa López Sevilla es una marca de moda de Sevilla (España) creada por la diseñadora Aroa. Hace piezas únicas transformando prendas de segunda mano: cada prenda se selecciona, se descose, se corta y se vuelve a construir para darle una nueva vida."
+      },
+      "upcycling": {
+        "question": "¿Qué es la moda reelaborada o upcycling?",
+        "answer": "La moda reelaborada (upcycling) consiste en transformar prendas que ya existen en piezas nuevas, en lugar de fabricarlas desde cero. Aroa parte de ropa de segunda mano y cambia su forma, combina materiales o modifica detalles hasta convertirla en una creación distinta."
+      },
+      "unique": {
+        "question": "¿Cada pieza es única?",
+        "answer": "Sí. Cada pieza nace de una prenda de segunda mano diferente, así que no hay dos iguales. Cuando una pieza se vende, no se vuelve a hacer."
+      },
+      "where": {
+        "question": "¿Dónde se diseñan y se hacen las prendas?",
+        "answer": "Todas las piezas se diseñan y se confeccionan en Sevilla. Aroa se encarga de todo el proceso: buscar la prenda, probar, descoser, cortar, coser y volver a construir."
+      },
+      "price": {
+        "question": "¿Cuánto cuesta una pieza?",
+        "answer": "Los tops de la colección actual cuestan entre {{min}} € y {{max}} €. El precio de cada pieza aparece en su ficha dentro de la colección."
+      },
+      "size": {
+        "question": "¿Qué talla tienen las prendas?",
+        "answer": "Las piezas actuales tienen una talla aproximada S. Como cada prenda es única, para conocer las medidas exactas lo mejor es preguntar por email o con el formulario de contacto."
+      },
+      "buy": {
+        "question": "¿Cómo puedo comprar una pieza?",
+        "answer": "Entra en la ficha de la pieza y pulsa «Consultar esta pieza»: se abre el formulario de contacto con la consulta ya preparada. También puedes escribir a {{email}} o por Instagram (@aroalopezsevilla). La respuesta llega en 24-48 horas."
+      },
+      "types": {
+        "question": "¿Qué tipo de prendas hay en la colección?",
+        "answer": "Ahora mismo la colección está formada por {{count}} tops reelaborados, todos piezas únicas. Las blazers llegarán próximamente."
+      },
+      "sustainable": {
+        "question": "¿Por qué es una opción de moda más sostenible?",
+        "answer": "Porque aprovecha ropa que ya existe en lugar de producir prendas nuevas desde cero. Cada pieza alarga la vida de una prenda de segunda mano que, de otra forma, podría dejar de usarse."
+      },
+      "news": {
+        "question": "¿Cómo me entero de las nuevas piezas?",
+        "answer": "Suscríbete a la newsletter de la web para recibir los nuevos lanzamientos antes que nadie. También se publican novedades en Instagram y TikTok (@aroalopezsevilla) y en Pinterest."
+      }
+    }
+  },
+
+  "seo": {
+    "organization": "Marca de moda reelaborada (upcycling) de Sevilla, España. Piezas únicas creadas por la diseñadora Aroa López Sevilla a partir de prendas de segunda mano transformadas a mano.",
+    "person": "Diseñadora de moda de Sevilla. Crea piezas únicas transformando prendas de segunda mano.",
+    "jobTitle": "Diseñadora de moda",
+    "knowsAbout": ["Diseño de moda", "Upcycling", "Moda reelaborada", "Moda sostenible", "Ropa de segunda mano", "Confección"],
+
+    "home": {
+      "title": "Aroa López Sevilla | Moda reelaborada y piezas únicas hechas en Sevilla",
+      "description": "Marca de moda upcycling de Sevilla: tops únicos creados a partir de prendas de segunda mano transformadas a mano. Desde {{min}} €."
+    },
+    "collection": {
+      "title": "Colección de tops reelaborados | Aroa López Sevilla",
+      "description": "{{count}} tops únicos hechos en Sevilla a partir de prendas de segunda mano, entre {{min}} € y {{max}} €. Consulta precio y disponibilidad de cada pieza."
+    },
+    "about": {
+      "title": "Sobre mí: la diseñadora detrás de la marca | Aroa López Sevilla",
+      "description": "Soy Aroa, diseñadora de moda en Sevilla. Transformo prendas de segunda mano en piezas únicas: así nace y así trabaja Aroa López Sevilla."
+    },
+    "faq": {
+      "title": "Preguntas frecuentes | Aroa López Sevilla",
+      "description": "Precios, tallas, cómo comprar y qué es la moda reelaborada: respuestas claras sobre las piezas únicas de Aroa López Sevilla."
+    },
+    "contact": {
+      "title": "Contacto | Aroa López Sevilla",
+      "description": "Escribe a {{email}}, usa el formulario o contacta por Instagram. Respuesta en 24-48 horas."
+    },
+    "privacy": {
+      "title": "Política de privacidad | Aroa López Sevilla",
+      "description": "Cómo trata Aroa López Sevilla los datos personales de la newsletter y del formulario de contacto."
+    },
+    "product": {
+      "name": "Top {{name}}",
+      "category": "Ropa > Tops",
+      "title": "Top {{name}}, pieza única reelaborada | Aroa López Sevilla",
+      "description": "Top {{name}}: pieza única hecha a mano en Sevilla a partir de prendas de segunda mano. {{price}} €. Talla aproximada S."
+    }
   },
 
   "privacy": {
