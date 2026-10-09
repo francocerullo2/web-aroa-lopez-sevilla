@@ -52,6 +52,9 @@ function Contact() {
 
     setNewsletterStatus("loading");
 
+    // Campo trampa anti-bots (oculto para las personas)
+    const website = e.currentTarget.elements.website?.value || "";
+
     try {
       const response = await fetch("/api/newsletter", {
         method: "POST",
@@ -60,6 +63,7 @@ function Contact() {
         },
         body: JSON.stringify({
           email: newsletterEmail,
+          website,
         }),
       });
 
@@ -178,6 +182,17 @@ function Contact() {
             type="hidden"
             name="_captcha"
             value="false"
+          />
+
+          {/* Campo trampa anti-spam: FormSubmit descarta
+              los envíos que lo traen relleno */}
+          <input
+            type="text"
+            name="_honey"
+            className="visually-hidden"
+            tabIndex="-1"
+            autoComplete="off"
+            aria-hidden="true"
           />
 
           <input
@@ -319,6 +334,15 @@ function Contact() {
                 value={newsletterEmail}
                 onChange={(e) => setNewsletterEmail(e.target.value)}
                 required
+              />
+
+              <input
+                type="text"
+                name="website"
+                className="visually-hidden"
+                tabIndex="-1"
+                autoComplete="off"
+                aria-hidden="true"
               />
 
               <button

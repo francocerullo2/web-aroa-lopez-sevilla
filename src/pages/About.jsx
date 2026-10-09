@@ -69,6 +69,9 @@ function About() {
 
     setNewsletterStatus('loading')
 
+    // Campo trampa anti-bots (oculto para las personas)
+    const website = e.currentTarget.elements.website?.value || ''
+
     try {
       const response = await fetch('/api/newsletter', {
         method: 'POST',
@@ -77,6 +80,7 @@ function About() {
         },
         body: JSON.stringify({
           email: newsletterEmail,
+          website,
         }),
       })
 
@@ -241,6 +245,15 @@ function About() {
                   setNewsletterEmail(e.target.value)
                 }
                 required
+              />
+
+              <input
+                type="text"
+                name="website"
+                className="visually-hidden"
+                tabIndex="-1"
+                autoComplete="off"
+                aria-hidden="true"
               />
 
               <button
