@@ -1,6 +1,9 @@
 import { useLocation, useNavigate } from "react-router-dom";
+import { SOCIAL } from "../data/social";
+import { markNewsletterSubscribed } from "../newsletter";
 import { useEffect, useState } from "react";
 import { useTranslation } from "react-i18next";
+import { useLocalePath } from "../locale";
 import "../styles/Contact.css";
 
 import instagramIcon from "../assets/images/social/instagram.svg";
@@ -17,6 +20,7 @@ function Contact() {
   const { t } = useTranslation();
   const location = useLocation();
   const navigate = useNavigate();
+  const localePath = useLocalePath();
 
   const [messageSent, setMessageSent] = useState(
     new URLSearchParams(location.search).get("sent") === "true"
@@ -29,12 +33,12 @@ function Contact() {
     if (messageSent) {
       const timer = setTimeout(() => {
         setMessageSent(false);
-        navigate("/contacto", { replace: true });
+        navigate(localePath("/contacto"), { replace: true });
       }, 5000);
 
       return () => clearTimeout(timer);
     }
-  }, [messageSent, navigate]);
+  }, [messageSent, navigate, localePath]);
 
   const params = new URLSearchParams(location.search);
   const pieza = params.get("pieza");
@@ -73,6 +77,7 @@ function Contact() {
 
       setNewsletterEmail("");
       setNewsletterStatus("success");
+      markNewsletterSubscribed();
     } catch (error) {
       console.error(error);
       setNewsletterStatus("error");
@@ -111,7 +116,7 @@ function Contact() {
           <div className="contact-social-icons">
 
             <a
-              href="https://www.instagram.com/aroalopezsevilla?igsi=MWdzaGJleWZta3lscA%3D%3D&utm_source=qr"
+              href={SOCIAL.instagram}
               target="_blank"
               rel="noreferrer"
               aria-label="Instagram"
@@ -120,7 +125,7 @@ function Contact() {
             </a>
 
             <a
-              href="https://pin.it/E1l1a9iJR"
+              href={SOCIAL.pinterest}
               target="_blank"
               rel="noreferrer"
               aria-label="Pinterest"
@@ -129,7 +134,7 @@ function Contact() {
             </a>
 
             <a
-              href="https://www.tiktok.com/@aroalopezsevilla?_r=1&_t=ZS-99N849b0q0I"
+              href={SOCIAL.tiktok}
               target="_blank"
               rel="noreferrer"
               aria-label="TikTok"
@@ -163,7 +168,7 @@ function Contact() {
           <input
             type="hidden"
             name="_next"
-            value={`${origin}/contacto?sent=true`}
+            value={`${origin}${localePath("/contacto")}?sent=true`}
           />
 
           <input
@@ -198,7 +203,7 @@ function Contact() {
           <input
             type="hidden"
             name="_url"
-            value={`${origin}/contacto`}
+            value={`${origin}${localePath("/contacto")}`}
           />
 
 
@@ -370,7 +375,7 @@ function Contact() {
 
 
             <a
-              href="/politica-privacidad"
+              href={localePath("/politica-privacidad")}
               className="newsletter-privacy"
             >
               {t("home.newsletter.privacy")}

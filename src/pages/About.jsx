@@ -1,5 +1,7 @@
 import { useState } from 'react'
+import { markNewsletterSubscribed } from '../newsletter'
 import { useTranslation } from 'react-i18next'
+import { useLocalePath } from '../locale'
 import '../styles/About.css'
 
 // =====================================================
@@ -8,14 +10,6 @@ import '../styles/About.css'
 
 const aboutFiles = import.meta.glob(
   '../assets/images/about/*',
-  {
-    eager: true,
-    import: 'default',
-  }
-)
-
-const productFiles = import.meta.glob(
-  '../assets/images/products/*',
   {
     eager: true,
     import: 'default',
@@ -46,13 +40,9 @@ function findImage(files, fileName) {
 // IMÁGENES DE LA PÁGINA
 // =====================================================
 
-const aboutImage =
-  findImage(aboutFiles, 'about-01') ||
-  findImage(productFiles, 'product-01')
+const aboutImage = findImage(aboutFiles, 'about-01')
 
-const projectImage =
-  findImage(aboutFiles, 'project-01') ||
-  findImage(productFiles, 'product-01')
+const projectImage = findImage(aboutFiles, 'project-01')
 
 // =====================================================
 // ABOUT
@@ -60,6 +50,7 @@ const projectImage =
 
 function About() {
   const { t } = useTranslation()
+  const localePath = useLocalePath()
 
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [newsletterStatus, setNewsletterStatus] = useState('')
@@ -90,6 +81,7 @@ function About() {
 
       setNewsletterEmail('')
       setNewsletterStatus('success')
+      markNewsletterSubscribed()
     } catch (error) {
       console.error(error)
       setNewsletterStatus('error')
@@ -287,7 +279,7 @@ function About() {
 
 
             <a
-              href="/politica-privacidad"
+              href={localePath('/politica-privacidad')}
               className="newsletter-privacy"
             >
               {t('home.newsletter.privacy')}

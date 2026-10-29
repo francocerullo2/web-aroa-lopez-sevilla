@@ -1,4 +1,5 @@
-import { Link, useNavigate } from 'react-router-dom'
+import { Link } from 'react-router-dom'
+import { markNewsletterSubscribed } from '../newsletter'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
 import products from '../data/products'
@@ -6,6 +7,7 @@ import ProductCarousel from '../components/ProductCarousel'
 import InspirationCarousel from '../components/InspirationCarousel'
 import FaqList from '../components/FaqList'
 import { HOME_FAQ_IDS } from '../data/faq'
+import { useLocalePath } from '../locale'
 import '../styles/Home.css'
 
 // =====================================================
@@ -14,14 +16,6 @@ import '../styles/Home.css'
 
 const homeFiles = import.meta.glob(
   '../assets/images/home/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
-  {
-    eager: true,
-    import: 'default',
-  }
-)
-
-const productFiles = import.meta.glob(
-  '../assets/images/products/*.{jpg,jpeg,png,webp,JPG,JPEG,PNG,WEBP}',
   {
     eager: true,
     import: 'default',
@@ -49,17 +43,13 @@ function findImage(files, fileName) {
 // HERO
 // =====================================================
 
-const heroImage =
-  findImage(homeFiles, 'hero-01') ||
-  findImage(homeFiles, 'hero')
+const heroImage = findImage(homeFiles, 'hero-01')
 
 // =====================================================
 // PRENDAS CON HISTORIA
 // =====================================================
 
-const historyImage =
-  findImage(homeFiles, 'history-01') ||
-  findImage(productFiles, 'product-02')
+const historyImage = findImage(homeFiles, 'history-01')
 
 // =====================================================
 // INSPIRACIÓN
@@ -89,8 +79,8 @@ const inspirationImages = Object.entries(inspirationFiles)
 // =====================================================
 
 function Home() {
-  const navigate = useNavigate()
   const { t } = useTranslation()
+  const localePath = useLocalePath()
 
   const [newsletterEmail, setNewsletterEmail] = useState('')
   const [newsletterStatus, setNewsletterStatus] = useState('')
@@ -121,6 +111,7 @@ function Home() {
 
       setNewsletterEmail('')
       setNewsletterStatus('success')
+      markNewsletterSubscribed()
     } catch (error) {
       console.error(error)
       setNewsletterStatus('error')
@@ -131,17 +122,6 @@ function Home() {
     disponible: t('product.status.available'),
     proximamente: t('product.status.comingSoon'),
     vendida: t('product.status.sold'),
-  }
-
-  const handleProductClick = (productId) => {
-    navigate(`/producto/${productId}`)
-  }
-
-  const handleProductKeyDown = (event, productId) => {
-    if (event.key === 'Enter' || event.key === ' ') {
-      event.preventDefault()
-      navigate(`/producto/${productId}`)
-    }
   }
 
   return (
@@ -171,8 +151,20 @@ function Home() {
             {t('home.hero.title')}
           </h1>
 
-          <Link to="/coleccion">
-            {t('home.hero.button')}
+          <Link
+            to={localePath('/coleccion')}
+            className="hero-link"
+          >
+            <span className="hero-link-text">
+              {t('home.hero.button')}
+            </span>
+
+            <span
+              className="hero-link-arrow"
+              aria-hidden="true"
+            >
+              →
+            </span>
           </Link>
 
         </div>
@@ -201,15 +193,10 @@ function Home() {
 
           {products.slice(0, 4).map((product) => (
 
-            <div
+            <Link
               key={product.id}
+              to={localePath(`/producto/${product.id}`)}
               className="home-product"
-              onClick={() => handleProductClick(product.id)}
-              onKeyDown={(event) =>
-                handleProductKeyDown(event, product.id)
-              }
-              role="link"
-              tabIndex="0"
             >
 
               <ProductCarousel
@@ -231,7 +218,7 @@ function Home() {
 
               </div>
 
-            </div>
+            </Link>
 
           ))}
 
@@ -240,7 +227,7 @@ function Home() {
 
         <div className="home-news-button">
 
-          <Link to="/coleccion">
+          <Link to={localePath('/coleccion')}>
             {t('home.news.button')}
           </Link>
 
@@ -271,7 +258,7 @@ function Home() {
           </h2>
 
           <Link
-            to="/sobre-mi"
+            to={localePath('/sobre-mi')}
             className="history-button"
           >
             {t('home.history.button')}
@@ -305,7 +292,7 @@ function Home() {
 
         <div className="home-faq-button">
 
-          <Link to="/preguntas-frecuentes">
+          <Link to={localePath('/preguntas-frecuentes')}>
             {t('faq.homeButton')}
           </Link>
 
@@ -394,7 +381,7 @@ function Home() {
 
 
             <Link
-              to="/politica-privacidad"
+              to={localePath('/politica-privacidad')}
               className="newsletter-privacy"
             >
               {t('home.newsletter.privacy')}

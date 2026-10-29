@@ -3,10 +3,12 @@ import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import products from '../data/products'
 import ProductCarousel from '../components/ProductCarousel'
+import { useLocalePath } from '../locale'
 import '../styles/Collection.css'
 
 function Collection() {
   const { t } = useTranslation()
+  const localePath = useLocalePath()
 
   const [activeFilter, setActiveFilter] = useState('all')
 
@@ -69,9 +71,9 @@ function Collection() {
       {isComingSoon ? (
         <section className="collection-coming-soon">
 
-          <h1>
+          <h2>
             {t('collection.comingSoon.title')}
-          </h1>
+          </h2>
 
           <p>
             {t('collection.comingSoon.text')}
@@ -82,7 +84,7 @@ function Collection() {
           </p>
 
           <Link
-            to="/#newsletter"
+            to={localePath('/#newsletter')}
             className="collection-coming-soon-link"
           >
             {t('collection.comingSoon.button')}
@@ -99,7 +101,7 @@ function Collection() {
               key={product.id}
             >
 
-              <Link to={`/producto/${product.id}`}>
+              <Link to={localePath(`/producto/${product.id}`)}>
 
                 <div className="collection-image">
 

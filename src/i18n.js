@@ -26,8 +26,11 @@ i18n
       escapeValue: false
     },
 
+    // El idioma lo marca la URL (/en/... → inglés).
+    // Ver src/locale.js.
     detection: {
-      order: ['navigator'],
+      order: ['path'],
+      lookupFromPathIndex: 0,
       caches: []
     }
   })

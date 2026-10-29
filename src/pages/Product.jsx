@@ -1,12 +1,15 @@
 import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import products from '../data/products'
+import products, { getProductInfo } from '../data/products'
 import '../styles/Product.css'
 import ProductCarousel from '../components/ProductCarousel'
+import NotFound from './NotFound'
 import { getFaqParams } from '../data/faq'
+import { useLocalePath } from '../locale'
 
 function Product() {
   const { t } = useTranslation()
+  const localePath = useLocalePath()
   const { id } = useParams()
   const params = getFaqParams()
 
@@ -15,8 +18,16 @@ function Product() {
   )
 
   if (!product) {
-    return <h1>{t('product.notFound')}</h1>
+    return <NotFound />
   }
+
+  const info = getProductInfo(product, t)
+
+  const details = [
+    { label: t('product.details.material'), value: info.material },
+    { label: t('product.details.color'), value: info.color },
+    { label: t('product.details.measurements'), value: info.measurements },
+  ].filter((detail) => detail.value)
 
   const statusText = {
     disponible: t('product.status.available'),
@@ -31,8 +42,17 @@ function Product() {
       <section className="product-gallery">
 
         <ProductCarousel
+          key={product.id}
+          priority
           images={product.images}
           alt={t('product.imageAlt', { name: product.name })}
+          alts={product.images.map((image, index) =>
+            t('product.imageAltN', {
+              name: product.name,
+              n: index + 1,
+              total: product.images.length,
+            })
+          )}
         />
 
       </section>
@@ -56,7 +76,7 @@ function Product() {
         </p>
 
         <Link
-          to={`/contacto?pieza=${encodeURIComponent(product.name)}`}
+          to={localePath(`/contacto?pieza=${encodeURIComponent(product.name)}`)}
           className="product-button"
         >
           {t('product.consultPiece')}
@@ -64,36 +84,56 @@ function Product() {
 
         <div className="product-description">
           <p>
-            {t('product.description')}
+            {info.description}
           </p>
+
+          {details.length > 0 && (
+            <dl className="product-specs">
+              {details.map((detail) => (
+                <div key={detail.label}>
+                  <dt>{detail.label}</dt>
+                  <dd>{detail.value}</dd>
+                </div>
+              ))}
+            </dl>
+          )}
         </div>
 
-        <div className="product-faq">
+        {/* Información extra, plegada para no distraer de la pieza.
+            El texto sigue en el HTML: Google y las IA lo leen igual. */}
+        <div className="product-more">
 
-          <h2>
-            {t('faq.items.where.question')}
-          </h2>
+          <details>
+            <summary>
+              {t('faq.items.where.question')}
+            </summary>
 
-          <p>
-            {t('faq.items.where.answer')}
-          </p>
+            <p>
+              {t('faq.items.where.answer')}
+            </p>
+          </details>
 
-          <h2>
-            {t('faq.items.buy.question')}
-          </h2>
+          <details>
+            <summary>
+              {t('faq.items.buy.question')}
+            </summary>
 
-          <p>
-            {t('faq.items.buy.answer', params)}
-          </p>
+            <p>
+              {t('faq.items.buy.answer', params)}
+            </p>
+          </details>
 
-          <Link to="/preguntas-frecuentes">
+          <Link
+            to={localePath('/preguntas-frecuentes')}
+            className="product-more-link"
+          >
             {t('faq.homeButton')}
           </Link>
 
         </div>
 
         <Link
-          to="/coleccion"
+          to={localePath('/coleccion')}
           className="product-back"
         >
           {t('product.backToCollection')}

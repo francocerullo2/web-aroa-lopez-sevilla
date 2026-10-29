@@ -63,11 +63,11 @@
 }
 
 .product-details h1 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(38px, 4vw, 62px);
+  font-size: clamp(43px, 4.48vw, 69px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1;
 
@@ -78,7 +78,7 @@
 /* ESTADO */
 
 .product-status {
-  font-size: 10px;
+  font-size: 11px;
 
   letter-spacing: 1.5px;
 
@@ -91,9 +91,13 @@
 /* PRECIO */
 
 .product-price {
-  font-size: 14px;
+  font-family: var(--font-display);
 
-  letter-spacing: 1px;
+  font-size: 28px;
+
+  font-weight: 500;
+
+  letter-spacing: 0.5px;
 
   margin-bottom: 12px;
 }
@@ -104,7 +108,7 @@
 .product-size {
   max-width: 400px;
 
-  font-size: 13px;
+  font-size: 14px;
 
   line-height: 1.6;
 
@@ -127,7 +131,7 @@
 
   padding: 15px 25px;
 
-  font-size: 11px;
+  font-size: 12px;
 
   letter-spacing: 1.5px;
 
@@ -140,19 +144,13 @@
   margin-bottom: 35px;
 }
 
-.product-button:hover {
-  background: var(--color-red);
-
-  color: var(--color-beige);
-}
-
 
 /* DESCRIPCIÓN */
 
 .product-description {
   max-width: 400px;
 
-  font-size: 14px;
+  font-size: 15px;
 
   line-height: 1.7;
 
@@ -160,42 +158,113 @@
 }
 
 
-/* PREGUNTAS DE LA PIEZA */
+/* DETALLES DE LA PIEZA (material, color, medidas) */
 
-.product-faq {
-  max-width: 400px;
-
-  padding-top: 30px;
-
-  margin-bottom: 40px;
+.product-specs {
+  margin-top: 20px;
 
   border-top: 1px solid var(--color-red);
 }
 
 
-.product-faq h2 {
-  font-family: Georgia, "Times New Roman", serif;
+.product-specs div {
+  display: flex;
 
-  font-size: 17px;
+  justify-content: space-between;
 
-  font-weight: 400;
+  gap: 20px;
 
-  line-height: 1.3;
+  padding: 8px 0;
 
-  margin-bottom: 10px;
+  border-bottom: 1px solid var(--color-red);
 }
 
 
-.product-faq p {
+.product-specs dd {
+  margin: 0;
+
+  text-align: right;
+}
+
+
+/* MÁS INFORMACIÓN (desplegables discretos) */
+
+.product-more {
+  width: 100%;
+
+  max-width: 400px;
+
+  margin-bottom: 40px;
+
+  border-top: 1px solid rgba(162, 1, 0, 0.25);
+
+  text-align: left;
+}
+
+.product-more details {
+  border-bottom: 1px solid rgba(162, 1, 0, 0.25);
+}
+
+.product-more summary {
+  display: flex;
+
+  justify-content: space-between;
+
+  align-items: center;
+
+  gap: 16px;
+
+  padding: 14px 0;
+
+  font-size: 12px;
+
+  letter-spacing: 0.8px;
+
+  text-transform: uppercase;
+
+  cursor: pointer;
+
+  list-style: none;
+}
+
+.product-more summary::-webkit-details-marker {
+  display: none;
+}
+
+/* "+" que gira y se convierte en "×" al abrir */
+.product-more summary::after {
+  content: "+";
+
+  flex-shrink: 0;
+
+  font-size: 18px;
+
+  font-weight: 300;
+
+  line-height: 1;
+
+  transition: transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.product-more details[open] summary::after {
+  transform: rotate(45deg);
+}
+
+.product-more details p {
+  padding: 0 0 16px;
+
   font-size: 13px;
 
   line-height: 1.7;
 
-  margin-bottom: 25px;
+  animation: product-more-open 0.4s ease;
 }
 
+.product-more-link {
+  display: inline-block;
 
-.product-faq a {
+  margin-top: 16px;
+
   font-size: 11px;
 
   letter-spacing: 1.5px;
@@ -205,11 +274,19 @@
   text-underline-offset: 4px;
 }
 
+@keyframes product-more-open {
+  from {
+    opacity: 0;
+
+    transform: translateY(-4px);
+  }
+}
+
 
 /* VOLVER */
 
 .product-back {
-  font-size: 11px;
+  font-size: 12px;
 
   letter-spacing: 1.5px;
 
@@ -288,13 +365,13 @@
   }
 
   .product-status {
-    font-size: 9px;
+    font-size: 11px;
 
     margin-bottom: 25px;
   }
 
   .product-price {
-    font-size: 13px;
+    font-size: 24px;
 
     margin-bottom: 10px;
   }
@@ -302,7 +379,7 @@
   .product-size {
     max-width: 330px;
 
-    font-size: 12px;
+    font-size: 13px;
 
     line-height: 1.6;
 
@@ -316,7 +393,7 @@
   .product-description {
     max-width: 330px;
 
-    font-size: 13px;
+    font-size: 14px;
 
     line-height: 1.7;
 

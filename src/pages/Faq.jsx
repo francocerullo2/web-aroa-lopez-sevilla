@@ -1,10 +1,12 @@
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
 import FaqList from '../components/FaqList'
+import { useLocalePath } from '../locale'
 import '../styles/Faq.css'
 
 function Faq() {
   const { t } = useTranslation()
+  const localePath = useLocalePath()
 
   return (
     <main className="faq-page">
@@ -27,7 +29,7 @@ function Faq() {
             {t('faq.moreQuestions')}
           </p>
 
-          <Link to="/contacto">
+          <Link to={localePath('/contacto')}>
             {t('faq.contactButton')}
           </Link>
 

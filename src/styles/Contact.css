@@ -21,11 +21,11 @@
 
 
 .contact-intro h1 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(32px, 2.8vw, 46px);
+  font-size: clamp(36px, 3.14vw, 52px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1;
 
@@ -41,7 +41,7 @@
 
 
 .contact-text p {
-  font-size: 13px;
+  font-size: 14px;
 
   line-height: 1.7;
 
@@ -66,7 +66,7 @@
 
 
 .contact-socials p {
-  font-size: 13px;
+  font-size: 14px;
 
   margin-bottom: 14px;
 }
@@ -97,11 +97,6 @@
   height: 24px;
 
   transition: opacity 0.3s ease;
-}
-
-
-.contact-social-icons a:hover {
-  opacity: 0.6;
 }
 
 
@@ -138,7 +133,7 @@
 
 .contact-success {
   margin: 0 0 30px 0;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -162,14 +157,14 @@
 
 
 .form-group label {
-  font-size: 13px;
+  font-size: 14px;
 
   margin-bottom: 9px;
 }
 
 
 .form-group label span {
-  font-size: 9px;
+  font-size: 11px;
 
   margin-left: 4px;
 
@@ -189,7 +184,7 @@
 
   font-family: inherit;
 
-  font-size: 13px;
+  font-size: 14px;
 
   padding: 12px;
 
@@ -226,20 +221,13 @@
 
   color: inherit;
 
-  font-size: 11px;
+  font-size: 12px;
 
   letter-spacing: 0.5px;
 
   cursor: pointer;
 
   transition: 0.3s ease;
-}
-
-
-.contact-submit:hover {
-  background: var(--color-red);
-
-  color: var(--color-beige);
 }
 
 
@@ -279,11 +267,11 @@
 
 
 .newsletter h2 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(28px, 2.5vw, 40px);
+  font-size: clamp(31px, 2.8vw, 45px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1;
 
@@ -292,7 +280,7 @@
 
 
 .newsletter p {
-  font-size: 13px;
+  font-size: 14px;
 
   line-height: 1.6;
 }
@@ -318,7 +306,7 @@
 
   color: inherit;
 
-  font-size: 12px;
+  font-size: 13px;
 
   outline: none;
 }
@@ -347,20 +335,13 @@
 
   color: inherit;
 
-  font-size: 11px;
+  font-size: 12px;
 
   letter-spacing: 0.3px;
 
   cursor: pointer;
 
   transition: 0.3s ease;
-}
-
-
-.newsletter-form button:hover {
-  background: var(--color-red);
-
-  color: var(--color-beige);
 }
 
 
@@ -425,7 +406,7 @@
 
 
   .contact-text p {
-    font-size: 12px;
+    font-size: 13px;
   }
 
 
@@ -474,7 +455,7 @@
 
   .contact-success {
   margin-top: 20px;
-  font-size: 11px;
+  font-size: 12px;
   line-height: 1.5;
 }
 
@@ -488,7 +469,7 @@
 .newsletter-privacy {
   display: block;
   margin-top: 2px;
-  font-size: 8px;
+  font-size: 10px;
   line-height: 1.4;
   text-decoration: none;
   color: #c98f8f;
@@ -499,7 +480,6 @@
 .newsletter-privacy:hover {
   text-decoration: underline;
 }
-
 
 
 }

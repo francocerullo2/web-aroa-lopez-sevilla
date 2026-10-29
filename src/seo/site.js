@@ -1,6 +1,15 @@
-import products from '../data/products'
+import products, { getProductInfo } from '../data/products'
 import { FAQ_IDS, getFaqParams } from '../data/faq'
+import { SOCIAL } from '../data/social'
+import {
+  LANGUAGES,
+  DEFAULT_LANGUAGE,
+  getPathLanguage,
+  stripLanguage,
+  localizePath,
+} from '../locale'
 import logo from '../assets/images/brand/logo.png'
+import shareImage from '../assets/images/brand/og-image.jpg'
 
 // =====================================================
 // DATOS DEL SITIO
@@ -10,26 +19,45 @@ export const SITE_URL = 'https://www.aroalopezsevilla.com'
 export const SITE_NAME = 'Aroa López Sevilla'
 export const EMAIL = 'aroalopezsevilla@gmail.com'
 
-export const SOCIAL_LINKS = [
-  'https://www.instagram.com/aroalopezsevilla',
-  'https://www.tiktok.com/@aroalopezsevilla',
-  'https://pin.it/E1l1a9iJR',
-]
+export const SOCIAL_LINKS = Object.values(SOCIAL)
 
-export const STATIC_ROUTES = [
-  '/',
-  '/coleccion',
-  '/sobre-mi',
-  '/preguntas-frecuentes',
-  '/contacto',
-  '/politica-privacidad',
-]
+// Imagen para compartir en redes (WhatsApp, Instagram...) cuando
+// la página no tiene una propia. 1200×630 px, en JPG para que
+// la acepten todas las apps.
+export const DEFAULT_SHARE_IMAGE = shareImage
 
+// Fecha de la última modificación real de cada página
+// estática. Actualízala solo cuando cambie su contenido:
+// Google deja de fiarse de las fechas que cambian siempre.
+const PAGE_UPDATED = {
+  '/': '2026-10-29',
+  '/coleccion': '2026-10-29',
+  '/sobre-mi': '2026-10-29',
+  '/preguntas-frecuentes': '2026-10-29',
+  '/contacto': '2026-10-29',
+  '/politica-privacidad': '2026-10-29',
+}
+
+export const STATIC_ROUTES = Object.keys(PAGE_UPDATED)
+
+const OG_LOCALE = {
+  es: 'es_ES',
+  en: 'en_GB',
+}
+
+// Rutas sin prefijo de idioma.
 export function getAllRoutes() {
   return [
     ...STATIC_ROUTES,
     ...products.map((product) => `/producto/${product.id}`),
   ]
+}
+
+// Todas las rutas de todos los idiomas, para prerenderizar.
+export function getLocalizedRoutes() {
+  return LANGUAGES.flatMap((language) =>
+    getAllRoutes().map((route) => localizePath(route, language))
+  )
 }
 
 export function absoluteUrl(path) {
@@ -38,6 +66,50 @@ export function absoluteUrl(path) {
   }
 
   return `${SITE_URL}${path.startsWith('/') ? '' : '/'}${path}`
+}
+
+function latest(dates) {
+  return dates.filter(Boolean).sort().at(-1)
+}
+
+const newestProduct = latest(products.map((product) => product.updatedAt))
+
+// Fecha de última modificación de una ruta sin prefijo.
+export function getLastModified(route) {
+  const product = findProduct(route)
+
+  if (product) {
+    return product.updatedAt
+  }
+
+  // El Home y la colección muestran productos: cambian con ellos.
+  if (route === '/' || route === '/coleccion') {
+    return latest([PAGE_UPDATED[route], newestProduct])
+  }
+
+  return PAGE_UPDATED[route]
+}
+
+// URLs de la misma página en cada idioma (hreflang).
+export function getAlternates(route) {
+  return [
+    ...LANGUAGES.map((language) => ({
+      hreflang: language,
+      href: absoluteUrl(localizePath(route, language)),
+    })),
+    {
+      hreflang: 'x-default',
+      href: absoluteUrl(localizePath(route, DEFAULT_LANGUAGE)),
+    },
+  ]
+}
+
+function findProduct(route) {
+  const match = route.match(/^\/producto\/(\d+)$/)
+
+  return match
+    ? products.find((item) => item.id === Number(match[1]))
+    : undefined
 }
 
 const AVAILABILITY = {
@@ -54,6 +126,17 @@ const ORGANIZATION_ID = `${SITE_URL}/#organization`
 const PERSON_ID = `${SITE_URL}/#aroa`
 const WEBSITE_ID = `${SITE_URL}/#website`
 
+const SEVILLA = {
+  '@type': 'Place',
+  name: 'Sevilla, España',
+  address: {
+    '@type': 'PostalAddress',
+    addressLocality: 'Sevilla',
+    addressRegion: 'Andalucía',
+    addressCountry: 'ES',
+  },
+}
+
 function organization(t) {
   return {
     '@type': 'Organization',
@@ -61,13 +144,12 @@ function organization(t) {
     name: SITE_NAME,
     url: `${SITE_URL}/`,
     logo: absoluteUrl(logo),
+    image: absoluteUrl(DEFAULT_SHARE_IMAGE),
     description: t('seo.organization'),
     email: EMAIL,
     founder: { '@id': PERSON_ID },
-    foundingLocation: {
-      '@type': 'Place',
-      name: 'Sevilla, España',
-    },
+    foundingLocation: SEVILLA,
+    address: SEVILLA.address,
     areaServed: 'ES',
     knowsAbout: t('seo.knowsAbout', { returnObjects: true }),
     sameAs: SOCIAL_LINKS,
@@ -89,28 +171,25 @@ function person(t) {
     jobTitle: t('seo.jobTitle'),
     description: t('seo.person'),
     worksFor: { '@id': ORGANIZATION_ID },
-    homeLocation: {
-      '@type': 'Place',
-      name: 'Sevilla, España',
-    },
+    homeLocation: SEVILLA,
     url: `${SITE_URL}/sobre-mi`,
     sameAs: SOCIAL_LINKS,
   }
 }
 
-function website(t, language) {
+function website(t) {
   return {
     '@type': 'WebSite',
     '@id': WEBSITE_ID,
     name: SITE_NAME,
     url: `${SITE_URL}/`,
     description: t('seo.home.description'),
-    inLanguage: language,
+    inLanguage: LANGUAGES,
     publisher: { '@id': ORGANIZATION_ID },
   }
 }
 
-function breadcrumb(url, items) {
+function breadcrumb(url, items, language) {
   return {
     '@type': 'BreadcrumbList',
     '@id': `${url}#breadcrumb`,
@@ -118,7 +197,7 @@ function breadcrumb(url, items) {
       '@type': 'ListItem',
       position: index + 1,
       name: item.name,
-      item: absoluteUrl(item.path),
+      item: absoluteUrl(localizePath(item.path, language)),
     })),
   }
 }
@@ -133,24 +212,48 @@ function webPage(type, url, title, description, language, extra = {}) {
     inLanguage: language,
     isPartOf: { '@id': WEBSITE_ID },
     about: { '@id': ORGANIZATION_ID },
-    dateModified: new Date().toISOString().slice(0, 10),
     ...extra,
   }
 }
 
 function productSchema(product, t, language) {
-  const url = absoluteUrl(`/producto/${product.id}`)
+  const url = absoluteUrl(localizePath(`/producto/${product.id}`, language))
+  const info = getProductInfo(product, t)
+  const year = Number(product.updatedAt.slice(0, 4))
 
   return {
     '@type': 'Product',
     '@id': `${url}#product`,
     name: t('seo.product.name', { name: product.name }),
-    description: t('product.description'),
+    description: info.description,
     image: product.images.map(absoluteUrl),
     url,
     sku: `ALS-${String(product.id).padStart(3, '0')}`,
     category: t('seo.product.category'),
     size: 'S',
+    ...(info.material ? { material: info.material } : {}),
+    ...(info.color ? { color: info.color } : {}),
+    // Pieza nueva, hecha con prendas reutilizadas.
+    itemCondition: 'https://schema.org/NewCondition',
+    additionalProperty: [
+      {
+        '@type': 'PropertyValue',
+        name: 'Upcycling',
+        value: t('seo.product.upcycled'),
+      },
+      {
+        '@type': 'PropertyValue',
+        name: t('seo.product.uniqueLabel'),
+        value: t('seo.product.uniqueValue'),
+      },
+      ...(info.measurements
+        ? [{
+            '@type': 'PropertyValue',
+            name: t('product.details.measurements'),
+            value: info.measurements,
+          }]
+        : []),
+    ],
     inLanguage: language,
     brand: {
       '@type': 'Brand',
@@ -162,6 +265,8 @@ function productSchema(product, t, language) {
       url,
       price: product.price.toFixed(2),
       priceCurrency: 'EUR',
+      priceValidUntil: `${year + 1}-12-31`,
+      itemCondition: 'https://schema.org/NewCondition',
       availability: AVAILABILITY[product.status],
       seller: { '@id': ORGANIZATION_ID },
     },
@@ -188,34 +293,59 @@ export function faqSchema(t, ids = FAQ_IDS) {
 // SEO POR RUTA
 // =====================================================
 
-export function getPageSeo(pathname, t, language = 'es') {
-  const path = pathname.replace(/\/+$/, '') || '/'
-  const url = absoluteUrl(path === '/' ? '/' : path)
+// `t` debe estar en el idioma de la URL (getPathLanguage).
+export function getPageSeo(pathname, t) {
+  const fullPath = pathname.replace(/\/+$/, '') || '/'
+  const language = getPathLanguage(fullPath)
+  const path = stripLanguage(fullPath)
+  const url = absoluteUrl(localizePath(path, language))
   const params = getFaqParams()
 
   const home = { name: SITE_NAME, path: '/' }
 
-  const base = [organization(t), person(t), website(t, language)]
+  const base = [organization(t), person(t), website(t)]
 
-  const build = ({ key, type, crumbs, extra = [], image, values = {} }) => {
+  const build = ({
+    key,
+    type,
+    crumbs,
+    extra = [],
+    image,
+    imageAlt,
+    ogType = 'website',
+    values = {},
+  }) => {
     const title = t(`seo.${key}.title`, { ...params, ...values })
     const description = t(`seo.${key}.description`, { ...params, ...values })
+    const lastModified = getLastModified(path)
 
     const page = webPage(type, url, title, description, language, {
+      ...(lastModified ? { dateModified: lastModified } : {}),
       ...(crumbs ? { breadcrumb: { '@id': `${url}#breadcrumb` } } : {}),
     })
 
     const graph = [...base, page, ...extra]
 
     if (crumbs) {
-      graph.push(breadcrumb(url, crumbs))
+      graph.push(breadcrumb(url, crumbs, language))
     }
 
     return {
       title,
       description,
       url,
-      image: image ? absoluteUrl(image) : absoluteUrl(logo),
+      path,
+      language,
+      locale: OG_LOCALE[language],
+      alternateLocales: LANGUAGES
+        .filter((item) => item !== language)
+        .map((item) => OG_LOCALE[item]),
+      alternates: getAlternates(path),
+      lastModified,
+      noindex: false,
+      ogType,
+      image: absoluteUrl(image || DEFAULT_SHARE_IMAGE),
+      imageAlt: imageAlt || t('seo.shareImageAlt'),
       jsonLd: { '@context': 'https://schema.org', '@graph': graph },
     }
   }
@@ -230,6 +360,7 @@ export function getPageSeo(pathname, t, language = 'es') {
       type: 'CollectionPage',
       crumbs: [home, { name: t('header.collection'), path }],
       image: products[0]?.images[0],
+      imageAlt: t('product.imageAlt', { name: products[0]?.name }),
       extra: [
         {
           '@type': 'ItemList',
@@ -238,7 +369,7 @@ export function getPageSeo(pathname, t, language = 'es') {
           itemListElement: products.map((product, index) => ({
             '@type': 'ListItem',
             position: index + 1,
-            url: absoluteUrl(`/producto/${product.id}`),
+            url: absoluteUrl(localizePath(`/producto/${product.id}`, language)),
             name: t('seo.product.name', { name: product.name }),
           })),
         },
@@ -287,30 +418,42 @@ export function getPageSeo(pathname, t, language = 'es') {
     })
   }
 
-  const productMatch = path.match(/^\/producto\/(\d+)$/)
+  const product = findProduct(path)
 
-  if (productMatch) {
-    const product = products.find(
-      (item) => item.id === Number(productMatch[1])
-    )
+  if (product) {
+    const productName = t('seo.product.name', { name: product.name })
 
-    if (product) {
-      const productName = t('seo.product.name', { name: product.name })
-
-      return build({
-        key: 'product',
-        type: 'ItemPage',
-        crumbs: [
-          home,
-          { name: t('header.collection'), path: '/coleccion' },
-          { name: productName, path },
-        ],
-        image: product.images[0],
-        values: { name: product.name, price: product.price },
-        extra: [productSchema(product, t, language)],
-      })
-    }
+    return build({
+      key: 'product',
+      type: 'ItemPage',
+      ogType: 'product',
+      crumbs: [
+        home,
+        { name: t('header.collection'), path: '/coleccion' },
+        { name: productName, path },
+      ],
+      image: product.images[0],
+      imageAlt: t('product.imageAlt', { name: product.name }),
+      values: { name: product.name, price: product.price },
+      extra: [productSchema(product, t, language)],
+    })
   }
 
-  return build({ key: 'home', type: 'WebPage' })
+  // Ruta inexistente: no se indexa ni tiene canonical.
+  return {
+    title: t('seo.notFound.title'),
+    description: t('seo.notFound.description'),
+    url: null,
+    path,
+    language,
+    locale: OG_LOCALE[language],
+    alternateLocales: [],
+    alternates: [],
+    lastModified: null,
+    noindex: true,
+    ogType: 'website',
+    image: absoluteUrl(DEFAULT_SHARE_IMAGE),
+    imageAlt: t('seo.shareImageAlt'),
+    jsonLd: null,
+  }
 }

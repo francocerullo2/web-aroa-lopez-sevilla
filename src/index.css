@@ -10,12 +10,16 @@
 
   --color-red: #a20100;
   --color-beige: #f6f4f0;
+
+  /* Tipografías (se sirven desde la propia web, ver main.jsx) */
+  --font-display: 'Cormorant Garamond', Georgia, serif;
+  --font-body: 'Jost Variable', 'Helvetica Neue', Arial, sans-serif;
 }
 
 body {
   background-color: var(--color-beige);
   color: var(--color-red);
-  font-family: Arial, Helvetica, sans-serif;
+  font-family: var(--font-body);
 }
 
 #root {
@@ -127,7 +131,7 @@ textarea {
 
   gap: 6px;
 
-  font-size: 12px;
+  font-size: 13px;
 
   text-transform: uppercase;
 }
@@ -153,7 +157,7 @@ textarea {
 }
 
 .language-selector span {
-  font-size: 11px;
+  font-size: 12px;
 }
 
 
@@ -168,7 +172,7 @@ textarea {
 
   padding: 22px 0;
 
-  font-size: 13px;
+  font-size: 14px;
 
   text-transform: uppercase;
 }
@@ -286,7 +290,7 @@ textarea {
 }
 
 .featured-piece-label {
-  font-size: 11px;
+  font-size: 12px;
 
   letter-spacing: 1.5px;
 
@@ -294,11 +298,11 @@ textarea {
 }
 
 .featured-piece-content h2 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(45px, 5vw, 75px);
+  font-size: clamp(50px, 5.6vw, 84px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1;
 
@@ -316,7 +320,7 @@ textarea {
 .featured-piece-link {
   align-self: flex-start;
 
-  font-size: 11px;
+  font-size: 12px;
 
   letter-spacing: 1.5px;
 
@@ -396,7 +400,7 @@ textarea {
   }
 
   .logo img {
-    width: 190px;
+    width: min(190px, 46vw);
   }
 
 
@@ -448,7 +452,7 @@ textarea {
 
     gap: 5px;
 
-    font-size: 11px;
+    font-size: 12px;
   }
 
   .mobile-language button {
@@ -472,7 +476,7 @@ textarea {
   }
 
   .mobile-language span {
-    font-size: 10px;
+    font-size: 11px;
   }
 
 
@@ -510,7 +514,7 @@ textarea {
   }
 
   .mobile-nav-link {
-    font-size: 12px;
+    font-size: 13px;
 
     letter-spacing: 1.5px;
 
@@ -557,20 +561,291 @@ textarea {
 
 /* Texto solo para lectores de pantalla y rastreadores */
 
+/* Oculto a la vista pero accesible. Con !important para que
+   ningún estilo de formulario (p. ej. width de los inputs)
+   lo agrande y desborde la página en móvil. */
 .visually-hidden {
+  position: absolute !important;
+
+  width: 1px !important;
+  height: 1px !important;
+
+  margin: -1px !important;
+  padding: 0 !important;
+
+  overflow: hidden !important;
+
+  clip: rect(0 0 0 0) !important;
+  clip-path: inset(50%) !important;
+
+  white-space: nowrap !important;
+
+  border: 0 !important;
+}
+
+
+/* =====================================================
+   ACABADOS: TIPOGRAFÍA, MOVIMIENTO Y DETALLES
+   ===================================================== */
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+::selection {
+  background: var(--color-red);
+  color: var(--color-beige);
+}
+
+
+/* MENÚ: subrayado que crece al pasar el ratón */
+
+.nav-link {
+  border-bottom: none !important;
+}
+
+.nav-link::after {
+  content: "";
+
   position: absolute;
 
-  width: 1px;
+  left: 0;
+  right: 0;
+  bottom: 0;
+
   height: 1px;
 
-  margin: -1px;
-  padding: 0;
+  background: currentColor;
 
+  transform: scaleX(0);
+  transform-origin: right;
+
+  transition: transform 0.45s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.nav-link:hover::after,
+.nav-link.active::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+
+
+/* FOTOS DE PIEZAS: zoom lento al pasar el ratón */
+
+.home-product .product-carousel-image,
+.collection-item .product-carousel-image,
+.inspiration-slide img {
+  transition: transform 1.2s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.home-product:hover .product-carousel-image.active,
+.collection-item:hover .product-carousel-image.active,
+.inspiration-slide:hover img {
+  transform: scale(1.045);
+}
+
+.inspiration-slide {
   overflow: hidden;
+}
 
-  clip: rect(0 0 0 0);
 
-  white-space: nowrap;
+/* HERO: la foto entra con un ligero zoom y el texto sube */
 
-  border: 0;
+.hero-image img {
+  animation: hero-zoom 2.4s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-content {
+  animation: rise-in 1.2s 0.3s cubic-bezier(0.2, 0.7, 0.2, 1) both;
+}
+
+.hero-content h1 {
+  font-style: italic;
+}
+
+@keyframes hero-zoom {
+  from {
+    transform: scale(1.08);
+  }
+}
+
+@keyframes rise-in {
+  from {
+    opacity: 0;
+    transform: translateY(24px);
+  }
+}
+
+
+/* APARICIÓN AL HACER SCROLL (ver src/reveal.js) */
+
+.reveal {
+  opacity: 0;
+
+  transform: translateY(28px);
+
+  transition:
+    opacity 0.9s ease,
+    transform 0.9s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+.reveal.is-visible {
+  opacity: 1;
+
+  transform: none;
+}
+
+
+/* FICHA DE PRODUCTO: la información acompaña al bajar */
+
+@media (min-width: 901px) {
+
+  .product-details {
+    position: sticky;
+
+    top: 40px;
+
+    align-self: start;
+  }
+
+}
+
+
+/* MENÚ FIJO COMPACTO (ver Header.jsx) */
+
+.header.is-compact {
+  position: fixed;
+
+  top: 0;
+  left: 0;
+  right: 0;
+
+  z-index: 100;
+
+  padding-top: 0;
+
+  background: transparent;
+
+  animation: header-slide-in 0.5s cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* Fondo y línea inferior de lado a lado de la pantalla */
+.header.is-compact::before {
+  content: "";
+
+  position: absolute;
+
+  top: 0;
+  bottom: 0;
+  left: -100vmax;
+  right: -100vmax;
+
+  z-index: -1;
+
+  background: rgba(246, 244, 240, 0.88);
+
+  -webkit-backdrop-filter: blur(12px);
+  backdrop-filter: blur(12px);
+
+  border-bottom: 1px solid rgba(162, 1, 0, 0.15);
+}
+
+.header.is-compact .header-top {
+  padding: 12px 0;
+}
+
+/* Las redes se ocultan pero conservan su columna,
+   para que el logo siga centrado */
+.header.is-compact .header-left {
+  visibility: hidden;
+}
+
+.header.is-compact .logo img {
+  width: 150px;
+}
+
+/* Tablet: el menú queda debajo del logo, más pequeño */
+.header.is-compact .nav {
+  gap: 32px;
+
+  padding: 0 0 10px;
+
+  font-size: 12px;
+
+  letter-spacing: 0.5px;
+}
+
+/* Escritorio: el menú pasa a la izquierda, en la línea del logo */
+@media (min-width: 1000px) {
+
+  .header.is-compact .nav {
+    position: absolute;
+
+    top: 0;
+    left: 0;
+
+    height: 100%;
+
+    align-items: center;
+
+    padding: 0;
+  }
+
+}
+
+@keyframes header-slide-in {
+  from {
+    transform: translateY(-100%);
+  }
+}
+
+@media (max-width: 600px) {
+
+  .header.is-compact .header-top {
+    padding: 10px 0;
+  }
+
+  .header.is-compact .logo img {
+    width: min(120px, 38vw);
+  }
+
+  .header.is-compact .mobile-menu {
+    max-height: calc(100vh - 60px);
+
+    overflow-y: auto;
+  }
+
+}
+
+
+@media (prefers-reduced-motion: reduce) {
+
+  html {
+    scroll-behavior: auto;
+  }
+
+  .hero-image img,
+  .hero-content,
+  .header.is-compact {
+    animation: none;
+  }
+
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+
+  .home-product:hover .product-carousel-image.active,
+  .collection-item:hover .product-carousel-image.active,
+  .inspiration-slide:hover img {
+    transform: none;
+  }
+
 }

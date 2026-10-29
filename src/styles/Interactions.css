@@ -1,0 +1,275 @@
+/* =====================================================
+   INTERACCIONES (hover y foco)
+   =====================================================
+   Cada familia de elementos reacciona igual entre sí y
+   distinto de las demás:
+
+   1. Botones principales  → se rellenan barriendo
+   2. Enlaces secundarios  → la línea se va y vuelve
+   3. Navegación           → subrayado desde la izquierda
+   4. Selectores           → se avivan, subrayado desde el centro
+   5. Iconos               → pequeño gesto propio
+   6. Desplegables         → el texto se desplaza
+
+   El botón "Ver colección" del Home tiene su animación
+   propia (Home.css) por ser la llamada principal.
+
+   Los selectores empiezan por "body" para tener prioridad
+   sobre los estilos base de cada página, carguen en el
+   orden que carguen.
+   ===================================================== */
+
+:root {
+  --ease-out: cubic-bezier(0.2, 0.7, 0.2, 1);
+  --ease-in-out: cubic-bezier(0.7, 0, 0.2, 1);
+}
+
+
+/* 1. BOTONES PRINCIPALES ----------------------------- */
+
+body :is(
+  .product-button,
+  .home-news-button a,
+  .home-faq-button a,
+  .faq-more a,
+  .collection-coming-soon-link,
+  .newsletter-form button,
+  .newsletter-popup-form button,
+  .contact-submit,
+  .history-button
+) {
+  --fill: var(--color-red);
+  --fill-text: var(--color-beige);
+
+  background-image: linear-gradient(var(--fill), var(--fill));
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+
+  transition:
+    background-size 0.6s var(--ease-in-out),
+    color 0.45s ease;
+}
+
+/* Sobre fondo oscuro ("Prendas con historia") se rellena de blanco.
+   "html body" para ganar a la regla general de arriba. */
+html body .history-button {
+  --fill: white;
+  --fill-text: #1d1716;
+}
+
+body :is(
+  .product-button,
+  .home-news-button a,
+  .home-faq-button a,
+  .faq-more a,
+  .collection-coming-soon-link,
+  .newsletter-form button,
+  .newsletter-popup-form button,
+  .contact-submit,
+  .history-button
+):is(:hover, :focus-visible):not(:disabled) {
+  background-size: 100% 100%;
+
+  color: var(--fill-text);
+}
+
+
+/* 2. ENLACES SECUNDARIOS ----------------------------- */
+
+body :is(
+  .product-back,
+  .product-more-link,
+  .newsletter-popup-dismiss,
+  .contact-text a
+) {
+  display: inline-block;
+
+  padding-bottom: 4px;
+
+  border-bottom: none;
+
+  text-decoration: none;
+
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: left bottom;
+  background-size: 100% 1px;
+}
+
+body :is(
+  .product-back,
+  .product-more-link,
+  .newsletter-popup-dismiss,
+  .contact-text a
+):is(:hover, :focus-visible) {
+  animation: underline-wipe 0.8s var(--ease-in-out);
+}
+
+/* El email dentro del texto de contacto sigue en la línea */
+body .contact-text a {
+  display: inline;
+
+  padding-bottom: 2px;
+}
+
+@keyframes underline-wipe {
+  0% {
+    background-position: right bottom;
+    background-size: 100% 1px;
+  }
+
+  45% {
+    background-position: right bottom;
+    background-size: 0% 1px;
+  }
+
+  55% {
+    background-position: left bottom;
+    background-size: 0% 1px;
+  }
+
+  100% {
+    background-position: left bottom;
+    background-size: 100% 1px;
+  }
+}
+
+
+/* 3. NAVEGACIÓN --------------------------------------
+   El menú del header ya lo tiene (index.css, .nav-link).
+   Aquí: menú móvil y enlaces del footer, con el mismo gesto. */
+
+body :is(.footer-column a, .mobile-nav-link) {
+  opacity: 1;
+
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: right bottom;
+  background-size: 0% 1px;
+
+  transition: background-size 0.45s var(--ease-out);
+}
+
+body .footer-column a {
+  padding-bottom: 3px;
+}
+
+body :is(.footer-column a, .mobile-nav-link):is(:hover, :focus-visible),
+body .mobile-nav-link.active {
+  background-position: left bottom;
+  background-size: 100% 1px;
+}
+
+/* La página actual en el menú móvil: el mismo subrayado, sin borde extra */
+body .mobile-nav-link.active {
+  border-bottom: none;
+}
+
+
+/* 4. SELECTORES (filtros de la colección e idioma) --- */
+
+body :is(.collection-filters button, .language-selector button) {
+  opacity: 0.55;
+
+  border-bottom: none;
+
+  background-image: linear-gradient(currentColor, currentColor);
+  background-repeat: no-repeat;
+  background-position: center bottom;
+  background-size: 0% 1px;
+
+  transition:
+    opacity 0.35s ease,
+    background-size 0.45s var(--ease-out);
+}
+
+body .language-selector button {
+  padding-bottom: 2px;
+}
+
+body :is(.collection-filters button, .language-selector button):is(:hover, :focus-visible) {
+  opacity: 1;
+
+  background-size: 100% 1px;
+}
+
+/* La opción elegida: siempre viva y subrayada */
+body :is(.collection-filters button, .language-selector button).active {
+  opacity: 1;
+
+  background-size: 100% 1px;
+}
+
+
+/* 5. ICONOS ------------------------------------------ */
+
+/* Redes sociales: se elevan un poco */
+body :is(.header-left a, .mobile-socials a, .contact-social-icons a) {
+  transition: transform 0.35s var(--ease-out), opacity 0.35s ease;
+}
+
+body :is(.header-left a, .mobile-socials a, .contact-social-icons a):is(:hover, :focus-visible) {
+  transform: translateY(-3px) scale(1.08);
+}
+
+/* Logo: se suaviza */
+body .logo {
+  transition: opacity 0.35s ease;
+}
+
+body .logo:is(:hover, :focus-visible) {
+  opacity: 0.7;
+}
+
+/* Hamburguesa: las líneas se separan */
+body .menu-toggle {
+  transition: gap 0.35s var(--ease-out);
+}
+
+body .menu-toggle:is(:hover, :focus-visible) {
+  gap: 10px;
+}
+
+/* Cerrar (×): gira */
+body .newsletter-popup-close {
+  transition: transform 0.4s var(--ease-out);
+}
+
+body .newsletter-popup-close:is(:hover, :focus-visible) {
+  transform: rotate(90deg);
+}
+
+
+/* 6. DESPLEGABLES (ficha de producto) ----------------- */
+
+body .product-more summary {
+  transition: padding-left 0.35s var(--ease-out);
+}
+
+body .product-more summary:is(:hover, :focus-visible) {
+  padding-left: 6px;
+}
+
+body .product-more details:not([open]) summary:is(:hover, :focus-visible)::after {
+  transform: rotate(90deg);
+}
+
+
+/* Sin animaciones si la persona lo pide al sistema */
+
+@media (prefers-reduced-motion: reduce) {
+
+  body :is(
+    .product-back,
+    .product-more-link,
+    .newsletter-popup-dismiss
+  ):is(:hover, :focus-visible) {
+    animation: none;
+  }
+
+  body :is(.header-left a, .mobile-socials a, .contact-social-icons a, .newsletter-popup-close, .menu-toggle, .product-more summary) {
+    transition: none;
+  }
+
+}

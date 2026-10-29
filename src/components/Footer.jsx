@@ -1,9 +1,12 @@
 import { Link } from 'react-router-dom'
+import { SOCIAL } from '../data/social'
 import { useTranslation } from 'react-i18next'
+import { useLocalePath } from '../locale'
 import '../styles/Footer.css'
 
 function Footer() {
   const { t } = useTranslation()
+  const localePath = useLocalePath()
 
   return (
     <footer className="footer">
@@ -23,19 +26,19 @@ function Footer() {
 
         <div className="footer-column">
 
-          <Link to="/coleccion">
+          <Link to={localePath('/coleccion')}>
             {t('header.collection')}
           </Link>
 
-          <Link to="/sobre-mi">
+          <Link to={localePath('/sobre-mi')}>
             {t('header.about')}
           </Link>
 
-          <Link to="/preguntas-frecuentes">
+          <Link to={localePath('/preguntas-frecuentes')}>
             {t('header.faq')}
           </Link>
 
-          <Link to="/contacto">
+          <Link to={localePath('/contacto')}>
             {t('header.contact')}
           </Link>
 
@@ -45,7 +48,7 @@ function Footer() {
         <div className="footer-column">
 
           <a
-            href="https://www.instagram.com/aroalopezsevilla?igsi=MWdzaGJleWZta3lscA%3D%3D&utm_source=qr"
+            href={SOCIAL.instagram}
             target="_blank"
             rel="noreferrer"
           >
@@ -53,7 +56,7 @@ function Footer() {
           </a>
 
           <a
-            href="https://www.tiktok.com/@aroalopezsevilla?_r=1&_t=ZS-99N849b0q0I"
+            href={SOCIAL.tiktok}
             target="_blank"
             rel="noreferrer"
           >
@@ -61,7 +64,7 @@ function Footer() {
           </a>
 
           <a
-            href="https://pin.it/E1l1a9iJR"
+            href={SOCIAL.pinterest}
             target="_blank"
             rel="noreferrer"
           >
@@ -76,7 +79,7 @@ function Footer() {
       <div className="footer-bottom">
 
         <span>
-          © 2026 Aroa López Sevilla
+          © {new Date().getFullYear()} Aroa López Sevilla
         </span>
 
       </div>

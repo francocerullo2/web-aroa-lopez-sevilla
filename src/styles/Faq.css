@@ -21,18 +21,18 @@
 
 
 .faq-question {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: 22px;
+  font-size: 25px;
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1.25;
 }
 
 
 .faq-answer {
-  font-size: 13px;
+  font-size: 14px;
 
   line-height: 1.7;
 
@@ -58,11 +58,11 @@
 
 
 .faq-content h1 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(38px, 4vw, 58px);
+  font-size: clamp(43px, 4.48vw, 65px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1;
 
@@ -71,7 +71,7 @@
 
 
 .faq-intro {
-  font-size: 13px;
+  font-size: 14px;
 
   line-height: 1.7;
 
@@ -92,7 +92,7 @@
 
   margin-top: 65px;
 
-  font-size: 13px;
+  font-size: 14px;
 }
 
 
@@ -102,19 +102,11 @@
 
   border: 1px solid currentColor;
 
-  font-size: 10px;
+  font-size: 11px;
 
   letter-spacing: 1.4px;
 
   text-transform: uppercase;
-}
-
-
-.faq-more a:hover,
-.home-faq-button a:hover {
-  background: var(--color-red);
-
-  color: var(--color-beige);
 }
 
 
@@ -135,11 +127,11 @@
 
 
 .home-faq h2 {
-  font-family: Georgia, serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(40px, 4.5vw, 68px);
+  font-size: clamp(45px, 5.04vw, 76px);
 
-  font-weight: normal;
+  font-weight: 500;
 
   margin-bottom: 65px;
 }

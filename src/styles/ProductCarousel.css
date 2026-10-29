@@ -47,18 +47,90 @@
 }
 
 
-/* FLECHAS */
+/* CAMBIO DE FOTO CON LAS FLECHAS
+   La nueva entra deslizándose por encima y la anterior se
+   retira más despacio por debajo (efecto de profundidad).
+   Se anima "translate" y no "transform" para no pisar el
+   zoom al pasar el ratón por la tarjeta. */
+
+.product-carousel-image.active {
+  z-index: 2;
+}
+
+.product-carousel-image.leaving {
+  z-index: 1;
+
+  opacity: 1;
+
+  visibility: visible;
+}
+
+.product-carousel-image.enter-next {
+  animation: carousel-enter-next 0.75s cubic-bezier(0.65, 0, 0.25, 1);
+}
+
+.product-carousel-image.enter-prev {
+  animation: carousel-enter-prev 0.75s cubic-bezier(0.65, 0, 0.25, 1);
+}
+
+.product-carousel-image.leave-next {
+  animation: carousel-leave-next 0.75s cubic-bezier(0.65, 0, 0.25, 1) forwards;
+}
+
+.product-carousel-image.leave-prev {
+  animation: carousel-leave-prev 0.75s cubic-bezier(0.65, 0, 0.25, 1) forwards;
+}
+
+@keyframes carousel-enter-next {
+  from {
+    translate: 100% 0;
+  }
+}
+
+@keyframes carousel-enter-prev {
+  from {
+    translate: -100% 0;
+  }
+}
+
+@keyframes carousel-leave-next {
+  to {
+    translate: -30% 0;
+
+    filter: brightness(0.85);
+  }
+}
+
+@keyframes carousel-leave-prev {
+  to {
+    translate: 30% 0;
+
+    filter: brightness(0.85);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+
+  .product-carousel-image.enter-next,
+  .product-carousel-image.enter-prev,
+  .product-carousel-image.leave-next,
+  .product-carousel-image.leave-prev {
+    animation-duration: 0.01s;
+  }
+
+}
+
+
+/* FLECHAS: círculos finos que aparecen al pasar el ratón */
 
 .carousel-arrow {
   position: absolute;
 
   top: 50%;
 
-  transform: translateY(-50%);
+  width: 42px;
 
-  width: 38px;
-
-  height: 38px;
+  height: 42px;
 
   display: flex;
 
@@ -66,52 +138,103 @@
 
   justify-content: center;
 
-  background: rgba(246, 244, 240, 0.85);
+  padding: 0;
 
-  border: none;
+  background: rgba(246, 244, 240, 0.7);
+
+  -webkit-backdrop-filter: blur(6px);
+  backdrop-filter: blur(6px);
+
+  border: 1px solid rgba(162, 1, 0, 0.25);
+
+  border-radius: 50%;
 
   color: var(--color-red);
-
-  font-size: 20px;
 
   cursor: pointer;
 
   opacity: 0;
 
-  transition: opacity 0.3s ease;
+  transform: translateY(-50%) scale(0.85);
+
+  transition:
+    opacity 0.35s ease,
+    transform 0.35s cubic-bezier(0.2, 0.7, 0.2, 1),
+    background 0.3s ease,
+    color 0.3s ease;
 
   z-index: 2;
 }
 
-.product-carousel:hover .carousel-arrow {
+.product-carousel:hover .carousel-arrow,
+.carousel-arrow:focus-visible {
   opacity: 1;
+
+  transform: translateY(-50%) scale(1);
 }
 
 .carousel-arrow-left {
-  left: 10px;
+  left: 14px;
 }
 
 .carousel-arrow-right {
-  right: 10px;
+  right: 14px;
 }
 
 .carousel-arrow:hover {
-  background: var(--color-beige);
+  background: var(--color-red);
+
+  color: var(--color-beige);
 }
 
 
-/* MÓVIL */
+/* MÓVIL Y PANTALLAS TÁCTILES: fila que se desliza con el dedo
+   y deja asomar la siguiente foto (ver ProductCarousel.jsx) */
 
-@media (max-width: 600px) {
+.product-carousel.is-swipe .product-carousel-images {
+  display: flex;
 
-  .carousel-arrow {
-    width: 32px;
+  gap: 4px;
 
-    height: 32px;
+  overflow-x: auto;
 
-    font-size: 17px;
+  overscroll-behavior-x: contain;
 
-    opacity: 1;
-  }
+  scroll-snap-type: x mandatory;
 
+  -webkit-overflow-scrolling: touch;
+
+  scrollbar-width: none;
+}
+
+.product-carousel.is-swipe .product-carousel-images::-webkit-scrollbar {
+  display: none;
+}
+
+.product-carousel.is-swipe .product-carousel-image {
+  position: static;
+
+  flex: 0 0 86%;
+
+  /* Sin esto, la imagen no encoge por debajo de su width: 100% */
+  width: 86%;
+
+  min-width: 0;
+
+  opacity: 1;
+
+  visibility: visible;
+
+  scroll-snap-align: start;
+}
+
+/* La última foto se alinea a la derecha para que no quede hueco */
+.product-carousel.is-swipe .product-carousel-image:last-child {
+  scroll-snap-align: end;
+}
+
+.product-carousel.is-swipe .product-carousel-images.is-single .product-carousel-image {
+  flex-basis: 100%;
+
+  width: 100%;
 }

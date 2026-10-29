@@ -17,11 +17,11 @@
 
 
 .privacy-content h1 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(38px, 4vw, 58px);
+  font-size: clamp(43px, 4.48vw, 65px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1;
 
@@ -30,7 +30,7 @@
 
 
 .privacy-updated {
-  font-size: 11px;
+  font-size: 12px;
 
   margin-bottom: 75px;
 
@@ -44,11 +44,11 @@
 
 
 .privacy-content h2 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: 24px;
+  font-size: 27px;
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1.2;
 
@@ -57,7 +57,7 @@
 
 
 .privacy-content section p {
-  font-size: 13px;
+  font-size: 14px;
 
   line-height: 1.7;
 
@@ -115,7 +115,7 @@
 
 
   .privacy-content section p {
-    font-size: 13px;
+    font-size: 14px;
   }
 
 }

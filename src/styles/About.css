@@ -33,11 +33,11 @@
 
 
 .about-intro h1 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(30px, 2.5vw, 42px);
+  font-size: clamp(34px, 2.8vw, 47px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1;
 
@@ -51,7 +51,7 @@
 
 
 .about-description p {
-  font-size: 13px;
+  font-size: 14px;
 
   line-height: 1.7;
 
@@ -139,11 +139,11 @@
 
 
 .about-project h2 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(30px, 2.5vw, 42px);
+  font-size: clamp(34px, 2.8vw, 47px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1;
 
@@ -157,7 +157,7 @@
 
 
 .about-project-text p {
-  font-size: 13px;
+  font-size: 14px;
 
   line-height: 1.7;
 
@@ -190,11 +190,11 @@
 
   margin: 0 auto;
 
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(28px, 2.8vw, 44px);
+  font-size: clamp(31px, 3.14vw, 49px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1.2;
 }
@@ -238,11 +238,11 @@
 
 
 .newsletter h2 {
-  font-family: Georgia, "Times New Roman", serif;
+  font-family: var(--font-display);
 
-  font-size: clamp(30px, 2.5vw, 40px);
+  font-size: clamp(34px, 2.8vw, 45px);
 
-  font-weight: 400;
+  font-weight: 500;
 
   line-height: 1;
 
@@ -251,7 +251,7 @@
 
 
 .newsletter p {
-  font-size: 13px;
+  font-size: 14px;
 
   line-height: 1.6;
 }
@@ -277,7 +277,7 @@
 
   color: inherit;
 
-  font-size: 12px;
+  font-size: 13px;
 
   outline: none;
 }
@@ -306,7 +306,7 @@
 
   color: inherit;
 
-  font-size: 11px;
+  font-size: 12px;
 
   font-weight: 500;
 
@@ -315,13 +315,6 @@
   cursor: pointer;
 
   transition: 0.3s ease;
-}
-
-
-.newsletter-form button:hover {
-  background: var(--color-red);
-
-  color: var(--color-beige);
 }
 
 
@@ -433,7 +426,7 @@
 
   .about-description p,
   .about-project-text p {
-    font-size: 13px;
+    font-size: 14px;
   }
 
 
@@ -512,7 +505,7 @@
 
     margin-top: 2px;
 
-    font-size: 8px;
+    font-size: 10px;
 
     line-height: 1.4;
 
