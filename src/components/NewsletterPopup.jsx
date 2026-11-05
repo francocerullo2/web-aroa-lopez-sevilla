@@ -14,7 +14,7 @@ import '../styles/NewsletterPopup.css'
 // Invitación a la newsletter al entrar en la web.
 //
 // - Aparece a los DELAY_MS o al bajar SCROLL_RATIO de la página.
-// - Si se cierra, no vuelve a salir en 30 días (HIDE_DAYS en src/newsletter.js).
+// - Si se cierra, no vuelve a salir en esa visita, pero sí en la siguiente.
 // - Si la persona se suscribe (aquí o en cualquier formulario
 //   de newsletter), no vuelve a salir nunca.
 // - Solo existe en el navegador: no forma parte del HTML

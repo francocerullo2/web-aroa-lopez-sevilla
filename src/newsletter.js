@@ -1,22 +1,26 @@
-// Recuerda, en el navegador de cada visitante, si ya se ha
-// suscrito o si ha cerrado la invitación (NewsletterPopup).
+// Recuerda si cada visitante ya se ha suscrito (en su navegador,
+// para siempre) o si ha cerrado la invitación (NewsletterPopup):
+// esto último solo dura la visita, así que vuelve a verla al
+// entrar de nuevo si no se suscribió.
 
-const HIDE_DAYS = 30
+const DISMISSED_KEY = 'newsletterPopupDismissed'
+const SUBSCRIBED_KEY = 'newsletterSubscribed'
 
-export const DISMISSED_KEY = 'newsletterPopupDismissedAt'
-export const SUBSCRIBED_KEY = 'newsletterSubscribed'
+// Por si el navegador bloquea el almacenamiento: así la invitación
+// tampoco reaparece en esta visita después de cerrarla.
+let dismissedThisVisit = false
 
-export function readStorage(key) {
+function readStorage(storageName, key) {
   try {
-    return window.localStorage.getItem(key)
+    return window[storageName].getItem(key)
   } catch {
     return null
   }
 }
 
-export function writeStorage(key, value) {
+function writeStorage(storageName, key, value) {
   try {
-    window.localStorage.setItem(key, value)
+    window[storageName].setItem(key, value)
   } catch {
     // Navegación privada o almacenamiento bloqueado: no pasa nada.
   }
@@ -24,21 +28,18 @@ export function writeStorage(key, value) {
 
 // Llamarla cuando cualquier formulario de newsletter tenga éxito.
 export function markNewsletterSubscribed() {
-  writeStorage(SUBSCRIBED_KEY, 'true')
+  writeStorage('localStorage', SUBSCRIBED_KEY, 'true')
 }
 
 export function shouldShowNewsletterPopup() {
-  if (readStorage(SUBSCRIBED_KEY)) {
-    return false
-  }
-
-  const dismissedAt = Number(readStorage(DISMISSED_KEY))
-
-  return !dismissedAt || Date.now() - dismissedAt > HIDE_DAYS * 86400000
+  return (
+    !readStorage('localStorage', SUBSCRIBED_KEY) &&
+    !dismissedThisVisit &&
+    !readStorage('sessionStorage', DISMISSED_KEY)
+  )
 }
 
 export function dismissNewsletterPopup() {
-  if (!readStorage(SUBSCRIBED_KEY)) {
-    writeStorage(DISMISSED_KEY, String(Date.now()))
-  }
+  dismissedThisVisit = true
+  writeStorage('sessionStorage', DISMISSED_KEY, 'true')
 }
