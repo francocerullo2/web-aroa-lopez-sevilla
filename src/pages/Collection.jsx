@@ -61,12 +61,6 @@ function Collection() {
 
       </nav>
 
-      {category && (
-        <p className="collection-intro">
-          {t(`collection.categories.${category}.intro`)}
-        </p>
-      )}
-
       <section className="collection-grid">
 
         {filteredProducts.map((product) => (

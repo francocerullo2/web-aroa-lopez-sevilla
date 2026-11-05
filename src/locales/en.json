@@ -60,12 +60,10 @@
   "dresses": "DRESSES",
   "categories": {
     "tops": {
-      "title": "Upcycled tops made in Seville",
-      "intro": "One-of-a-kind tops handmade from second-hand garments. Each one is unrepeatable: once sold, I don't make it again."
+      "title": "Upcycled tops made in Seville"
     },
     "blazers": {
-      "title": "Upcycled blazers made in Seville",
-      "intro": "Second-hand blazers that I take apart and rebuild into a new shape. Each one is one of a kind: once sold, I don't make it again."
+      "title": "Upcycled blazers made in Seville"
     }
   }
 },

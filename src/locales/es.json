@@ -60,12 +60,10 @@
     "dresses": "VESTIDOS",
     "categories": {
       "tops": {
-        "title": "Tops reelaborados hechos en Sevilla",
-        "intro": "Tops únicos creados a mano a partir de prendas de segunda mano. Cada uno es irrepetible: cuando se vende, no vuelvo a hacerlo."
+        "title": "Tops reelaborados hechos en Sevilla"
       },
       "blazers": {
-        "title": "Blazers reelaboradas hechas en Sevilla",
-        "intro": "Blazers de segunda mano que desmonto y vuelvo a construir para darles otra forma. Cada una es una pieza única: cuando se vende, no vuelvo a hacerla."
+        "title": "Blazers reelaboradas hechas en Sevilla"
       }
     }
   },

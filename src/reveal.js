@@ -38,6 +38,11 @@ export function revealOnScroll() {
     }
 
     if (element.getBoundingClientRect().top < window.innerHeight) {
+      // React reutiliza las piezas al cambiar de categoría: una que
+      // quedó oculta en la página anterior debe mostrarse aquí.
+      element.classList.remove('reveal')
+      element.style.transitionDelay = ''
+
       return
     }
 
