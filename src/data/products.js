@@ -84,7 +84,7 @@ const products = [
     size: 'S-M',
     isNew: true,
     images: getProductImages('jaleo-gris'),
-    status: 'disponible',
+    status: 'vendida',
     price: 60,
     updatedAt: '2026-11-05',
     measurements: '',

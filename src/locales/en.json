@@ -86,11 +86,13 @@
   "consultInstagram": "ENQUIRE ON INSTAGRAM",
   "consultForm": "ENQUIRE BY FORM",
   "backToCollection": "BACK TO COLLECTION",
+  "viewOtherPieces": "SEE OTHER PIECES",
+  "commissionText": "Would you like to commission something similar? Message me.",
 
     "status": {
       "available": "AVAILABLE",
       "comingSoon": "COMING SOON",
-      "sold": "SOLD"
+      "sold": "SOLD OUT"
     }
   },
 
@@ -113,6 +115,8 @@
 
     "pieceSubject": "Enquiry about the piece: {{piece}}",
 
+    "commissionSubject": "Commission similar to the piece: {{piece}}",
+    "commissionMessage": "Hello,\n\nI saw the piece \"{{piece}}\", which is sold out, and I would like to commission something similar.\n\nWould that be possible?\n\nThank you.",
     "pieceMessage": "Hello,\n\nI would like to receive more information about the piece \"{{piece}}\".\n\nIs it currently available?\nHow much would shipping cost?\nWhat are its exact measurements?\n\nThank you."
   },
 

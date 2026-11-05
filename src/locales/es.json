@@ -85,12 +85,14 @@
     "consultInstagram": "CONSULTAR POR INSTAGRAM",
     "consultForm": "CONSULTAR POR FORMULARIO",
     "backToCollection": "VOLVER A LA COLECCIÓN",
+    "viewOtherPieces": "VER OTRAS PIEZAS",
+    "commissionText": "¿Te gustaría encargar algo parecido? Escríbeme.",
     "approximateSize": "Talla aproximada: {{size}}. Para medidas exactas, escríbeme.",
 
     "status": {
       "available": "DISPONIBLE",
       "comingSoon": "PRÓXIMAMENTE",
-      "sold": "VENDIDA"
+      "sold": "AGOTADO"
     }
   },
 
@@ -113,6 +115,8 @@
 
     "pieceSubject": "Consulta sobre la pieza: {{piece}}",
 
+    "commissionSubject": "Encargo parecido a la pieza: {{piece}}",
+    "commissionMessage": "Hola,\n\nHe visto la pieza \"{{piece}}\", que ya está agotada, y me gustaría encargar algo parecido.\n\n¿Sería posible?\n\nGracias.",
     "pieceMessage": "Hola,\n\nMe gustaría recibir más información sobre la pieza \"{{piece}}\".\n\n¿Está disponible actualmente?\n¿Cuánto costaría el envío?\n¿Cuáles son sus medidas exactas?\n\nGracias."
   },
 

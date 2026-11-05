@@ -57,12 +57,15 @@ function Contact() {
     }
   };
 
+  // Desde una pieza vendida se escribe para encargar algo parecido.
+  const encargo = params.has("encargo");
+
   const subject = pieza
-    ? t("contact.pieceSubject", { piece: pieza })
+    ? t(encargo ? "contact.commissionSubject" : "contact.pieceSubject", { piece: pieza })
     : "";
 
   const message = pieza
-    ? t("contact.pieceMessage", { piece: pieza })
+    ? t(encargo ? "contact.commissionMessage" : "contact.pieceMessage", { piece: pieza })
     : "";
 
   const handleNewsletterSubmit = async (e) => {

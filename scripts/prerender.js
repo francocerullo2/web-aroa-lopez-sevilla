@@ -255,7 +255,7 @@ const { t, tEn, faqParams } = site
 const STATUS = {
   disponible: 'disponible',
   proximamente: 'próximamente',
-  vendida: 'vendida',
+  vendida: 'agotada',
 }
 
 const lastUpdated = site.products

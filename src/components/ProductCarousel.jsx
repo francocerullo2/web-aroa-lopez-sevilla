@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useTranslation } from 'react-i18next'
 import '../styles/ProductCarousel.css'
 
 function preloadImage(src) {
@@ -67,9 +68,12 @@ function useSwipeLayout() {
 //   Sin él (listados), solo se descarga la primera foto, en
 //   diferido, y las demás cuando la persona interactúa.
 //
+// - `sold`: pinta la franja de pieza vendida sobre las fotos.
+//
 // Si cambian las fotos (otra pieza), el padre debe cambiar
 // la `key` para empezar de nuevo desde la primera.
-function ProductCarousel({ images = [], alt, alts, priority = false }) {
+function ProductCarousel({ images = [], alt, alts, priority = false, sold = false }) {
+  const { t } = useTranslation()
   const [displayedImage, setDisplayedImage] = useState(0)
   const [requested, setRequested] = useState(() => new Set([0]))
   const [interacted, setInteracted] = useState(false)
@@ -99,6 +103,14 @@ function ProductCarousel({ images = [], alt, alts, priority = false }) {
   }
 
   const hasMultipleImages = images.length > 1
+
+  // Va fuera de la fila de fotos para quedarse fija al cambiar de foto.
+  // aria-hidden: el estado ya se anuncia en el texto de la pieza.
+  const soldFilm = sold && (
+    <div className="sold-film" aria-hidden="true">
+      <span>{t('product.status.sold')}</span>
+    </div>
+  )
 
   // Móvil: fila de fotos que se desliza con el dedo, con unas
   // barritas debajo que indican en qué foto estás.
@@ -131,6 +143,8 @@ function ProductCarousel({ images = [], alt, alts, priority = false }) {
               />
             ))}
           </div>
+
+          {soldFilm}
 
         </div>
 
@@ -245,6 +259,8 @@ function ProductCarousel({ images = [], alt, alts, priority = false }) {
         })}
 
       </div>
+
+      {soldFilm}
 
       {hasMultipleImages && (
         <>

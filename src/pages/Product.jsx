@@ -40,6 +40,8 @@ function Product() {
     vendida: t('product.status.sold'),
   }
 
+  const isSold = product.status === 'vendida'
+
   return (
     <main className="product-page">
 
@@ -49,6 +51,7 @@ function Product() {
         <ProductCarousel
           key={product.id}
           priority
+          sold={isSold}
           images={product.images}
           alt={t('product.imageAlt', { name: fullName })}
           alts={product.images.map((image, index) =>
@@ -82,17 +85,36 @@ function Product() {
 
         <div className="contact-actions">
 
+          {/* Vendida: lo principal es ver otras piezas, pero se puede
+              seguir escribiendo para encargar algo parecido. */}
+          {isSold && (
+            <>
+              <Link
+                to={localePath('/coleccion')}
+                className="cta-primary"
+              >
+                {t('product.viewOtherPieces')}
+              </Link>
+
+              <p className="product-commission">
+                {t('product.commissionText')}
+              </p>
+            </>
+          )}
+
           <a
             href={INSTAGRAM_MESSAGES}
             target="_blank"
             rel="noreferrer"
-            className="cta-primary"
+            className={isSold ? 'cta-secondary' : 'cta-primary'}
           >
             {t('product.consultInstagram')}
           </a>
 
           <Link
-            to={localePath(`/contacto?pieza=${encodeURIComponent(product.name)}`)}
+            to={localePath(
+              `/contacto?pieza=${encodeURIComponent(product.name)}${isSold ? '&encargo=1' : ''}`
+            )}
             className="cta-secondary"
           >
             {t('product.consultForm')}

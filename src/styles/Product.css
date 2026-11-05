@@ -15,7 +15,9 @@
   padding-top: 80px;
   padding-bottom: 140px;
 
-  align-items: center;
+  /* Arriba y no centrado: la foto empieza a la altura del nombre
+     aunque la columna de texto sea más alta. */
+  align-items: start;
 }
 
 
@@ -113,6 +115,19 @@
   line-height: 1.6;
 
   margin-bottom: 32px;
+
+  text-align: center;
+}
+
+
+/* PIEZA VENDIDA: aviso entre "ver otras piezas" y la consulta */
+
+.product-commission {
+  margin: 8px 0 2px;
+
+  font-size: 14px;
+
+  line-height: 1.6;
 
   text-align: center;
 }

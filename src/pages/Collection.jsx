@@ -77,6 +77,7 @@ function Collection() {
                 <ProductCarousel
                   images={product.images}
                   alt={t('product.imageAlt', { name: getProductSeoName(product, t) })}
+                  sold={product.status === 'vendida'}
                 />
 
               </div>

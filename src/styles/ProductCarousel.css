@@ -188,6 +188,54 @@
 }
 
 
+/* PIEZA VENDIDA: franja fija en el cuarto inferior de la foto.
+   No recibe clics ni gestos: pasan a las fotos y a la tarjeta. */
+
+.sold-film {
+  position: absolute;
+
+  left: 0;
+
+  right: 0;
+
+  bottom: 0;
+
+  height: 25%;
+
+  z-index: 3;
+
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  background: rgba(246, 244, 240, 0.62);
+
+  pointer-events: none;
+
+  container-type: inline-size;
+}
+
+.sold-film span {
+  padding-left: 0.14em;
+
+  color: var(--color-red);
+
+  font-family: var(--font-display);
+
+  font-size: 12cqw;
+
+  font-weight: 600;
+
+  line-height: 1;
+
+  letter-spacing: 0.14em;
+
+  white-space: nowrap;
+}
+
+
 /* MÓVIL Y PANTALLAS TÁCTILES: fila que se desliza con el dedo
    y barritas debajo de la foto (ver ProductCarousel.jsx) */
 
