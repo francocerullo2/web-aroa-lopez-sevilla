@@ -3,7 +3,8 @@
 // Uso:  npm run fotos
 //
 // - Lado más largo como máximo MAX_SIZE px (suficiente para
-//   pantallas retina) y WebP con calidad QUALITY.
+//   pantallas retina; la portada, HERO_MAX_SIZE) y WebP con
+//   calidad QUALITY.
 // - Solo sobrescribe si el resultado pesa menos.
 // - Guarda antes una copia del original en ../fotos-originales
 //   (fuera de la web, no se publica) si aún no existe.
@@ -17,6 +18,11 @@ import sharp from 'sharp'
 
 const MAX_SIZE = 1600
 const QUALITY = 80
+
+// La portada ocupa toda la pantalla y se amplía para llenar
+// el hueco: necesita más resolución que el resto.
+const HERO_MAX_SIZE = 2400
+const isHero = (relative) => /^home[\\/]hero/.test(relative)
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const imagesDir = path.join(root, 'src', 'assets', 'images')
@@ -46,11 +52,13 @@ for (const file of listImages(imagesDir)) {
 
   before += original.length
 
+  const maxSize = isHero(relative) ? HERO_MAX_SIZE : MAX_SIZE
+
   const optimized = await sharp(original)
     .rotate()
     .resize({
-      width: MAX_SIZE,
-      height: MAX_SIZE,
+      width: maxSize,
+      height: maxSize,
       fit: 'inside',
       withoutEnlargement: true,
     })

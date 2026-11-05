@@ -9,7 +9,7 @@
 
   "home": {
     "hero": {
-      "alt": "Colección Reimaginada",
+      "alt": "Blazer Lazá de la colección Reimaginada II",
       "label": "COLECCIÓN",
       "title": "Reimaginada",
       "button": "VER COLECCIÓN"
@@ -52,36 +52,31 @@
   },
 
   "collection": {
-    "title": "Colección de tops reelaborados hechos en Sevilla",
+    "title": "Colección de tops y blazers reelaborados hechos en Sevilla",
     "all": "TODO",
     "tops": "TOPS",
     "blazers": "BLAZERS",
-    "dresses": "VESTIDOS",
-
-    "comingSoon": {
-      "title": "PRÓXIMAMENTE",
-      "text": "Nuevas piezas estarán disponibles muy pronto.",
-      "newsletter": "Suscríbete a mi newsletter para no perderte ninguna novedad.",
-      "button": "SUSCRÍBETE A LA NEWSLETTER"
-    }
+    "dresses": "VESTIDOS"
   },
 
   "product": {
     "notFound": "Producto no encontrado",
-    "imageAlt": "Top {{name}}, pieza única de Aroa López Sevilla",
-    "imageAltN": "Top {{name}}, pieza única de Aroa López Sevilla (foto {{n}} de {{total}})",
+    "imageAlt": "{{name}}, pieza única de Aroa López Sevilla",
+    "imageAltN": "{{name}}, pieza única de Aroa López Sevilla (foto {{n}} de {{total}})",
     "details": {
       "title": "Detalles de la pieza",
       "material": "Material",
       "color": "Color",
+      "pattern": "Estampado",
       "measurements": "Medidas"
     },
     "description": "Top único hecho a mano en Sevilla a partir de prendas de segunda mano seleccionadas y transformadas. Es una pieza única: no hay otra igual y, cuando se vende, no la vuelvo a hacer.",
     "uniquePiece": "PIEZA ÚNICA",
     "contactText": "Para consultar disponibilidad, precio y medidas, ponte en contacto conmigo.",
-    "consultPiece": "CONSULTAR ESTA PIEZA",
+    "consultInstagram": "CONSULTAR POR INSTAGRAM",
+    "consultForm": "CONSULTAR POR FORMULARIO",
     "backToCollection": "VOLVER A LA COLECCIÓN",
-    "approximateSize": "Talla aproximada: S. Para medidas exactas, escríbeme.",
+    "approximateSize": "Talla aproximada: {{size}}. Para medidas exactas, escríbeme.",
 
     "status": {
       "available": "DISPONIBLE",
@@ -92,10 +87,11 @@
 
   "contact": {
     "title": "Contacto",
-    "introStart": "Para cualquier consulta puedes escribirme a",
-    "introEnd": "o rellenar el formulario de contacto que encontrarás a continuación. El plazo de respuesta es de 24-48 horas.",
-    "instagramText": "Si te resulta más cómodo también puedes escribirme por Instagram. Estaré encantada de ayudarte.",
-    "followUs": "Síguenos",
+    "intro": "¿Te interesa alguna pieza o tienes alguna duda? Escríbeme por Instagram y te respondo en 24-48 horas.",
+    "instagramButton": "ESCRÍBEME POR INSTAGRAM",
+    "formButton": "USAR EL FORMULARIO",
+    "emailText": "También puedes escribirme a",
+    "followUs": "Sígueme",
 
     "firstName": "Nombre",
     "lastName": "Apellidos",
@@ -164,19 +160,19 @@
       },
       "price": {
         "question": "¿Cuánto cuesta una pieza?",
-        "answer": "Los tops de la colección actual cuestan entre {{min}} € y {{max}} €. El precio de cada pieza aparece en su ficha dentro de la colección."
+        "answer": "Las piezas de la colección actual cuestan entre {{min}} € y {{max}} €. El precio de cada pieza aparece en su ficha dentro de la colección."
       },
       "size": {
         "question": "¿Qué talla tienen las prendas?",
-        "answer": "Las piezas actuales tienen una talla aproximada S. Como cada prenda es única, para conocer las medidas exactas lo mejor es que me preguntes por email o con el formulario de contacto."
+        "answer": "Los tops tienen una talla aproximada S y las blazers, S-M. Como cada prenda es única, para conocer las medidas exactas lo mejor es que me preguntes por Instagram o con el formulario de contacto."
       },
       "buy": {
         "question": "¿Cómo puedo comprar una pieza?",
-        "answer": "Entra en la ficha de la pieza y pulsa «Consultar esta pieza»: se abre el formulario de contacto con la consulta ya preparada. También puedes escribirme a {{email}} o por Instagram (@aroalopezsevilla). Te respondo en 24-48 horas."
+        "answer": "Escríbeme por Instagram (@aroalopezsevilla) desde el botón de la ficha de la pieza y dime cuál te interesa. Si lo prefieres, usa el formulario de contacto, que se abre con la consulta ya preparada, o escríbeme a {{email}}. Te respondo en 24-48 horas."
       },
       "types": {
         "question": "¿Qué tipo de prendas hay en la colección?",
-        "answer": "Ahora mismo la colección está formada por {{count}} tops reelaborados, todos piezas únicas. Las blazers llegarán próximamente."
+        "answer": "Ahora mismo la colección está formada por {{blazers}} blazers y {{tops}} tops reelaborados, todos piezas únicas."
       },
       "sustainable": {
         "question": "¿Por qué es una opción de moda más sostenible?",
@@ -205,8 +201,19 @@
     "close": "Cerrar"
   },
 
+  "productName": { "tops": "Top {{name}}", "blazers": "Blazer {{name}}" },
+
+  "products": {
+    "11": { "description": "Blazer color negro transformada en una pieza de inspiración torera, donde los detalles clásicos adquieren una nueva forma. Su silueta corta y estructurada, el cuello redondo sin solapas y el cierre frontal asimétrico con seis botones negros de terciopelo y presillas crean un diseño que rompe con la construcción tradicional de una blazer. Cada detalle ha sido pensado para dar una nueva vida a una prenda existente, conservando su esencia y convirtiéndola en una pieza única. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Negro", "pattern": "Liso" },
+    "12": { "description": "Blazer color gris, se transforma a través de una silueta corta y estructurada, un escote redondeado sin solapas y un cierre frontal asimétrico con seis botones negros y presillas. Un detalle que rompe con la construcción tradicional de la blazer y le aporta un carácter propio. Cada versión conserva la esencia de una prenda clásica, reinterpretada desde una mirada diferente. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Gris", "pattern": "Liso" },
+    "13": { "description": "JALEO combina la estructura de una chaqueta clásica con la silueta relajada de una bomber. Su cuello redondeado, la cremallera frontal metálica y el bajo fruncido crean una mezcla de estilos que transforma por completo la prenda original. Una reinterpretación de la sastrería tradicional con un aire más urbano y contemporáneo. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Azul", "pattern": "Liso" },
+    "14": { "description": "JALEO combina la estructura de una chaqueta clásica con la silueta relajada de una bomber. Su cuello redondeado, la cremallera frontal metálica y el bajo fruncido crean una mezcla de estilos que transforma por completo la prenda original. Una reinterpretación de la sastrería tradicional con un aire más urbano y contemporáneo. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Gris", "pattern": "Liso" },
+    "15": { "description": "LAZÁ combina la estructura de una blazer con detalles inspirados en la trench tradicional. Su cuello en contraste es uno de los protagonistas del diseño: puedes llevarlo levantado para conseguir un acabado más estructurado o doblado para un estilo más relajado. Dos formas de llevar una misma pieza. El cinturón del mismo tejido permite ajustar la cintura y definir la forma de la prenda, mientras que sus mangas amplias aportan movimiento al conjunto. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Beige", "pattern": "Raya diplomática" },
+    "16": { "description": "LAZÁ combina la estructura de una blazer con detalles inspirados en la trench tradicional. Su cuello en contraste es uno de los protagonistas del diseño: puedes llevarlo levantado para conseguir un acabado más estructurado o doblado para un estilo más relajado. Dos formas de llevar una misma pieza. El cinturón del mismo tejido permite ajustar la cintura y definir la forma de la prenda, mientras que sus mangas amplias aportan movimiento al conjunto. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Gris", "pattern": "Raya diplomática" }
+  },
+
   "seo": {
-    "shareImageAlt": "Logo de Aroa López Sevilla junto a una modelo con un top reelaborado: moda reelaborada, piezas únicas",
+    "shareImageAlt": "Logo de Aroa López Sevilla junto a una modelo con la blazer Lazá: moda reelaborada, piezas únicas",
     "notFound": {
       "title": "Página no encontrada | Aroa López Sevilla",
       "description": "Esta página no existe. Descubre la colección de piezas únicas reelaboradas en Sevilla."
@@ -218,11 +225,11 @@
 
     "home": {
       "title": "Aroa López Sevilla | Moda reelaborada y piezas únicas hechas en Sevilla",
-      "description": "Marca de moda upcycling de Sevilla: tops únicos creados a partir de prendas de segunda mano transformadas a mano. Desde {{min}} €."
+      "description": "Marca de moda upcycling de Sevilla: tops y blazers únicos creados a partir de prendas de segunda mano transformadas a mano. Desde {{min}} €."
     },
     "collection": {
-      "title": "Colección de tops reelaborados | Aroa López Sevilla",
-      "description": "{{count}} tops únicos hechos en Sevilla a partir de prendas de segunda mano, entre {{min}} € y {{max}} €. Consulta precio y disponibilidad de cada pieza."
+      "title": "Colección de tops y blazers reelaborados | Aroa López Sevilla",
+      "description": "{{count}} piezas únicas hechas en Sevilla a partir de prendas de segunda mano, entre {{min}} € y {{max}} €. Consulta precio y disponibilidad de cada pieza."
     },
     "about": {
       "title": "Sobre mí: la diseñadora detrás de la marca | Aroa López Sevilla",
@@ -234,20 +241,19 @@
     },
     "contact": {
       "title": "Contacto | Aroa López Sevilla",
-      "description": "Escribe a {{email}}, usa el formulario o contacta por Instagram. Respuesta en 24-48 horas."
+      "description": "Escríbeme por Instagram (@aroalopezsevilla), usa el formulario o escribe a {{email}}. Respuesta en 24-48 horas."
     },
     "privacy": {
       "title": "Política de privacidad | Aroa López Sevilla",
       "description": "Cómo trata Aroa López Sevilla los datos personales de la newsletter y del formulario de contacto."
     },
     "product": {
-      "name": "Top {{name}}",
-      "category": "Ropa > Tops",
+      "categories": { "tops": "Ropa > Tops", "blazers": "Ropa > Blazers" },
       "upcycled": "Hecha a partir de prendas de segunda mano",
       "uniqueLabel": "Pieza única",
       "uniqueValue": "Sí, no hay otra igual",
-      "title": "Top {{name}}, pieza única reelaborada | Aroa López Sevilla",
-      "description": "Top {{name}}: pieza única hecha a mano en Sevilla a partir de prendas de segunda mano. {{price}} €. Talla aproximada S."
+      "title": "{{fullName}}, pieza única reelaborada | Aroa López Sevilla",
+      "description": "{{fullName}}: pieza única hecha a mano en Sevilla a partir de prendas de segunda mano. {{price}} €. Talla aproximada {{size}}."
     }
   },
 

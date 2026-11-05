@@ -188,6 +188,46 @@ textarea {
 }
 
 
+/* BOTONES DE CONTACTO (ficha de producto y página de contacto)
+   Instagram relleno, para que destaque; el formulario, con borde. */
+
+.contact-actions {
+  display: flex;
+
+  flex-direction: column;
+
+  gap: 10px;
+
+  width: 100%;
+
+  max-width: 340px;
+
+  margin: 0 auto 35px;
+}
+
+.cta-primary,
+.cta-secondary {
+  display: block;
+
+  padding: 15px 25px;
+
+  border: 1px solid var(--color-red);
+
+  background-color: transparent;
+
+  color: var(--color-red);
+
+  font-size: 12px;
+
+  letter-spacing: 1.5px;
+
+  text-align: center;
+
+  text-decoration: none;
+
+  cursor: pointer;
+}
+
 /* ELEMENTOS SOLO MÓVIL */
 
 .menu-toggle {

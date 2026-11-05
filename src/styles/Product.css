@@ -118,33 +118,6 @@
 }
 
 
-/* BOTÓN */
-
-.product-button {
-  display: inline-block;
-
-  background: transparent;
-
-  border: 1px solid var(--color-red);
-
-  color: var(--color-red);
-
-  padding: 15px 25px;
-
-  font-size: 12px;
-
-  letter-spacing: 1.5px;
-
-  cursor: pointer;
-
-  transition: 0.3s ease;
-
-  text-decoration: none;
-
-  margin-bottom: 35px;
-}
-
-
 /* DESCRIPCIÓN */
 
 .product-description {
@@ -384,10 +357,6 @@
     line-height: 1.6;
 
     margin-bottom: 28px;
-  }
-
-  .product-button {
-    margin-bottom: 35px;
   }
 
   .product-description {

@@ -1,5 +1,6 @@
 /* =====================================================
    GALERÍA DE INSPIRACIÓN (bucle infinito)
+   El movimiento se controla en InspirationCarousel.jsx
    ===================================================== */
 
 .inspiration-marquee {
@@ -8,6 +9,13 @@
   width: 100%;
 
   overflow: hidden;
+
+  cursor: grab;
+
+  /* Deja hacer scroll vertical de la página sobre la galería */
+  touch-action: pan-y;
+
+  user-select: none;
 
   /* Los bordes se difuminan para que las fotos entren y salgan suaves */
   -webkit-mask-image: linear-gradient(
@@ -26,18 +34,16 @@
   );
 }
 
+.inspiration-marquee:active {
+  cursor: grabbing;
+}
+
 .inspiration-track {
   display: flex;
 
   width: max-content;
 
-  animation: inspiration-scroll var(--marquee-duration, 35s) linear infinite;
-
   will-change: transform;
-}
-
-.inspiration-marquee:hover .inspiration-track {
-  animation-play-state: paused;
 }
 
 /* Margen a la derecha de cada foto (no gap) para que las dos
@@ -63,13 +69,34 @@
 
   display: block;
 
-  user-select: none;
+  pointer-events: none;
 }
 
-@keyframes inspiration-scroll {
-  to {
-    transform: translate3d(-50%, 0, 0);
+
+/* FLECHAS: las mismas de los carruseles de las piezas
+   (ProductCarousel.css), un poco separadas del borde difuminado */
+
+.inspiration-marquee:hover .carousel-arrow,
+.inspiration-marquee .carousel-arrow:focus-visible {
+  opacity: 1;
+
+  transform: translateY(-50%) scale(1);
+}
+
+.inspiration-marquee .carousel-arrow-left {
+  left: 6%;
+}
+
+.inspiration-marquee .carousel-arrow-right {
+  right: 6%;
+}
+
+@media (hover: none), (max-width: 600px) {
+
+  .inspiration-marquee .carousel-arrow {
+    display: none;
   }
+
 }
 
 
@@ -81,34 +108,6 @@
     width: 58vw;
 
     margin-right: 4px;
-  }
-
-}
-
-
-/* SIN ANIMACIONES: fila que se desliza a mano */
-
-@media (prefers-reduced-motion: reduce) {
-
-  .inspiration-marquee {
-    overflow-x: auto;
-
-    scroll-snap-type: x mandatory;
-
-    -webkit-mask-image: none;
-    mask-image: none;
-  }
-
-  .inspiration-track {
-    animation: none;
-  }
-
-  .inspiration-slide {
-    scroll-snap-align: start;
-  }
-
-  .inspiration-slide[aria-hidden="true"] {
-    display: none;
   }
 
 }

@@ -1,10 +1,11 @@
 import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import products, { getProductInfo } from '../data/products'
+import products, { getProductInfo, getProductName } from '../data/products'
 import '../styles/Product.css'
 import ProductCarousel from '../components/ProductCarousel'
 import NotFound from './NotFound'
 import { getFaqParams } from '../data/faq'
+import { INSTAGRAM_MESSAGES } from '../data/social'
 import { useLocalePath } from '../locale'
 
 function Product() {
@@ -22,10 +23,12 @@ function Product() {
   }
 
   const info = getProductInfo(product, t)
+  const fullName = getProductName(product, t)
 
   const details = [
     { label: t('product.details.material'), value: info.material },
     { label: t('product.details.color'), value: info.color },
+    { label: t('product.details.pattern'), value: info.pattern },
     { label: t('product.details.measurements'), value: info.measurements },
   ].filter((detail) => detail.value)
 
@@ -45,10 +48,10 @@ function Product() {
           key={product.id}
           priority
           images={product.images}
-          alt={t('product.imageAlt', { name: product.name })}
+          alt={t('product.imageAlt', { name: fullName })}
           alts={product.images.map((image, index) =>
             t('product.imageAltN', {
-              name: product.name,
+              name: fullName,
               n: index + 1,
               total: product.images.length,
             })
@@ -72,15 +75,28 @@ function Product() {
         </p>
 
         <p className="product-size">
-          {t('product.approximateSize')}
+          {t('product.approximateSize', { size: product.size })}
         </p>
 
-        <Link
-          to={localePath(`/contacto?pieza=${encodeURIComponent(product.name)}`)}
-          className="product-button"
-        >
-          {t('product.consultPiece')}
-        </Link>
+        <div className="contact-actions">
+
+          <a
+            href={INSTAGRAM_MESSAGES}
+            target="_blank"
+            rel="noreferrer"
+            className="cta-primary"
+          >
+            {t('product.consultInstagram')}
+          </a>
+
+          <Link
+            to={localePath(`/contacto?pieza=${encodeURIComponent(product.name)}`)}
+            className="cta-secondary"
+          >
+            {t('product.consultForm')}
+          </Link>
+
+        </div>
 
         <div className="product-description">
           <p>

@@ -49,12 +49,20 @@
 
   inset: 0;
 
-  background: linear-gradient(
-    90deg,
-    rgba(0, 0, 0, 0.28) 0%,
-    rgba(0, 0, 0, 0.12) 45%,
-    rgba(0, 0, 0, 0) 75%
-  );
+  /* Oscurece la zona del texto para que se lea sobre fotos claras */
+  background:
+    linear-gradient(
+      0deg,
+      rgba(0, 0, 0, 0.45) 0%,
+      rgba(0, 0, 0, 0.18) 28%,
+      rgba(0, 0, 0, 0) 50%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(0, 0, 0, 0.28) 0%,
+      rgba(0, 0, 0, 0.12) 45%,
+      rgba(0, 0, 0, 0) 75%
+    );
 
   pointer-events: none;
 }
@@ -267,7 +275,7 @@
 .home-products {
   display: grid;
 
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(3, 1fr);
 
   gap: 12px;
 }

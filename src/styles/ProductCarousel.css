@@ -189,12 +189,10 @@
 
 
 /* MÓVIL Y PANTALLAS TÁCTILES: fila que se desliza con el dedo
-   y deja asomar la siguiente foto (ver ProductCarousel.jsx) */
+   y barritas debajo de la foto (ver ProductCarousel.jsx) */
 
 .product-carousel.is-swipe .product-carousel-images {
   display: flex;
-
-  gap: 4px;
 
   overflow-x: auto;
 
@@ -214,10 +212,7 @@
 .product-carousel.is-swipe .product-carousel-image {
   position: static;
 
-  flex: 0 0 86%;
-
-  /* Sin esto, la imagen no encoge por debajo de su width: 100% */
-  width: 86%;
+  flex: 0 0 100%;
 
   min-width: 0;
 
@@ -228,13 +223,45 @@
   scroll-snap-align: start;
 }
 
-/* La última foto se alinea a la derecha para que no quede hueco */
-.product-carousel.is-swipe .product-carousel-image:last-child {
-  scroll-snap-align: end;
+.product-carousel-swipe {
+  width: 100%;
 }
 
-.product-carousel.is-swipe .product-carousel-images.is-single .product-carousel-image {
-  flex-basis: 100%;
+.carousel-bars {
+  display: flex;
 
-  width: 100%;
+  justify-content: center;
+
+  gap: 4px;
+
+  margin-top: 8px;
+}
+
+.carousel-bar {
+  width: 18px;
+
+  height: 2px;
+
+  background: rgba(162, 1, 0, 0.18);
+
+  transition: background 0.3s ease;
+}
+
+.carousel-bar.active {
+  background: var(--color-red);
+}
+
+/* Los contenedores de foto de la ficha y la colección tienen
+   altura fija: en este modo crecen para que quepan las barritas */
+@media (hover: none), (max-width: 600px) {
+
+  body .product-gallery,
+  body .collection-image {
+    display: block;
+
+    aspect-ratio: auto;
+
+    overflow: visible;
+  }
+
 }

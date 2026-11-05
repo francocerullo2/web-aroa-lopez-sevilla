@@ -17,7 +17,7 @@ function preloadImage(src) {
   })
 }
 
-function ChevronIcon({ direction }) {
+export function ChevronIcon({ direction }) {
   return (
     <svg
       width="16"
@@ -74,6 +74,7 @@ function ProductCarousel({ images = [], alt, alts, priority = false }) {
   const [requested, setRequested] = useState(() => new Set([0]))
   const [interacted, setInteracted] = useState(false)
   const isSwipeLayout = useSwipeLayout()
+  const [swipeImage, setSwipeImage] = useState(0)
 
   // Foto que está saliendo y hacia dónde (para la animación).
   const [leaving, setLeaving] = useState(null)
@@ -99,32 +100,54 @@ function ProductCarousel({ images = [], alt, alts, priority = false }) {
 
   const hasMultipleImages = images.length > 1
 
-  // Móvil: fila de fotos que se desliza con el dedo, con la
-  // siguiente asomando por la derecha para que se vea que hay más.
+  // Móvil: fila de fotos que se desliza con el dedo, con unas
+  // barritas debajo que indican en qué foto estás.
   if (isSwipeLayout) {
-    return (
-      <div className="product-carousel is-swipe">
+    const handleSwipeScroll = (event) => {
+      const row = event.currentTarget
 
-        <div
-          className={
-            hasMultipleImages
-              ? 'product-carousel-images'
-              : 'product-carousel-images is-single'
-          }
-        >
-          {images.map((image, index) => (
-            <img
-              key={`${image}-${index}`}
-              src={image}
-              alt={alts?.[index] ?? alt}
-              loading={priority && index === 0 ? 'eager' : 'lazy'}
-              fetchPriority={priority && index === 0 ? 'high' : undefined}
-              decoding="async"
-              draggable="false"
-              className="product-carousel-image"
-            />
-          ))}
+      setSwipeImage(Math.round(row.scrollLeft / row.clientWidth))
+    }
+
+    return (
+      <div className="product-carousel-swipe">
+
+        <div className="product-carousel is-swipe">
+
+          <div
+            className="product-carousel-images"
+            onScroll={handleSwipeScroll}
+          >
+            {images.map((image, index) => (
+              <img
+                key={`${image}-${index}`}
+                src={image}
+                alt={alts?.[index] ?? alt}
+                loading={priority && index === 0 ? 'eager' : 'lazy'}
+                fetchPriority={priority && index === 0 ? 'high' : undefined}
+                decoding="async"
+                draggable="false"
+                className="product-carousel-image"
+              />
+            ))}
+          </div>
+
         </div>
+
+        {hasMultipleImages && (
+          <div className="carousel-bars" aria-hidden="true">
+            {images.map((image, index) => (
+              <span
+                key={`${image}-${index}`}
+                className={
+                  index === swipeImage
+                    ? 'carousel-bar active'
+                    : 'carousel-bar'
+                }
+              />
+            ))}
+          </div>
+        )}
 
       </div>
     )
@@ -179,7 +202,11 @@ function ProductCarousel({ images = [], alt, alts, priority = false }) {
       <div className="product-carousel-images">
 
         {images.map((image, index) => {
-          if (!priority && !requested.has(index)) {
+          if (
+            !priority &&
+            !requested.has(index) &&
+            index !== displayedImage
+          ) {
             return null
           }
 

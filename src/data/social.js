@@ -8,3 +8,6 @@ export const SOCIAL = {
   // (https://www.pinterest.es/<usuario>/).
   pinterest: 'https://pin.it/E1l1a9iJR',
 }
+
+// Abre directamente los mensajes con la cuenta de Instagram.
+export const INSTAGRAM_MESSAGES = 'https://ig.me/m/aroalopezsevilla'

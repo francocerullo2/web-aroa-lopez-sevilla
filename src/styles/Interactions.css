@@ -28,11 +28,11 @@
 /* 1. BOTONES PRINCIPALES ----------------------------- */
 
 body :is(
-  .product-button,
+  .cta-primary,
+  .cta-secondary,
   .home-news-button a,
   .home-faq-button a,
   .faq-more a,
-  .collection-coming-soon-link,
   .newsletter-form button,
   .newsletter-popup-form button,
   .contact-submit,
@@ -51,6 +51,17 @@ body :is(
     color 0.45s ease;
 }
 
+/* Instagram va relleno de rojo: al pasar, se rellena de beige.
+   "html body" para ganar a la regla general de arriba. */
+html body .cta-primary {
+  --fill: var(--color-beige);
+  --fill-text: var(--color-red);
+
+  background-color: var(--color-red);
+
+  color: var(--color-beige);
+}
+
 /* Sobre fondo oscuro ("Prendas con historia") se rellena de blanco.
    "html body" para ganar a la regla general de arriba. */
 html body .history-button {
@@ -59,11 +70,11 @@ html body .history-button {
 }
 
 body :is(
-  .product-button,
+  .cta-primary,
+  .cta-secondary,
   .home-news-button a,
   .home-faq-button a,
   .faq-more a,
-  .collection-coming-soon-link,
   .newsletter-form button,
   .newsletter-popup-form button,
   .contact-submit,

@@ -1,4 +1,4 @@
-import products, { getProductInfo } from '../data/products'
+import products, { getProductInfo, getProductName } from '../data/products'
 import { FAQ_IDS, getFaqParams } from '../data/faq'
 import { SOCIAL } from '../data/social'
 import {
@@ -30,11 +30,11 @@ export const DEFAULT_SHARE_IMAGE = shareImage
 // estática. Actualízala solo cuando cambie su contenido:
 // Google deja de fiarse de las fechas que cambian siempre.
 const PAGE_UPDATED = {
-  '/': '2026-10-29',
-  '/coleccion': '2026-10-29',
+  '/': '2026-11-05',
+  '/coleccion': '2026-11-05',
   '/sobre-mi': '2026-10-29',
-  '/preguntas-frecuentes': '2026-10-29',
-  '/contacto': '2026-10-29',
+  '/preguntas-frecuentes': '2026-11-05',
+  '/contacto': '2026-11-05',
   '/politica-privacidad': '2026-10-29',
 }
 
@@ -224,15 +224,16 @@ function productSchema(product, t, language) {
   return {
     '@type': 'Product',
     '@id': `${url}#product`,
-    name: t('seo.product.name', { name: product.name }),
+    name: getProductName(product, t),
     description: info.description,
     image: product.images.map(absoluteUrl),
     url,
     sku: `ALS-${String(product.id).padStart(3, '0')}`,
-    category: t('seo.product.category'),
-    size: 'S',
+    category: t(`seo.product.categories.${product.category}`),
+    size: info.size,
     ...(info.material ? { material: info.material } : {}),
     ...(info.color ? { color: info.color } : {}),
+    ...(info.pattern ? { pattern: info.pattern } : {}),
     // Pieza nueva, hecha con prendas reutilizadas.
     itemCondition: 'https://schema.org/NewCondition',
     additionalProperty: [
@@ -360,7 +361,7 @@ export function getPageSeo(pathname, t) {
       type: 'CollectionPage',
       crumbs: [home, { name: t('header.collection'), path }],
       image: products[0]?.images[0],
-      imageAlt: t('product.imageAlt', { name: products[0]?.name }),
+      imageAlt: t('product.imageAlt', { name: getProductName(products[0], t) }),
       extra: [
         {
           '@type': 'ItemList',
@@ -370,7 +371,7 @@ export function getPageSeo(pathname, t) {
             '@type': 'ListItem',
             position: index + 1,
             url: absoluteUrl(localizePath(`/producto/${product.id}`, language)),
-            name: t('seo.product.name', { name: product.name }),
+            name: getProductName(product, t),
           })),
         },
       ],
@@ -421,7 +422,7 @@ export function getPageSeo(pathname, t) {
   const product = findProduct(path)
 
   if (product) {
-    const productName = t('seo.product.name', { name: product.name })
+    const productName = getProductName(product, t)
 
     return build({
       key: 'product',
@@ -433,8 +434,8 @@ export function getPageSeo(pathname, t) {
         { name: productName, path },
       ],
       image: product.images[0],
-      imageAlt: t('product.imageAlt', { name: product.name }),
-      values: { name: product.name, price: product.price },
+      imageAlt: t('product.imageAlt', { name: productName }),
+      values: { fullName: productName, price: product.price, size: product.size },
       extra: [productSchema(product, t, language)],
     })
   }

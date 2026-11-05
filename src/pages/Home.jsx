@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { markNewsletterSubscribed } from '../newsletter'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import products from '../data/products'
+import products, { getProductName } from '../data/products'
 import ProductCarousel from '../components/ProductCarousel'
 import InspirationCarousel from '../components/InspirationCarousel'
 import FaqList from '../components/FaqList'
@@ -43,7 +43,7 @@ function findImage(files, fileName) {
 // HERO
 // =====================================================
 
-const heroImage = findImage(homeFiles, 'hero-01')
+const heroImage = findImage(homeFiles, 'hero-02')
 
 // =====================================================
 // PRENDAS CON HISTORIA
@@ -191,7 +191,7 @@ function Home() {
 
         <div className="home-products">
 
-          {products.slice(0, 4).map((product) => (
+          {products.filter((product) => product.isNew).map((product) => (
 
             <Link
               key={product.id}
@@ -201,7 +201,7 @@ function Home() {
 
               <ProductCarousel
                 images={product.images}
-                alt={t('product.imageAlt', { name: product.name })}
+                alt={t('product.imageAlt', { name: getProductName(product, t) })}
               />
 
               <div className="home-product-info">

@@ -1,7 +1,7 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import { SOCIAL } from "../data/social";
+import { INSTAGRAM_MESSAGES, SOCIAL } from "../data/social";
 import { markNewsletterSubscribed } from "../newsletter";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { useLocalePath } from "../locale";
 import "../styles/Contact.css";
@@ -42,6 +42,20 @@ function Contact() {
 
   const params = new URLSearchParams(location.search);
   const pieza = params.get("pieza");
+
+  // El formulario empieza plegado, salvo si se llega desde una pieza.
+  const [showForm, setShowForm] = useState(Boolean(pieza));
+  const formSectionRef = useRef(null);
+
+  const toggleForm = () => {
+    setShowForm(!showForm);
+
+    if (!showForm) {
+      requestAnimationFrame(() => {
+        formSectionRef.current?.scrollIntoView({ behavior: "smooth" });
+      });
+    }
+  };
 
   const subject = pieza
     ? t("contact.pieceSubject", { piece: pieza })
@@ -96,15 +110,40 @@ function Contact() {
         <div className="contact-text">
 
           <p>
-            {t("contact.introStart")}{" "}
-            <a href="mailto:aroalopezsevilla@gmail.com">
-              aroalopezsevilla@gmail.com
-            </a>{" "}
-            {t("contact.introEnd")}
+            {t("contact.intro")}
           </p>
 
+        </div>
+
+        <div className="contact-actions">
+
+          <a
+            href={INSTAGRAM_MESSAGES}
+            target="_blank"
+            rel="noreferrer"
+            className="cta-primary"
+          >
+            {t("contact.instagramButton")}
+          </a>
+
+          <button
+            type="button"
+            className="cta-secondary"
+            onClick={toggleForm}
+            aria-expanded={showForm}
+          >
+            {t("contact.formButton")}
+          </button>
+
+        </div>
+
+        <div className="contact-text">
+
           <p>
-            {t("contact.instagramText")}
+            {t("contact.emailText")}{" "}
+            <a href="mailto:aroalopezsevilla@gmail.com">
+              aroalopezsevilla@gmail.com
+            </a>
           </p>
 
         </div>
@@ -151,161 +190,168 @@ function Contact() {
 
       {/* FORMULARIO */}
 
-      <section className="contact-form-section">
-
-        {messageSent && (
-          <p className="contact-success">
-            {t("contact.success")}
-          </p>
-        )}
-
-        <form
-          className="contact-form"
-          action="https://formsubmit.co/aroalopezsevilla@gmail.com"
-          method="POST"
+      {(showForm || messageSent) && (
+        <section
+          className="contact-form-section"
+          ref={formSectionRef}
         >
 
-          <input
-            type="hidden"
-            name="_next"
-            value={`${origin}${localePath("/contacto")}?sent=true`}
-          />
+          {messageSent && (
+            <p className="contact-success">
+              {t("contact.success")}
+            </p>
+          )}
 
-          <input
-            type="hidden"
-            name="_subject"
-            value="Nueva consulta desde Aroa López Sevilla"
-          />
-
-          <input
-            type="hidden"
-            name="_template"
-            value="table"
-          />
-
-          <input
-            type="hidden"
-            name="_captcha"
-            value="false"
-          />
-
-          {/* Campo trampa anti-spam: FormSubmit descarta
-              los envíos que lo traen relleno */}
-          <input
-            type="text"
-            name="_honey"
-            className="visually-hidden"
-            tabIndex="-1"
-            autoComplete="off"
-            aria-hidden="true"
-          />
-
-          <input
-            type="hidden"
-            name="_url"
-            value={`${origin}${localePath("/contacto")}`}
-          />
-
-
-          <div className="form-row">
-
-            <div className="form-group">
-
-              <label htmlFor="firstName">
-                {t("contact.firstName")}{" "}
-                <span>({t("contact.required")})</span>
-              </label>
-
-              <input
-                type="text"
-                id="firstName"
-                name="Nombre"
-                required
-              />
-
-            </div>
-
-            <div className="form-group">
-
-              <label htmlFor="lastName">
-                {t("contact.lastName")}{" "}
-                <span>({t("contact.required")})</span>
-              </label>
-
-              <input
-                type="text"
-                id="lastName"
-                name="Apellidos"
-                required
-              />
-
-            </div>
-
-          </div>
-
-
-          <div className="form-group">
-
-            <label htmlFor="email">
-              {t("contact.email")}{" "}
-              <span>({t("contact.required")})</span>
-            </label>
+          {showForm && (
+          <form
+            className="contact-form"
+            action="https://formsubmit.co/aroalopezsevilla@gmail.com"
+            method="POST"
+          >
 
             <input
-              type="email"
-              id="email"
-              name="email"
-              required
+              type="hidden"
+              name="_next"
+              value={`${origin}${localePath("/contacto")}?sent=true`}
             />
 
-          </div>
+            <input
+              type="hidden"
+              name="_subject"
+              value="Nueva consulta desde Aroa López Sevilla"
+            />
 
+            <input
+              type="hidden"
+              name="_template"
+              value="table"
+            />
 
-          <div className="form-group">
+            <input
+              type="hidden"
+              name="_captcha"
+              value="false"
+            />
 
-            <label htmlFor="subject">
-              {t("contact.subject")}{" "}
-              <span>({t("contact.required")})</span>
-            </label>
-
+            {/* Campo trampa anti-spam: FormSubmit descarta
+                los envíos que lo traen relleno */}
             <input
               type="text"
-              id="subject"
-              name="Asunto"
-              defaultValue={subject}
-              required
+              name="_honey"
+              className="visually-hidden"
+              tabIndex="-1"
+              autoComplete="off"
+              aria-hidden="true"
             />
 
-          </div>
+            <input
+              type="hidden"
+              name="_url"
+              value={`${origin}${localePath("/contacto")}`}
+            />
 
 
-          <div className="form-group">
+            <div className="form-row">
 
-            <label htmlFor="message">
-              {t("contact.message")}{" "}
-              <span>({t("contact.required")})</span>
-            </label>
+              <div className="form-group">
 
-            <textarea
-              id="message"
-              name="Mensaje"
-              defaultValue={message}
-              required
-            ></textarea>
+                <label htmlFor="firstName">
+                  {t("contact.firstName")}{" "}
+                  <span>({t("contact.required")})</span>
+                </label>
 
-          </div>
+                <input
+                  type="text"
+                  id="firstName"
+                  name="Nombre"
+                  required
+                />
+
+              </div>
+
+              <div className="form-group">
+
+                <label htmlFor="lastName">
+                  {t("contact.lastName")}{" "}
+                  <span>({t("contact.required")})</span>
+                </label>
+
+                <input
+                  type="text"
+                  id="lastName"
+                  name="Apellidos"
+                  required
+                />
+
+              </div>
+
+            </div>
 
 
-          <button
-            type="submit"
-            className="contact-submit"
-          >
-            {t("contact.send")}
-          </button>
+            <div className="form-group">
 
-        </form>
+              <label htmlFor="email">
+                {t("contact.email")}{" "}
+                <span>({t("contact.required")})</span>
+              </label>
 
-      </section>
+              <input
+                type="email"
+                id="email"
+                name="email"
+                required
+              />
+
+            </div>
+
+
+            <div className="form-group">
+
+              <label htmlFor="subject">
+                {t("contact.subject")}{" "}
+                <span>({t("contact.required")})</span>
+              </label>
+
+              <input
+                type="text"
+                id="subject"
+                name="Asunto"
+                defaultValue={subject}
+                required
+              />
+
+            </div>
+
+
+            <div className="form-group">
+
+              <label htmlFor="message">
+                {t("contact.message")}{" "}
+                <span>({t("contact.required")})</span>
+              </label>
+
+              <textarea
+                id="message"
+                name="Mensaje"
+                defaultValue={message}
+                required
+              ></textarea>
+
+            </div>
+
+
+            <button
+              type="submit"
+              className="contact-submit"
+            >
+              {t("contact.send")}
+            </button>
+
+          </form>
+          )}
+
+        </section>
+      )}
 
 
       {/* NEWSLETTER */}

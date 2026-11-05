@@ -8,7 +8,7 @@ import {
   markNewsletterSubscribed,
   shouldShowNewsletterPopup,
 } from '../newsletter'
-import popupImage from '../assets/images/home/hero-01.webp'
+import popupImage from '../assets/images/home/hero-02.webp'
 import '../styles/NewsletterPopup.css'
 
 // Invitación a la newsletter al entrar en la web.

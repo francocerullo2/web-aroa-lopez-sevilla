@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import products from '../data/products'
+import products, { getProductName } from '../data/products'
 import ProductCarousel from '../components/ProductCarousel'
 import { useLocalePath } from '../locale'
 import '../styles/Collection.css'
@@ -18,16 +18,11 @@ function Collection() {
     vendida: t('product.status.sold'),
   }
 
-  const isComingSoon =
-    activeFilter === 'blazers' || activeFilter === 'vestidos'
-
+  // El orden es el de products.js: lo más nuevo, primero.
   const filteredProducts =
-    activeFilter === 'all' || activeFilter === 'tops'
-      ? products.filter(
-          (product) =>
-            activeFilter === 'all' || product.category === activeFilter
-        )
-      : []
+    activeFilter === 'all'
+      ? products
+      : products.filter((product) => product.category === activeFilter)
 
   return (
     <main className="collection-page">
@@ -68,68 +63,43 @@ function Collection() {
 
       </div>
 
-      {isComingSoon ? (
-        <section className="collection-coming-soon">
+      <section className="collection-grid">
 
-          <h2>
-            {t('collection.comingSoon.title')}
-          </h2>
+        {filteredProducts.map((product) => (
 
-          <p>
-            {t('collection.comingSoon.text')}
-          </p>
-
-          <p>
-            {t('collection.comingSoon.newsletter')}
-          </p>
-
-          <Link
-            to={localePath('/#newsletter')}
-            className="collection-coming-soon-link"
+          <article
+            className="collection-item"
+            key={product.id}
           >
-            {t('collection.comingSoon.button')}
-          </Link>
 
-        </section>
-      ) : (
-        <section className="collection-grid">
+            <Link to={localePath(`/producto/${product.id}`)}>
 
-          {filteredProducts.map((product) => (
+              <div className="collection-image">
 
-            <article
-              className="collection-item"
-              key={product.id}
-            >
+                <ProductCarousel
+                  images={product.images}
+                  alt={t('product.imageAlt', { name: getProductName(product, t) })}
+                />
 
-              <Link to={localePath(`/producto/${product.id}`)}>
+              </div>
 
-                <div className="collection-image">
+              <div className="collection-info">
 
-                  <ProductCarousel
-                    images={product.images}
-                    alt={t('product.imageAlt', { name: product.name })}
-                  />
+                <h2>{product.name}</h2>
 
-                </div>
+                <p className={`collection-status ${product.status}`}>
+                  {statusText[product.status]}
+                </p>
 
-                <div className="collection-info">
+              </div>
 
-                  <h2>{product.name}</h2>
+            </Link>
 
-                  <p className={`collection-status ${product.status}`}>
-                    {statusText[product.status]}
-                  </p>
+          </article>
 
-                </div>
+        ))}
 
-              </Link>
-
-            </article>
-
-          ))}
-
-        </section>
-      )}
+      </section>
 
     </main>
   )

@@ -241,12 +241,12 @@ function productLine(product) {
   const extras = [
     info.material && `material: ${info.material}`,
     info.color && `color: ${info.color}`,
+    info.pattern && `estampado: ${info.pattern}`,
+    `talla: ${info.size}`,
     info.measurements && `medidas: ${info.measurements}`,
   ].filter(Boolean)
 
-  return `- [Top ${product.name}](${site.SITE_URL}/producto/${product.id}): pieza única, ${product.price} €, ${STATUS[product.status]}${
-    extras.length ? `, ${extras.join(', ')}` : ''
-  }`
+  return `- [${site.getProductName(product, t)}](${site.SITE_URL}/producto/${product.id}): pieza única, ${product.price} €, ${STATUS[product.status]}, ${extras.join(', ')}`
 }
 
 const llms = `# ${site.SITE_NAME}
@@ -256,10 +256,10 @@ const llms = `# ${site.SITE_NAME}
 Aroa López Sevilla es una marca de moda de Sevilla (España) creada por la diseñadora Aroa. Cada pieza se diseña y se confecciona a mano en Sevilla transformando prendas de segunda mano: se selecciona, se descose, se corta y se vuelve a construir. No hay dos piezas iguales: cuando una se vende, no se vuelve a hacer.
 
 - Diseñadora: ${site.SITE_NAME} (Sevilla, España)
-- Tipo de producto: tops reelaborados (upcycling), piezas únicas; blazers próximamente
+- Tipo de producto: tops y blazers reelaborados (upcycling), piezas únicas
 - Precios: entre ${faqParams.min} € y ${faqParams.max} €
-- Talla: aproximada S; medidas exactas bajo consulta
-- Cómo comprar: botón «Consultar esta pieza» en cada ficha, formulario de contacto, email ${site.EMAIL} o Instagram @aroalopezsevilla (respuesta en 24-48 h)
+- Talla: tops, aproximada S; blazers, S-M; medidas exactas bajo consulta
+- Cómo comprar: por mensaje de Instagram a @aroalopezsevilla, con el formulario de contacto o por email a ${site.EMAIL} (respuesta en 24-48 h)
 - Idiomas de la web: español (${site.SITE_URL}/) e inglés (${site.SITE_URL}/en)
 - Última actualización: ${lastUpdated}
 
@@ -269,7 +269,7 @@ Aroa López Sevilla es una marca de moda de Sevilla (España) creada por la dise
 - [Colección](${site.SITE_URL}/coleccion): catálogo completo con precio y disponibilidad
 - [Sobre mí](${site.SITE_URL}/sobre-mi): quién es Aroa y cómo nace el proyecto
 - [Preguntas frecuentes](${site.SITE_URL}/preguntas-frecuentes): precios, tallas, compra, upcycling y sostenibilidad
-- [Contacto](${site.SITE_URL}/contacto): email, formulario e Instagram
+- [Contacto](${site.SITE_URL}/contacto): Instagram, formulario y email
 
 ## Colección actual
 

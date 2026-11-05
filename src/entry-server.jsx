@@ -4,7 +4,7 @@ import { StaticRouter } from 'react-router-dom'
 import i18n from './i18n'
 import App from './App.jsx'
 import { preloadPage } from './routes'
-import products, { getProductInfo } from './data/products'
+import products, { getProductInfo, getProductName } from './data/products'
 import { FAQ_IDS, getFaqParams } from './data/faq'
 import { LANGUAGES, getPathLanguage, localizePath } from './locale'
 import {
@@ -51,6 +51,7 @@ export function getSiteData() {
     localizePath,
     products,
     getProductInfo,
+    getProductName,
     faqIds: FAQ_IDS,
     faqParams: getFaqParams(),
     t: i18n.getFixedT('es'),

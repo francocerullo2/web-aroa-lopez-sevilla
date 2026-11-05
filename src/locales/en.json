@@ -9,7 +9,7 @@
 
   "home": {
     "hero": {
-      "alt": "Reimagined Collection",
+      "alt": "Lazá blazer from the Reimagined II collection",
       "label": "COLLECTION",
       "title": "Reimagined",
       "button": "VIEW COLLECTION"
@@ -52,35 +52,30 @@
   },
 
  "collection": {
-    "title": "Collection of upcycled tops made in Seville",
+    "title": "Collection of upcycled tops and blazers made in Seville",
   "all": "ALL",
   "tops": "TOPS",
   "blazers": "BLAZERS",
-  "dresses": "DRESSES",
-
-  "comingSoon": {
-    "title": "COMING SOON",
-    "text": "New pieces will be available very soon.",
-    "newsletter": "Subscribe to my newsletter so you don't miss any updates.",
-    "button": "SUBSCRIBE TO THE NEWSLETTER"
-  }
+  "dresses": "DRESSES"
 },
 
  "product": {
   "notFound": "Product not found",
-    "imageAlt": "{{name}} top, one-of-a-kind piece by Aroa López Sevilla",
-    "imageAltN": "{{name}} top, one-of-a-kind piece by Aroa López Sevilla (photo {{n}} of {{total}})",
+    "imageAlt": "{{name}}, one-of-a-kind piece by Aroa López Sevilla",
+    "imageAltN": "{{name}}, one-of-a-kind piece by Aroa López Sevilla (photo {{n}} of {{total}})",
     "details": {
       "title": "Piece details",
       "material": "Material",
       "color": "Colour",
+      "pattern": "Pattern",
       "measurements": "Measurements"
     },
   "description": "One-of-a-kind top handmade in Seville from carefully selected and transformed second-hand garments. There is no other like it and, once sold, I don't make it again.",
   "uniquePiece": "ONE OF A KIND",
   "contactText": "To ask about availability, price and measurements, get in touch with me.",
-  "approximateSize": "Approximate size: S. For exact measurements, just message me.",
-  "consultPiece": "ENQUIRE ABOUT THIS PIECE",
+  "approximateSize": "Approximate size: {{size}}. For exact measurements, just message me.",
+  "consultInstagram": "ENQUIRE ON INSTAGRAM",
+  "consultForm": "ENQUIRE BY FORM",
   "backToCollection": "BACK TO COLLECTION",
 
     "status": {
@@ -92,10 +87,11 @@
 
   "contact": {
     "title": "Contact",
-    "introStart": "For any enquiries, you can email me at",
-    "introEnd": "or fill in the contact form below. I usually respond within 24-48 hours.",
-    "instagramText": "If it is more convenient for you, you can also contact me via Instagram. I will be happy to help.",
-    "followUs": "Follow us",
+    "intro": "Interested in a piece or have a question? Message me on Instagram and I'll reply within 24-48 hours.",
+    "instagramButton": "MESSAGE ME ON INSTAGRAM",
+    "formButton": "USE THE FORM",
+    "emailText": "You can also email me at",
+    "followUs": "Follow me",
 
     "firstName": "First name",
     "lastName": "Last name",
@@ -164,19 +160,19 @@
       },
       "price": {
         "question": "How much does a piece cost?",
-        "answer": "Tops in the current collection cost between €{{min}} and €{{max}}. Each piece's price is shown on its page within the collection."
+        "answer": "Pieces in the current collection cost between €{{min}} and €{{max}}. Each piece's price is shown on its page within the collection."
       },
       "size": {
         "question": "What size are the garments?",
-        "answer": "Current pieces are approximately size S. Since every garment is unique, the best way to get exact measurements is to ask me by email or through the contact form."
+        "answer": "Tops are approximately size S and blazers S-M. Since every garment is unique, the best way to get exact measurements is to ask me on Instagram or through the contact form."
       },
       "buy": {
         "question": "How can I buy a piece?",
-        "answer": "Open the piece's page and click \"Enquire about this piece\": the contact form opens with your enquiry ready. You can also email me at {{email}} or message me on Instagram (@aroalopezsevilla). I reply within 24-48 hours."
+        "answer": "Message me on Instagram (@aroalopezsevilla) using the button on the piece's page and tell me which one you like. If you prefer, use the contact form, which opens with your enquiry ready, or email me at {{email}}. I reply within 24-48 hours."
       },
       "types": {
         "question": "What kind of garments are in the collection?",
-        "answer": "Right now the collection is made up of {{count}} upcycled tops, all one-of-a-kind. Blazers are coming soon."
+        "answer": "Right now the collection is made up of {{blazers}} blazers and {{tops}} upcycled tops, all one-of-a-kind."
       },
       "sustainable": {
         "question": "Why is it a more sustainable fashion choice?",
@@ -205,8 +201,19 @@
     "close": "Close"
   },
 
+  "productName": { "tops": "{{name}} top", "blazers": "{{name}} blazer" },
+
+  "products": {
+    "11": { "description": "Black blazer transformed into a bullfighter-inspired piece, where classic details take on a new shape. Its short, structured silhouette, round collarless neckline and asymmetric front fastening with six black velvet buttons and loops create a design that breaks with the traditional construction of a blazer. Every detail is designed to give new life to an existing garment, keeping its essence and turning it into a one-of-a-kind piece. One of a kind · Reimagined and transformed in Seville.", "color": "Black", "pattern": "Plain" },
+    "12": { "description": "Grey blazer, transformed through a short, structured silhouette, a rounded collarless neckline and an asymmetric front fastening with six black buttons and loops. A detail that breaks with the traditional construction of the blazer and gives it a character of its own. Each version keeps the essence of a classic garment, reinterpreted from a different perspective. One of a kind · Reimagined and transformed in Seville.", "color": "Grey", "pattern": "Plain" },
+    "13": { "description": "JALEO combines the structure of a classic jacket with the relaxed silhouette of a bomber. Its rounded collar, metal front zip and gathered hem create a mix of styles that completely transforms the original garment. A reinterpretation of traditional tailoring with a more urban, contemporary feel. One of a kind · Reimagined and transformed in Seville.", "color": "Blue", "pattern": "Plain" },
+    "14": { "description": "JALEO combines the structure of a classic jacket with the relaxed silhouette of a bomber. Its rounded collar, metal front zip and gathered hem create a mix of styles that completely transforms the original garment. A reinterpretation of traditional tailoring with a more urban, contemporary feel. One of a kind · Reimagined and transformed in Seville.", "color": "Grey", "pattern": "Plain" },
+    "15": { "description": "LAZÁ combines the structure of a blazer with details inspired by the traditional trench coat. Its contrast collar is one of the stars of the design: wear it up for a more structured finish or folded down for a more relaxed look. Two ways to wear the same piece. The self-fabric belt lets you adjust the waist and define the shape of the garment, while its wide sleeves add movement to the whole. One of a kind · Reimagined and transformed in Seville.", "color": "Beige", "pattern": "Pinstripe" },
+    "16": { "description": "LAZÁ combines the structure of a blazer with details inspired by the traditional trench coat. Its contrast collar is one of the stars of the design: wear it up for a more structured finish or folded down for a more relaxed look. Two ways to wear the same piece. The self-fabric belt lets you adjust the waist and define the shape of the garment, while its wide sleeves add movement to the whole. One of a kind · Reimagined and transformed in Seville.", "color": "Grey", "pattern": "Pinstripe" }
+  },
+
   "seo": {
-    "shareImageAlt": "Aroa López Sevilla logo next to a model wearing an upcycled top: upcycled fashion, one-of-a-kind pieces",
+    "shareImageAlt": "Aroa López Sevilla logo next to a model wearing the Lazá blazer: upcycled fashion, one-of-a-kind pieces",
     "notFound": {
       "title": "Page not found | Aroa López Sevilla",
       "description": "This page doesn't exist. Discover the collection of one-of-a-kind upcycled pieces made in Seville."
@@ -218,11 +225,11 @@
 
     "home": {
       "title": "Aroa López Sevilla | Upcycled fashion and one-of-a-kind pieces made in Seville",
-      "description": "Upcycled fashion brand from Seville: one-of-a-kind tops made from hand-transformed second-hand garments. From €{{min}}."
+      "description": "Upcycled fashion brand from Seville: one-of-a-kind tops and blazers made from hand-transformed second-hand garments. From €{{min}}."
     },
     "collection": {
-      "title": "Upcycled tops collection | Aroa López Sevilla",
-      "description": "{{count}} one-of-a-kind tops made in Seville from second-hand garments, between €{{min}} and €{{max}}. Check price and availability of each piece."
+      "title": "Upcycled tops and blazers collection | Aroa López Sevilla",
+      "description": "{{count}} one-of-a-kind pieces made in Seville from second-hand garments, between €{{min}} and €{{max}}. Check each piece's price and availability."
     },
     "about": {
       "title": "About: the designer behind the brand | Aroa López Sevilla",
@@ -234,20 +241,19 @@
     },
     "contact": {
       "title": "Contact | Aroa López Sevilla",
-      "description": "Email {{email}}, use the form or get in touch on Instagram. Reply within 24-48 hours."
+      "description": "Message me on Instagram (@aroalopezsevilla), use the form or email {{email}}. Reply within 24-48 hours."
     },
     "privacy": {
       "title": "Privacy policy | Aroa López Sevilla",
       "description": "How Aroa López Sevilla handles personal data from the newsletter and the contact form."
     },
     "product": {
-      "name": "{{name}} top",
-      "category": "Clothing > Tops",
+      "categories": { "tops": "Clothing > Tops", "blazers": "Clothing > Blazers" },
       "upcycled": "Made from second-hand garments",
       "uniqueLabel": "One of a kind",
       "uniqueValue": "Yes, there is no other like it",
-      "title": "{{name}} top, one-of-a-kind upcycled piece | Aroa López Sevilla",
-      "description": "{{name}} top: one-of-a-kind piece handmade in Seville from second-hand garments. €{{price}}. Approximate size S."
+      "title": "{{fullName}}, one-of-a-kind upcycled piece | Aroa López Sevilla",
+      "description": "{{fullName}}: one-of-a-kind piece handmade in Seville from second-hand garments. €{{price}}. Approximate size {{size}}."
     }
   },
 

@@ -27,6 +27,8 @@ export function getFaqParams() {
     min: Math.min(...prices),
     max: Math.max(...prices),
     count: products.length,
+    tops: products.filter((product) => product.category === 'tops').length,
+    blazers: products.filter((product) => product.category === 'blazers').length,
     email: 'aroalopezsevilla@gmail.com',
   }
 }
