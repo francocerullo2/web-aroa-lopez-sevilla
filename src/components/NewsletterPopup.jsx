@@ -22,7 +22,7 @@ import '../styles/NewsletterPopup.css'
 
 const DELAY_MS = 8000
 const SCROLL_RATIO = 0.4
-const EXCLUDED_PATHS = ['/contacto', '/politica-privacidad']
+const EXCLUDED_PATHS = ['/contacto', '/envios-y-devoluciones', '/politica-privacidad']
 
 function NewsletterPopup() {
   const { t } = useTranslation()

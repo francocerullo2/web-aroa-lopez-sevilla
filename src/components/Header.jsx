@@ -42,6 +42,7 @@ function Header() {
 
   const isCollectionActive =
     basePath === '/coleccion' ||
+    basePath.startsWith('/coleccion/') ||
     basePath.startsWith('/producto/')
 
   const closeMenu = () => {

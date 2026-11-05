@@ -1,4 +1,9 @@
-import products, { getProductInfo, getProductName } from '../data/products'
+import products, {
+  CATEGORIES,
+  getProductInfo,
+  getProductName,
+  getProductSeoName,
+} from '../data/products'
 import { FAQ_IDS, getFaqParams } from '../data/faq'
 import { SOCIAL } from '../data/social'
 import {
@@ -35,7 +40,8 @@ const PAGE_UPDATED = {
   '/sobre-mi': '2026-10-29',
   '/preguntas-frecuentes': '2026-11-05',
   '/contacto': '2026-11-05',
-  '/politica-privacidad': '2026-10-29',
+  '/envios-y-devoluciones': '2026-11-05',
+  '/politica-privacidad': '2026-11-05',
 }
 
 export const STATIC_ROUTES = Object.keys(PAGE_UPDATED)
@@ -49,8 +55,19 @@ const OG_LOCALE = {
 export function getAllRoutes() {
   return [
     ...STATIC_ROUTES,
+    ...CATEGORIES.map((category) => `/coleccion/${category}`),
     ...products.map((product) => `/producto/${product.id}`),
   ]
+}
+
+// Imágenes JPG de cada pieza para compartir (las genera
+// scripts/prerender.js): algunas apps no aceptan WebP.
+export function getShareImage(product) {
+  return `/share/producto-${product.id}.jpg`
+}
+
+export function getPinImage(product) {
+  return `/share/producto-${product.id}-pin.jpg`
 }
 
 // Todas las rutas de todos los idiomas, para prerenderizar.
@@ -87,7 +104,26 @@ export function getLastModified(route) {
     return latest([PAGE_UPDATED[route], newestProduct])
   }
 
+  const category = findCategory(route)
+
+  if (category) {
+    return latest([
+      PAGE_UPDATED['/coleccion'],
+      ...getCategoryProducts(category).map((product) => product.updatedAt),
+    ])
+  }
+
   return PAGE_UPDATED[route]
+}
+
+function getCategoryProducts(category) {
+  return products.filter((product) => product.category === category)
+}
+
+function findCategory(route) {
+  const match = route.match(/^\/coleccion\/([^/]+)$/)
+
+  return match && CATEGORIES.includes(match[1]) ? match[1] : undefined
 }
 
 // URLs de la misma página en cada idioma (hreflang).
@@ -150,7 +186,6 @@ function organization(t) {
     founder: { '@id': PERSON_ID },
     foundingLocation: SEVILLA,
     address: SEVILLA.address,
-    areaServed: 'ES',
     knowsAbout: t('seo.knowsAbout', { returnObjects: true }),
     sameAs: SOCIAL_LINKS,
     contactPoint: {
@@ -183,7 +218,7 @@ function website(t) {
     '@id': WEBSITE_ID,
     name: SITE_NAME,
     url: `${SITE_URL}/`,
-    description: t('seo.home.description'),
+    description: t('seo.home.description', getFaqParams()),
     inLanguage: LANGUAGES,
     publisher: { '@id': ORGANIZATION_ID },
   }
@@ -224,7 +259,7 @@ function productSchema(product, t, language) {
   return {
     '@type': 'Product',
     '@id': `${url}#product`,
-    name: getProductName(product, t),
+    name: getProductSeoName(product, t),
     description: info.description,
     image: product.images.map(absoluteUrl),
     url,
@@ -270,6 +305,17 @@ function productSchema(product, t, language) {
       itemCondition: 'https://schema.org/NewCondition',
       availability: AVAILABILITY[product.status],
       seller: { '@id': ORGANIZATION_ID },
+      hasMerchantReturnPolicy: {
+        '@type': 'MerchantReturnPolicy',
+        applicableCountry: 'ES',
+        returnPolicyCategory: 'https://schema.org/MerchantReturnFiniteReturnWindow',
+        merchantReturnDays: 14,
+        returnMethod: 'https://schema.org/ReturnByMail',
+        returnFees: 'https://schema.org/ReturnFeesCustomerResponsibility',
+        merchantReturnLink: absoluteUrl(
+          localizePath('/envios-y-devoluciones', language)
+        ),
+      },
     },
   }
 }
@@ -355,26 +401,61 @@ export function getPageSeo(pathname, t) {
     return build({ key: 'home', type: 'WebPage' })
   }
 
+  const itemList = (name, items) => ({
+    '@type': 'ItemList',
+    name,
+    numberOfItems: items.length,
+    itemListElement: items.map((product, index) => ({
+      '@type': 'ListItem',
+      position: index + 1,
+      url: absoluteUrl(localizePath(`/producto/${product.id}`, language)),
+      name: getProductName(product, t),
+    })),
+  })
+
+  const collectionCrumb = { name: t('header.collection'), path: '/coleccion' }
+
   if (path === '/coleccion') {
     return build({
       key: 'collection',
       type: 'CollectionPage',
-      crumbs: [home, { name: t('header.collection'), path }],
-      image: products[0]?.images[0],
-      imageAlt: t('product.imageAlt', { name: getProductName(products[0], t) }),
-      extra: [
-        {
-          '@type': 'ItemList',
-          name: t('seo.collection.title', params),
-          numberOfItems: products.length,
-          itemListElement: products.map((product, index) => ({
-            '@type': 'ListItem',
-            position: index + 1,
-            url: absoluteUrl(localizePath(`/producto/${product.id}`, language)),
-            name: getProductName(product, t),
-          })),
-        },
+      crumbs: [home, collectionCrumb],
+      image: getShareImage(products[0]),
+      imageAlt: t('product.imageAlt', { name: getProductSeoName(products[0], t) }),
+      extra: [itemList(t('seo.collection.title', params), products)],
+    })
+  }
+
+  const category = findCategory(path)
+
+  if (category) {
+    const items = getCategoryProducts(category)
+    const prices = items.map((product) => product.price)
+
+    return build({
+      key: `categories.${category}`,
+      type: 'CollectionPage',
+      crumbs: [
+        home,
+        collectionCrumb,
+        { name: t(`seo.categories.${category}.name`), path },
       ],
+      image: getShareImage(items[0]),
+      imageAlt: t('product.imageAlt', { name: getProductSeoName(items[0], t) }),
+      values: {
+        count: items.length,
+        min: Math.min(...prices),
+        max: Math.max(...prices),
+      },
+      extra: [itemList(t(`collection.categories.${category}.title`), items)],
+    })
+  }
+
+  if (path === '/envios-y-devoluciones') {
+    return build({
+      key: 'shipping',
+      type: 'WebPage',
+      crumbs: [home, { name: t('shipping.title'), path }],
     })
   }
 
@@ -422,7 +503,7 @@ export function getPageSeo(pathname, t) {
   const product = findProduct(path)
 
   if (product) {
-    const productName = getProductName(product, t)
+    const seoName = getProductSeoName(product, t)
 
     return build({
       key: 'product',
@@ -430,12 +511,16 @@ export function getPageSeo(pathname, t) {
       ogType: 'product',
       crumbs: [
         home,
-        { name: t('header.collection'), path: '/coleccion' },
-        { name: productName, path },
+        collectionCrumb,
+        {
+          name: t(`seo.categories.${product.category}.name`),
+          path: `/coleccion/${product.category}`,
+        },
+        { name: getProductName(product, t), path },
       ],
-      image: product.images[0],
-      imageAlt: t('product.imageAlt', { name: productName }),
-      values: { fullName: productName, price: product.price, size: product.size },
+      image: getShareImage(product),
+      imageAlt: t('product.imageAlt', { name: seoName }),
+      values: { fullName: seoName, price: product.price, size: product.size },
       extra: [productSchema(product, t, language)],
     })
   }

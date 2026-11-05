@@ -123,7 +123,7 @@ const products = [
     images: getProductImages('Dolores'),
     status: 'disponible',
     price: 60,
-    updatedAt: '2026-10-29',
+    updatedAt: '2026-11-05',
     measurements: '',
   },
   {
@@ -134,7 +134,7 @@ const products = [
     images: getProductImages('Carmen'),
     status: 'disponible',
     price: 50,
-    updatedAt: '2026-10-29',
+    updatedAt: '2026-11-05',
     measurements: '',
   },
   {
@@ -145,7 +145,7 @@ const products = [
     images: getProductImages('Salina'),
     status: 'disponible',
     price: 50,
-    updatedAt: '2026-10-29',
+    updatedAt: '2026-11-05',
     measurements: '',
   },
   {
@@ -156,7 +156,7 @@ const products = [
     images: getProductImages('Hechura'),
     status: 'disponible',
     price: 45,
-    updatedAt: '2026-10-29',
+    updatedAt: '2026-11-05',
     measurements: '',
   },
   {
@@ -167,7 +167,7 @@ const products = [
     images: getProductImages('Albero'),
     status: 'disponible',
     price: 50,
-    updatedAt: '2026-10-29',
+    updatedAt: '2026-11-05',
     measurements: '',
   },
   {
@@ -178,7 +178,7 @@ const products = [
     images: getProductImages('Oliva'),
     status: 'disponible',
     price: 45,
-    updatedAt: '2026-10-29',
+    updatedAt: '2026-11-05',
     measurements: '',
   },
   {
@@ -189,7 +189,7 @@ const products = [
     images: getProductImages('Candela'),
     status: 'disponible',
     price: 50,
-    updatedAt: '2026-10-29',
+    updatedAt: '2026-11-05',
     measurements: '',
   },
   {
@@ -200,7 +200,7 @@ const products = [
     images: getProductImages('Solera'),
     status: 'disponible',
     price: 50,
-    updatedAt: '2026-10-29',
+    updatedAt: '2026-11-05',
     measurements: '',
   },
   {
@@ -211,7 +211,7 @@ const products = [
     images: getProductImages('Azahar'),
     status: 'disponible',
     price: 50,
-    updatedAt: '2026-10-29',
+    updatedAt: '2026-11-05',
     measurements: '',
   },
   {
@@ -222,15 +222,31 @@ const products = [
     images: getProductImages('Jara'),
     status: 'disponible',
     price: 45,
-    updatedAt: '2026-10-29',
+    updatedAt: '2026-11-05',
     measurements: '',
   },
 ]
 
 export default products
+
+// Categorías con página propia: /coleccion/tops, /coleccion/blazers.
+export const CATEGORIES = ['tops', 'blazers']
+
 // Nombre con el tipo de prenda: "Top Dolores", "Blazer Lola 01".
 export function getProductName(product, t) {
   return t(`productName.${product.category}`, { name: product.name })
+}
+
+// Nombre para buscadores: título de la página, datos estructurados y
+// texto alternativo de las fotos. El cliente sigue viendo product.name.
+// Se define en src/locales (products.<id>.seoName).
+export function getProductSeoName(product, t) {
+  const key = `products.${product.id}.seoName`
+  const seoName = t(key)
+
+  return seoName === key
+    ? getProductName(product, t)
+    : `${seoName} ${product.name}`
 }
 
 // Textos propios de una pieza en el idioma de `t`.

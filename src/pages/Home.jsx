@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { markNewsletterSubscribed } from '../newsletter'
 import { useState } from 'react'
 import { useTranslation } from 'react-i18next'
-import products, { getProductName } from '../data/products'
+import products, { getProductSeoName } from '../data/products'
 import ProductCarousel from '../components/ProductCarousel'
 import InspirationCarousel from '../components/InspirationCarousel'
 import FaqList from '../components/FaqList'
@@ -201,7 +201,7 @@ function Home() {
 
               <ProductCarousel
                 images={product.images}
-                alt={t('product.imageAlt', { name: getProductName(product, t) })}
+                alt={t('product.imageAlt', { name: getProductSeoName(product, t) })}
               />
 
               <div className="home-product-info">

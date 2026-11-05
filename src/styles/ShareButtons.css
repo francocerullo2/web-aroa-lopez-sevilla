@@ -1,0 +1,84 @@
+.product-share {
+  display: flex;
+
+  flex-direction: column;
+
+  align-items: center;
+
+  margin-bottom: 16px;
+}
+
+.product-share-row {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  gap: 4px;
+}
+
+.product-share-label {
+  margin-right: 8px;
+
+  font-size: 11px;
+
+  letter-spacing: 1px;
+
+  text-transform: uppercase;
+
+  opacity: 0.7;
+}
+
+.product-share a,
+.product-share button {
+  display: flex;
+
+  align-items: center;
+
+  justify-content: center;
+
+  width: 40px;
+
+  height: 40px;
+
+  padding: 0;
+
+  border: none;
+
+  background: none;
+
+  cursor: pointer;
+
+  transition: transform 0.35s var(--ease-out);
+}
+
+.product-share a:is(:hover, :focus-visible),
+.product-share button:is(:hover, :focus-visible) {
+  transform: translateY(-2px);
+}
+
+/* El mismo rojo que los iconos de redes del header */
+.product-share img {
+  width: 22px;
+
+  height: 22px;
+
+  display: block;
+
+  filter: invert(9%) sepia(99%) saturate(5484%)
+    hue-rotate(1deg) brightness(91%) contrast(108%);
+}
+
+/* Reserva su altura para que la página no salte al aparecer */
+.product-share-message {
+  min-height: 18px;
+
+  margin-top: 2px;
+
+  font-size: 12px;
+
+  line-height: 1.5;
+
+  text-align: center;
+}

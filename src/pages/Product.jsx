@@ -1,8 +1,9 @@
 import { useParams, Link } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import products, { getProductInfo, getProductName } from '../data/products'
+import products, { getProductInfo, getProductSeoName } from '../data/products'
 import '../styles/Product.css'
 import ProductCarousel from '../components/ProductCarousel'
+import ShareButtons from '../components/ShareButtons'
 import NotFound from './NotFound'
 import { getFaqParams } from '../data/faq'
 import { INSTAGRAM_MESSAGES } from '../data/social'
@@ -23,7 +24,8 @@ function Product() {
   }
 
   const info = getProductInfo(product, t)
-  const fullName = getProductName(product, t)
+  // Solo para el texto alternativo: el cliente ve product.name.
+  const fullName = getProductSeoName(product, t)
 
   const details = [
     { label: t('product.details.material'), value: info.material },
@@ -98,6 +100,8 @@ function Product() {
 
         </div>
 
+        <ShareButtons product={product} />
+
         <div className="product-description">
           <p>
             {info.description}
@@ -139,12 +143,43 @@ function Product() {
             </p>
           </details>
 
-          <Link
-            to={localePath('/preguntas-frecuentes')}
-            className="product-more-link"
-          >
-            {t('faq.homeButton')}
-          </Link>
+          <details>
+            <summary>
+              {t('faq.items.shipping.question')}
+            </summary>
+
+            <p>
+              {t('faq.items.shipping.answer')}
+            </p>
+          </details>
+
+          <details>
+            <summary>
+              {t('faq.items.returns.question')}
+            </summary>
+
+            <p>
+              {t('faq.items.returns.answer')}
+            </p>
+          </details>
+
+          <div className="product-more-links">
+
+            <Link
+              to={localePath('/envios-y-devoluciones')}
+              className="product-more-link"
+            >
+              {t('header.shipping').toUpperCase()}
+            </Link>
+
+            <Link
+              to={localePath('/preguntas-frecuentes')}
+              className="product-more-link"
+            >
+              {t('faq.homeButton')}
+            </Link>
+
+          </div>
 
         </div>
 

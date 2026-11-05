@@ -10,6 +10,8 @@ export const FAQ_IDS = [
   'price',
   'size',
   'buy',
+  'shipping',
+  'returns',
   'types',
   'sustainable',
   'news',

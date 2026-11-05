@@ -35,16 +35,19 @@ const Product = lazyPage(() => import('./pages/Product'))
 const About = lazyPage(() => import('./pages/About'))
 const Faq = lazyPage(() => import('./pages/Faq'))
 const Contact = lazyPage(() => import('./pages/Contact'))
+const ShippingReturns = lazyPage(() => import('./pages/ShippingReturns'))
 const PrivacyPolicy = lazyPage(() => import('./pages/PrivacyPolicy'))
 const NotFound = lazyPage(() => import('./pages/NotFound'))
 
 export const PAGES = [
   { path: '/', Page: Home },
   { path: '/coleccion', Page: Collection },
+  { path: '/coleccion/:category', Page: Collection },
   { path: '/producto/:id', Page: Product },
   { path: '/sobre-mi', Page: About },
   { path: '/preguntas-frecuentes', Page: Faq },
   { path: '/contacto', Page: Contact },
+  { path: '/envios-y-devoluciones', Page: ShippingReturns },
   { path: '/politica-privacidad', Page: PrivacyPolicy },
 ]
 

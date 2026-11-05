@@ -9,6 +9,7 @@
 import fs from 'node:fs'
 import path from 'node:path'
 import { fileURLToPath, pathToFileURL } from 'node:url'
+import sharp from 'sharp'
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..')
 const distDir = path.join(root, 'dist')
@@ -172,6 +173,35 @@ async function writePage(route, file) {
 const site = getSiteData()
 
 // -----------------------------------------------------
+// IMÁGENES PARA COMPARTIR (JPG, las aceptan todas las apps)
+// -----------------------------------------------------
+// Va antes del HTML: og:image:width/height se leen de estos archivos.
+
+const SHARE_BACKGROUND = '#f6f4f0'
+
+fs.mkdirSync(path.join(distDir, 'share'), { recursive: true })
+
+for (const product of site.products) {
+  const source = path.join(distDir, product.images[0])
+
+  // Formato de enlace (WhatsApp, Instagram...): la foto entera, sin recortar.
+  await sharp(source)
+    .rotate()
+    .resize(1200, 630, { fit: 'contain', background: SHARE_BACKGROUND })
+    .flatten({ background: SHARE_BACKGROUND })
+    .jpeg({ quality: 82, mozjpeg: true })
+    .toFile(path.join(distDir, site.getShareImage(product)))
+
+  // Formato vertical para Pinterest.
+  await sharp(source)
+    .rotate()
+    .resize(1000, 1500, { fit: 'inside', withoutEnlargement: true })
+    .flatten({ background: SHARE_BACKGROUND })
+    .jpeg({ quality: 82, mozjpeg: true })
+    .toFile(path.join(distDir, site.getPinImage(product)))
+}
+
+// -----------------------------------------------------
 // HTML POR RUTA E IDIOMA
 // -----------------------------------------------------
 
@@ -260,6 +290,7 @@ Aroa López Sevilla es una marca de moda de Sevilla (España) creada por la dise
 - Precios: entre ${faqParams.min} € y ${faqParams.max} €
 - Talla: tops, aproximada S; blazers, S-M; medidas exactas bajo consulta
 - Cómo comprar: por mensaje de Instagram a @aroalopezsevilla, con el formulario de contacto o por email a ${site.EMAIL} (respuesta en 24-48 h)
+- Envíos y devoluciones: envío por correo postal básico a España y a otros países (fuera de España, con otro precio); 14 días naturales para devolver una pieza, con los gastos de la devolución a cargo de quien compra (${site.SITE_URL}/envios-y-devoluciones)
 - Idiomas de la web: español (${site.SITE_URL}/) e inglés (${site.SITE_URL}/en)
 - Última actualización: ${lastUpdated}
 
@@ -267,9 +298,12 @@ Aroa López Sevilla es una marca de moda de Sevilla (España) creada por la dise
 
 - [Inicio](${site.SITE_URL}/): presentación de la marca y últimas piezas
 - [Colección](${site.SITE_URL}/coleccion): catálogo completo con precio y disponibilidad
+- [Tops](${site.SITE_URL}/coleccion/tops): tops reelaborados
+- [Blazers](${site.SITE_URL}/coleccion/blazers): blazers reelaboradas
 - [Sobre mí](${site.SITE_URL}/sobre-mi): quién es Aroa y cómo nace el proyecto
 - [Preguntas frecuentes](${site.SITE_URL}/preguntas-frecuentes): precios, tallas, compra, upcycling y sostenibilidad
 - [Contacto](${site.SITE_URL}/contacto): Instagram, formulario y email
+- [Envíos y devoluciones](${site.SITE_URL}/envios-y-devoluciones): cómo funcionan los envíos, las devoluciones y los reembolsos
 
 ## Colección actual
 
@@ -293,6 +327,7 @@ ${site.faqIds
 - [About](${site.SITE_URL}/en/sobre-mi): who Aroa is and how the project started
 - [FAQ](${site.SITE_URL}/en/preguntas-frecuentes): prices, sizes, how to buy, upcycling
 - [Contact](${site.SITE_URL}/en/contacto)
+- [Shipping & returns](${site.SITE_URL}/en/envios-y-devoluciones): standard post shipping, including outside Spain at a different price, and 14 calendar days to return a piece
 
 ## Redes sociales
 

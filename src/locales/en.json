@@ -4,6 +4,7 @@
     "about": "About",
     "contact": "Contact",
     "faq": "FAQ",
+    "shipping": "Shipping & returns",
     "openMenu": "Open menu"
   },
 
@@ -56,7 +57,17 @@
   "all": "ALL",
   "tops": "TOPS",
   "blazers": "BLAZERS",
-  "dresses": "DRESSES"
+  "dresses": "DRESSES",
+  "categories": {
+    "tops": {
+      "title": "Upcycled tops made in Seville",
+      "intro": "One-of-a-kind tops handmade from second-hand garments. Each one is unrepeatable: once sold, I don't make it again."
+    },
+    "blazers": {
+      "title": "Upcycled blazers made in Seville",
+      "intro": "Second-hand blazers that I take apart and rebuild into a new shape. Each one is one of a kind: once sold, I don't make it again."
+    }
+  }
 },
 
  "product": {
@@ -104,7 +115,7 @@
 
     "pieceSubject": "Enquiry about the piece: {{piece}}",
 
-    "pieceMessage": "Hello,\n\nI would like to receive more information about the piece \"{{piece}}\".\n\nIs it currently available?\nWhat is the price?\nWhat size is it or what are its measurements?\n\nThank you."
+    "pieceMessage": "Hello,\n\nI would like to receive more information about the piece \"{{piece}}\".\n\nIs it currently available?\nHow much would shipping cost?\nWhat are its exact measurements?\n\nThank you."
   },
 
   "about": {
@@ -137,7 +148,7 @@
     "title": "Frequently asked questions",
     "homeTitle": "FAQ",
     "homeButton": "SEE ALL QUESTIONS",
-    "intro": "Everything you need to know about Aroa López Sevilla pieces: what upcycled fashion is, where the garments are made, prices, sizes and how to buy.",
+    "intro": "Everything you need to know about Aroa López Sevilla pieces: what upcycled fashion is, where the garments are made, prices, sizes, how to buy, shipping and returns.",
     "moreQuestions": "Can't find your answer? Write to me and I'll reply within 24-48 hours.",
     "contactButton": "CONTACT",
 
@@ -169,6 +180,14 @@
       "buy": {
         "question": "How can I buy a piece?",
         "answer": "Message me on Instagram (@aroalopezsevilla) using the button on the piece's page and tell me which one you like. If you prefer, use the contact form, which opens with your enquiry ready, or email me at {{email}}. I reply within 24-48 hours."
+      },
+      "shipping": {
+        "question": "How does shipping work?",
+        "answer": "I ship pieces by standard post, within Spain and to other countries; shipping outside Spain has a different price. The cost and estimated delivery time depend on the destination, and I confirm them before you pay."
+      },
+      "returns": {
+        "question": "Can I return a piece?",
+        "answer": "Yes. You have 14 calendar days from receiving it to return it without giving a reason. You pay for the return postage and, since every piece is unique, exchanges for another size or colour aren't possible."
       },
       "types": {
         "question": "What kind of garments are in the collection?",
@@ -204,12 +223,22 @@
   "productName": { "tops": "{{name}} top", "blazers": "{{name}} blazer" },
 
   "products": {
-    "11": { "description": "Black blazer transformed into a bullfighter-inspired piece, where classic details take on a new shape. Its short, structured silhouette, round collarless neckline and asymmetric front fastening with six black velvet buttons and loops create a design that breaks with the traditional construction of a blazer. Every detail is designed to give new life to an existing garment, keeping its essence and turning it into a one-of-a-kind piece. One of a kind · Reimagined and transformed in Seville.", "color": "Black", "pattern": "Plain" },
-    "12": { "description": "Grey blazer, transformed through a short, structured silhouette, a rounded collarless neckline and an asymmetric front fastening with six black buttons and loops. A detail that breaks with the traditional construction of the blazer and gives it a character of its own. Each version keeps the essence of a classic garment, reinterpreted from a different perspective. One of a kind · Reimagined and transformed in Seville.", "color": "Grey", "pattern": "Plain" },
-    "13": { "description": "JALEO combines the structure of a classic jacket with the relaxed silhouette of a bomber. Its rounded collar, metal front zip and gathered hem create a mix of styles that completely transforms the original garment. A reinterpretation of traditional tailoring with a more urban, contemporary feel. One of a kind · Reimagined and transformed in Seville.", "color": "Blue", "pattern": "Plain" },
-    "14": { "description": "JALEO combines the structure of a classic jacket with the relaxed silhouette of a bomber. Its rounded collar, metal front zip and gathered hem create a mix of styles that completely transforms the original garment. A reinterpretation of traditional tailoring with a more urban, contemporary feel. One of a kind · Reimagined and transformed in Seville.", "color": "Grey", "pattern": "Plain" },
-    "15": { "description": "LAZÁ combines the structure of a blazer with details inspired by the traditional trench coat. Its contrast collar is one of the stars of the design: wear it up for a more structured finish or folded down for a more relaxed look. Two ways to wear the same piece. The self-fabric belt lets you adjust the waist and define the shape of the garment, while its wide sleeves add movement to the whole. One of a kind · Reimagined and transformed in Seville.", "color": "Beige", "pattern": "Pinstripe" },
-    "16": { "description": "LAZÁ combines the structure of a blazer with details inspired by the traditional trench coat. Its contrast collar is one of the stars of the design: wear it up for a more structured finish or folded down for a more relaxed look. Two ways to wear the same piece. The self-fabric belt lets you adjust the waist and define the shape of the garment, while its wide sleeves add movement to the whole. One of a kind · Reimagined and transformed in Seville.", "color": "Grey", "pattern": "Pinstripe" }
+    "1": { "seoName": "Grey upcycled corset top" },
+    "2": { "seoName": "Off-white shirt top with buttons" },
+    "3": { "seoName": "Grey striped sleeveless button top" },
+    "4": { "seoName": "Checked wrap crop top" },
+    "5": { "seoName": "Green striped tie-neck halter top" },
+    "6": { "seoName": "Light green smocked sleeveless top" },
+    "7": { "seoName": "Cream crop top with coloured buttons" },
+    "8": { "seoName": "Black pinstripe halter top" },
+    "9": { "seoName": "Blue striped halter top with bows" },
+    "10": { "seoName": "Mint halter top with buttons" },
+    "11": { "seoName": "Black bullfighter-style upcycled blazer", "description": "Black blazer transformed into a bullfighter-inspired piece, where classic details take on a new shape. Its short, structured silhouette, round collarless neckline and asymmetric front fastening with six black velvet buttons and loops create a design that breaks with the traditional construction of a blazer. Every detail is designed to give new life to an existing garment, keeping its essence and turning it into a one-of-a-kind piece. One of a kind · Reimagined and transformed in Seville.", "color": "Black", "pattern": "Plain" },
+    "12": { "seoName": "Grey collarless cropped upcycled blazer", "description": "Grey blazer, transformed through a short, structured silhouette, a rounded collarless neckline and an asymmetric front fastening with six black buttons and loops. A detail that breaks with the traditional construction of the blazer and gives it a character of its own. Each version keeps the essence of a classic garment, reinterpreted from a different perspective. One of a kind · Reimagined and transformed in Seville.", "color": "Grey", "pattern": "Plain" },
+    "13": { "seoName": "Blue bomber-style upcycled blazer", "description": "JALEO in blue combines the structure of a classic jacket with the relaxed silhouette of a bomber. Its rounded collar, metal front zip and gathered hem create a mix of styles that completely transforms the original garment. A reinterpretation of traditional tailoring with a more urban, contemporary feel. One of a kind · Reimagined and transformed in Seville.", "color": "Blue", "pattern": "Plain" },
+    "14": { "seoName": "Grey bomber-style upcycled blazer", "description": "JALEO in grey combines the structure of a classic jacket with the relaxed silhouette of a bomber. Its rounded collar, metal front zip and gathered hem create a mix of styles that completely transforms the original garment. A reinterpretation of traditional tailoring with a more urban, contemporary feel. One of a kind · Reimagined and transformed in Seville.", "color": "Grey", "pattern": "Plain" },
+    "15": { "seoName": "Beige pinstripe trench-style blazer", "description": "LAZÁ in beige combines the structure of a blazer with details inspired by the traditional trench coat. Its contrast collar is one of the stars of the design: wear it up for a more structured finish or folded down for a more relaxed look. Two ways to wear the same piece. The self-fabric belt lets you adjust the waist and define the shape of the garment, while its wide sleeves add movement to the whole. One of a kind · Reimagined and transformed in Seville.", "color": "Beige", "pattern": "Pinstripe" },
+    "16": { "seoName": "Grey pinstripe trench-style blazer", "description": "LAZÁ in grey combines the structure of a blazer with details inspired by the traditional trench coat. Its contrast collar is one of the stars of the design: wear it up for a more structured finish or folded down for a more relaxed look. Two ways to wear the same piece. The self-fabric belt lets you adjust the waist and define the shape of the garment, while its wide sleeves add movement to the whole. One of a kind · Reimagined and transformed in Seville.", "color": "Grey", "pattern": "Pinstripe" }
   },
 
   "seo": {
@@ -243,6 +272,22 @@
       "title": "Contact | Aroa López Sevilla",
       "description": "Message me on Instagram (@aroalopezsevilla), use the form or email {{email}}. Reply within 24-48 hours."
     },
+    "shipping": {
+      "title": "Shipping & returns | Aroa López Sevilla",
+      "description": "Standard post shipping, including outside Spain, and 14 calendar days to return your piece. How shipping, returns and refunds work."
+    },
+    "categories": {
+      "tops": {
+        "name": "Tops",
+        "title": "Upcycled tops made in Seville | Aroa López Sevilla",
+        "description": "{{count}} one-of-a-kind tops handmade in Seville from second-hand garments, between €{{min}} and €{{max}}. Once sold, they are gone."
+      },
+      "blazers": {
+        "name": "Blazers",
+        "title": "Upcycled blazers made in Seville | Aroa López Sevilla",
+        "description": "{{count}} one-of-a-kind blazers hand-transformed in Seville from second-hand garments, between €{{min}} and €{{max}}. Once sold, they are gone."
+      }
+    },
     "privacy": {
       "title": "Privacy policy | Aroa López Sevilla",
       "description": "How Aroa López Sevilla handles personal data from the newsletter and the contact form."
@@ -252,14 +297,64 @@
       "upcycled": "Made from second-hand garments",
       "uniqueLabel": "One of a kind",
       "uniqueValue": "Yes, there is no other like it",
-      "title": "{{fullName}}, one-of-a-kind upcycled piece | Aroa López Sevilla",
+      "title": "{{fullName}} | Aroa López Sevilla",
       "description": "{{fullName}}: one-of-a-kind piece handmade in Seville from second-hand garments. €{{price}}. Approximate size {{size}}."
     }
   },
 
+  "share": {
+    "label": "Share",
+    "text": "Take a look at this piece by Aroa López Sevilla: {{name}}",
+    "whatsapp": "Share on WhatsApp",
+    "instagram": "Share on Instagram",
+    "pinterest": "Save to Pinterest",
+    "copy": "Copy link",
+    "copied": "Link copied!",
+    "instagramCopied": "Link copied: paste it into Instagram"
+  },
+
+  "shipping": {
+    "title": "Shipping & returns",
+    "updated": "Last updated: November 2026",
+    "sections": [
+      {
+        "title": "Shipping",
+        "text": "Orders are sent by standard post, both within Spain and to other countries. Shipping outside Spain has a different price."
+      },
+      {
+        "title": "Cost and delivery time",
+        "text": "The shipping cost and estimated delivery time depend on the destination, and I confirm them before you pay. I prepare your piece once payment is confirmed."
+      },
+      {
+        "title": "Returns",
+        "text": "You have 14 calendar days from receiving your piece to return it without giving a reason. To do so, write to me at {{email}} or on Instagram (@aroalopezsevilla) saying which piece you want to return."
+      },
+      {
+        "title": "How to return a piece",
+        "text": "You then have a further 14 calendar days from telling me to send it back. You pay for the return postage. You can try the piece on as you would in a shop, but it must arrive with no signs of wear: if it has lost value through any other use, that difference may be deducted from your refund."
+      },
+      {
+        "title": "Refunds",
+        "text": "I refund the price of the piece and the standard shipping you paid within 14 calendar days of you telling me about the return, using the same payment method. I may wait until I have received the piece before refunding."
+      },
+      {
+        "title": "Exchanges",
+        "text": "Since every piece is unique, it can't be exchanged for another size or colour."
+      },
+      {
+        "title": "Damaged or incorrect pieces",
+        "text": "If your piece arrives damaged or isn't the one we agreed on, write to me as soon as possible with some photos and I'll sort it out at no cost to you. This does not limit your legal guarantee rights."
+      },
+      {
+        "title": "Made-to-order pieces",
+        "text": "If a piece is made or adjusted to your measurements at your request, it can't be returned unless it is faulty."
+      }
+    ]
+  },
+
   "privacy": {
   "title": "Privacy Policy",
-  "updated": "Last updated: September 2026",
+  "updated": "Last updated: November 2026",
   "responsibleTitle": "1. Data Controller",
   "responsibleText": "The data controller responsible for the personal data collected through this website is Aroa López Sevilla. Email: aroalopezsevilla@gmail.com.",
   "dataTitle": "2. Personal Data Collected",
@@ -269,7 +364,7 @@
   "legalTitle": "4. Legal Basis",
   "legalText": "The legal basis for sending the newsletter is your consent, given when you subscribe. The legal basis for responding to contact form enquiries is the management of your request.",
   "providersTitle": "5. Service Providers",
-  "providersText": "Brevo is used to manage the newsletter. FormSubmit is used to manage contact form submissions. These providers may process personal data necessary to provide their services.",
+  "providersText": "Brevo is used to manage the newsletter. FormSubmit is used to manage contact form submissions. Vercel Web Analytics, which does not use cookies, is used to measure website visits in aggregate. These providers may process personal data necessary to provide their services.",
   "retentionTitle": "6. Data Retention",
   "retentionText": "Newsletter data will be retained while you remain subscribed or until you request its deletion or withdraw your consent. Contact form data will be retained for as long as necessary to manage the enquiry and, where applicable, for the legally required periods.",
   "unsubscribeTitle": "7. Newsletter Unsubscription",

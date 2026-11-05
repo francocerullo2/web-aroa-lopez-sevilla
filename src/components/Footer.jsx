@@ -38,6 +38,10 @@ function Footer() {
             {t('header.faq')}
           </Link>
 
+          <Link to={localePath('/envios-y-devoluciones')}>
+            {t('header.shipping')}
+          </Link>
+
           <Link to={localePath('/contacto')}>
             {t('header.contact')}
           </Link>

@@ -180,7 +180,7 @@ body .mobile-nav-link.active {
 
 /* 4. SELECTORES (filtros de la colección e idioma) --- */
 
-body :is(.collection-filters button, .language-selector button) {
+body :is(.collection-filters a, .language-selector button) {
   opacity: 0.55;
 
   border-bottom: none;
@@ -199,14 +199,14 @@ body .language-selector button {
   padding-bottom: 2px;
 }
 
-body :is(.collection-filters button, .language-selector button):is(:hover, :focus-visible) {
+body :is(.collection-filters a, .language-selector button):is(:hover, :focus-visible) {
   opacity: 1;
 
   background-size: 100% 1px;
 }
 
 /* La opción elegida: siempre viva y subrayada */
-body :is(.collection-filters button, .language-selector button).active {
+body :is(.collection-filters a, .language-selector button).active {
   opacity: 1;
 
   background-size: 100% 1px;

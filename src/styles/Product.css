@@ -233,6 +233,14 @@
   animation: product-more-open 0.4s ease;
 }
 
+.product-more-links {
+  display: flex;
+
+  flex-wrap: wrap;
+
+  gap: 0 24px;
+}
+
 .product-more-link {
   display: inline-block;
 

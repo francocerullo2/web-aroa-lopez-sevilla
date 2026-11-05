@@ -4,6 +4,7 @@
     "about": "Sobre mí",
     "contact": "Contacto",
     "faq": "Preguntas frecuentes",
+    "shipping": "Envíos y devoluciones",
     "openMenu": "Abrir menú"
   },
 
@@ -56,7 +57,17 @@
     "all": "TODO",
     "tops": "TOPS",
     "blazers": "BLAZERS",
-    "dresses": "VESTIDOS"
+    "dresses": "VESTIDOS",
+    "categories": {
+      "tops": {
+        "title": "Tops reelaborados hechos en Sevilla",
+        "intro": "Tops únicos creados a mano a partir de prendas de segunda mano. Cada uno es irrepetible: cuando se vende, no vuelvo a hacerlo."
+      },
+      "blazers": {
+        "title": "Blazers reelaboradas hechas en Sevilla",
+        "intro": "Blazers de segunda mano que desmonto y vuelvo a construir para darles otra forma. Cada una es una pieza única: cuando se vende, no vuelvo a hacerla."
+      }
+    }
   },
 
   "product": {
@@ -104,7 +115,7 @@
 
     "pieceSubject": "Consulta sobre la pieza: {{piece}}",
 
-    "pieceMessage": "Hola,\n\nMe gustaría recibir más información sobre la pieza \"{{piece}}\".\n\n¿Está disponible actualmente?\n¿Cuál es su precio?\n¿Qué tallaje tiene o cuáles son sus medidas?\n\nGracias."
+    "pieceMessage": "Hola,\n\nMe gustaría recibir más información sobre la pieza \"{{piece}}\".\n\n¿Está disponible actualmente?\n¿Cuánto costaría el envío?\n¿Cuáles son sus medidas exactas?\n\nGracias."
   },
 
   "about": {
@@ -137,7 +148,7 @@
     "title": "Preguntas frecuentes",
     "homeTitle": "Preguntas frecuentes",
     "homeButton": "VER TODAS LAS PREGUNTAS",
-    "intro": "Todo lo que necesitas saber sobre las piezas de Aroa López Sevilla: qué es la moda reelaborada, dónde se hacen las prendas, precios, tallas y cómo comprar.",
+    "intro": "Todo lo que necesitas saber sobre las piezas de Aroa López Sevilla: qué es la moda reelaborada, dónde se hacen las prendas, precios, tallas, cómo comprar, envíos y devoluciones.",
     "moreQuestions": "¿No encuentras tu respuesta? Escríbeme y te contesto en 24-48 horas.",
     "contactButton": "CONTACTAR",
 
@@ -169,6 +180,14 @@
       "buy": {
         "question": "¿Cómo puedo comprar una pieza?",
         "answer": "Escríbeme por Instagram (@aroalopezsevilla) desde el botón de la ficha de la pieza y dime cuál te interesa. Si lo prefieres, usa el formulario de contacto, que se abre con la consulta ya preparada, o escríbeme a {{email}}. Te respondo en 24-48 horas."
+      },
+      "shipping": {
+        "question": "¿Cómo son los envíos?",
+        "answer": "Envío las piezas por correo postal, con el servicio básico, a España y a otros países; fuera de España el precio es distinto. El coste y el plazo estimado dependen del destino y te los confirmo antes de que pagues."
+      },
+      "returns": {
+        "question": "¿Puedo devolver una pieza?",
+        "answer": "Sí. Tienes 14 días naturales desde que la recibes para devolverla sin dar explicaciones. Los gastos de envío de la devolución corren de tu cuenta y, como cada pieza es única, no hay cambios por otra talla o color."
       },
       "types": {
         "question": "¿Qué tipo de prendas hay en la colección?",
@@ -204,12 +223,22 @@
   "productName": { "tops": "Top {{name}}", "blazers": "Blazer {{name}}" },
 
   "products": {
-    "11": { "description": "Blazer color negro transformada en una pieza de inspiración torera, donde los detalles clásicos adquieren una nueva forma. Su silueta corta y estructurada, el cuello redondo sin solapas y el cierre frontal asimétrico con seis botones negros de terciopelo y presillas crean un diseño que rompe con la construcción tradicional de una blazer. Cada detalle ha sido pensado para dar una nueva vida a una prenda existente, conservando su esencia y convirtiéndola en una pieza única. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Negro", "pattern": "Liso" },
-    "12": { "description": "Blazer color gris, se transforma a través de una silueta corta y estructurada, un escote redondeado sin solapas y un cierre frontal asimétrico con seis botones negros y presillas. Un detalle que rompe con la construcción tradicional de la blazer y le aporta un carácter propio. Cada versión conserva la esencia de una prenda clásica, reinterpretada desde una mirada diferente. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Gris", "pattern": "Liso" },
-    "13": { "description": "JALEO combina la estructura de una chaqueta clásica con la silueta relajada de una bomber. Su cuello redondeado, la cremallera frontal metálica y el bajo fruncido crean una mezcla de estilos que transforma por completo la prenda original. Una reinterpretación de la sastrería tradicional con un aire más urbano y contemporáneo. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Azul", "pattern": "Liso" },
-    "14": { "description": "JALEO combina la estructura de una chaqueta clásica con la silueta relajada de una bomber. Su cuello redondeado, la cremallera frontal metálica y el bajo fruncido crean una mezcla de estilos que transforma por completo la prenda original. Una reinterpretación de la sastrería tradicional con un aire más urbano y contemporáneo. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Gris", "pattern": "Liso" },
-    "15": { "description": "LAZÁ combina la estructura de una blazer con detalles inspirados en la trench tradicional. Su cuello en contraste es uno de los protagonistas del diseño: puedes llevarlo levantado para conseguir un acabado más estructurado o doblado para un estilo más relajado. Dos formas de llevar una misma pieza. El cinturón del mismo tejido permite ajustar la cintura y definir la forma de la prenda, mientras que sus mangas amplias aportan movimiento al conjunto. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Beige", "pattern": "Raya diplomática" },
-    "16": { "description": "LAZÁ combina la estructura de una blazer con detalles inspirados en la trench tradicional. Su cuello en contraste es uno de los protagonistas del diseño: puedes llevarlo levantado para conseguir un acabado más estructurado o doblado para un estilo más relajado. Dos formas de llevar una misma pieza. El cinturón del mismo tejido permite ajustar la cintura y definir la forma de la prenda, mientras que sus mangas amplias aportan movimiento al conjunto. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Gris", "pattern": "Raya diplomática" }
+    "1": { "seoName": "Top corsé gris reelaborado" },
+    "2": { "seoName": "Top camisero crudo con botones" },
+    "3": { "seoName": "Top sin mangas de rayas grises con botones" },
+    "4": { "seoName": "Crop top cruzado de cuadros" },
+    "5": { "seoName": "Top halter verde de rayas con lazada" },
+    "6": { "seoName": "Top verde claro fruncido sin mangas" },
+    "7": { "seoName": "Crop top crudo con botones de colores" },
+    "8": { "seoName": "Top halter negro de raya diplomática" },
+    "9": { "seoName": "Top halter azul de rayas con lazos" },
+    "10": { "seoName": "Top halter verde agua con botones" },
+    "11": { "seoName": "Blazer torera negra reelaborada", "description": "Blazer color negro transformada en una pieza de inspiración torera, donde los detalles clásicos adquieren una nueva forma. Su silueta corta y estructurada, el cuello redondo sin solapas y el cierre frontal asimétrico con seis botones negros de terciopelo y presillas crean un diseño que rompe con la construcción tradicional de una blazer. Cada detalle ha sido pensado para dar una nueva vida a una prenda existente, conservando su esencia y convirtiéndola en una pieza única. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Negro", "pattern": "Liso" },
+    "12": { "seoName": "Blazer corta gris sin solapas reelaborada", "description": "Blazer color gris, se transforma a través de una silueta corta y estructurada, un escote redondeado sin solapas y un cierre frontal asimétrico con seis botones negros y presillas. Un detalle que rompe con la construcción tradicional de la blazer y le aporta un carácter propio. Cada versión conserva la esencia de una prenda clásica, reinterpretada desde una mirada diferente. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Gris", "pattern": "Liso" },
+    "13": { "seoName": "Blazer bomber azul reelaborada", "description": "JALEO en azul combina la estructura de una chaqueta clásica con la silueta relajada de una bomber. Su cuello redondeado, la cremallera frontal metálica y el bajo fruncido crean una mezcla de estilos que transforma por completo la prenda original. Una reinterpretación de la sastrería tradicional con un aire más urbano y contemporáneo. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Azul", "pattern": "Liso" },
+    "14": { "seoName": "Blazer bomber gris reelaborada", "description": "JALEO en gris combina la estructura de una chaqueta clásica con la silueta relajada de una bomber. Su cuello redondeado, la cremallera frontal metálica y el bajo fruncido crean una mezcla de estilos que transforma por completo la prenda original. Una reinterpretación de la sastrería tradicional con un aire más urbano y contemporáneo. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Gris", "pattern": "Liso" },
+    "15": { "seoName": "Blazer trench beige de raya diplomática", "description": "LAZÁ en beige combina la estructura de una blazer con detalles inspirados en la trench tradicional. Su cuello en contraste es uno de los protagonistas del diseño: puedes llevarlo levantado para conseguir un acabado más estructurado o doblado para un estilo más relajado. Dos formas de llevar una misma pieza. El cinturón del mismo tejido permite ajustar la cintura y definir la forma de la prenda, mientras que sus mangas amplias aportan movimiento al conjunto. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Beige", "pattern": "Raya diplomática" },
+    "16": { "seoName": "Blazer trench gris de raya diplomática", "description": "LAZÁ en gris combina la estructura de una blazer con detalles inspirados en la trench tradicional. Su cuello en contraste es uno de los protagonistas del diseño: puedes llevarlo levantado para conseguir un acabado más estructurado o doblado para un estilo más relajado. Dos formas de llevar una misma pieza. El cinturón del mismo tejido permite ajustar la cintura y definir la forma de la prenda, mientras que sus mangas amplias aportan movimiento al conjunto. Pieza única · Reimaginada y transformada en Sevilla.", "color": "Gris", "pattern": "Raya diplomática" }
   },
 
   "seo": {
@@ -243,6 +272,22 @@
       "title": "Contacto | Aroa López Sevilla",
       "description": "Escríbeme por Instagram (@aroalopezsevilla), usa el formulario o escribe a {{email}}. Respuesta en 24-48 horas."
     },
+    "shipping": {
+      "title": "Envíos y devoluciones | Aroa López Sevilla",
+      "description": "Envío por correo postal básico, también fuera de España, y 14 días naturales para devolver tu pieza. Cómo funcionan los envíos, las devoluciones y los reembolsos."
+    },
+    "categories": {
+      "tops": {
+        "name": "Tops",
+        "title": "Tops reelaborados hechos en Sevilla | Aroa López Sevilla",
+        "description": "{{count}} tops únicos hechos a mano en Sevilla a partir de prendas de segunda mano, entre {{min}} € y {{max}} €. Cuando se venden, no se repiten."
+      },
+      "blazers": {
+        "name": "Blazers",
+        "title": "Blazers reelaboradas hechas en Sevilla | Aroa López Sevilla",
+        "description": "{{count}} blazers únicas transformadas a mano en Sevilla a partir de prendas de segunda mano, entre {{min}} € y {{max}} €. Cuando se venden, no se repiten."
+      }
+    },
     "privacy": {
       "title": "Política de privacidad | Aroa López Sevilla",
       "description": "Cómo trata Aroa López Sevilla los datos personales de la newsletter y del formulario de contacto."
@@ -252,14 +297,64 @@
       "upcycled": "Hecha a partir de prendas de segunda mano",
       "uniqueLabel": "Pieza única",
       "uniqueValue": "Sí, no hay otra igual",
-      "title": "{{fullName}}, pieza única reelaborada | Aroa López Sevilla",
+      "title": "{{fullName}} | Aroa López Sevilla",
       "description": "{{fullName}}: pieza única hecha a mano en Sevilla a partir de prendas de segunda mano. {{price}} €. Talla aproximada {{size}}."
     }
   },
 
+  "share": {
+    "label": "Compartir",
+    "text": "Mira esta pieza de Aroa López Sevilla: {{name}}",
+    "whatsapp": "Compartir por WhatsApp",
+    "instagram": "Compartir por Instagram",
+    "pinterest": "Guardar en Pinterest",
+    "copy": "Copiar enlace",
+    "copied": "¡Enlace copiado!",
+    "instagramCopied": "Enlace copiado: pégalo en Instagram"
+  },
+
+  "shipping": {
+    "title": "Envíos y devoluciones",
+    "updated": "Última actualización: noviembre de 2026",
+    "sections": [
+      {
+        "title": "Envíos",
+        "text": "Los pedidos se envían por correo postal, con el servicio básico, tanto a España como a otros países. El envío fuera de España tiene un precio distinto."
+      },
+      {
+        "title": "Coste y plazo de entrega",
+        "text": "El coste del envío y el plazo estimado de entrega dependen del destino, y te los confirmo antes de que realices el pago. Preparo la pieza una vez confirmado el pago."
+      },
+      {
+        "title": "Devoluciones",
+        "text": "Tienes 14 días naturales desde que recibes la pieza para devolverla sin necesidad de dar explicaciones. Para hacerlo, escríbeme a {{email}} o por Instagram (@aroalopezsevilla) indicando qué pieza quieres devolver."
+      },
+      {
+        "title": "Cómo devolver una pieza",
+        "text": "Tienes otros 14 días naturales desde que me lo comunicas para enviármela. Los gastos de envío de la devolución corren de tu cuenta. Puedes probarte la pieza como lo harías en una tienda, pero debe llegar sin señales de uso: si ha perdido valor por un uso distinto, esa diferencia podría descontarse del reembolso."
+      },
+      {
+        "title": "Reembolso",
+        "text": "Te devuelvo el importe de la pieza y los gastos de envío estándar que pagaste en un máximo de 14 días naturales desde que me comunicas la devolución, por el mismo medio de pago. Puedo esperar a recibir la pieza antes de hacer el reembolso."
+      },
+      {
+        "title": "Cambios",
+        "text": "Como cada pieza es única, no es posible cambiarla por otra talla o color."
+      },
+      {
+        "title": "Piezas dañadas o incorrectas",
+        "text": "Si la pieza llega dañada o no es la que acordamos, escríbeme cuanto antes con unas fotos y lo solucionamos sin coste para ti. Esto no limita los derechos de garantía que te reconoce la ley."
+      },
+      {
+        "title": "Piezas por encargo",
+        "text": "Si una pieza se hace o se ajusta a medida a petición tuya, no se puede devolver salvo que tenga algún defecto."
+      }
+    ]
+  },
+
   "privacy": {
     "title": "Política de Privacidad",
-    "updated": "Última actualización: septiembre de 2026",
+    "updated": "Última actualización: noviembre de 2026",
     "responsibleTitle": "1. Responsable del tratamiento",
     "responsibleText": "El responsable del tratamiento de los datos personales recogidos a través de este sitio web es Aroa López Sevilla. Email: aroalopezsevilla@gmail.com.",
     "dataTitle": "2. Datos personales que se recogen",
@@ -269,7 +364,7 @@
     "legalTitle": "4. Base jurídica",
     "legalText": "Para el envío de la newsletter, la base jurídica es tu consentimiento, que manifiestas al suscribirte. Para responder a las consultas enviadas mediante el formulario de contacto, la base jurídica es la gestión de tu solicitud.",
     "providersTitle": "5. Proveedores de servicios",
-    "providersText": "Para gestionar la newsletter se utiliza Brevo. Para gestionar el envío de los mensajes del formulario de contacto se utiliza FormSubmit. Estos proveedores pueden tratar datos personales necesarios para prestar sus servicios.",
+    "providersText": "Para gestionar la newsletter se utiliza Brevo. Para gestionar el envío de los mensajes del formulario de contacto se utiliza FormSubmit. Para medir las visitas a la web de forma agregada se utiliza Vercel Web Analytics, que no usa cookies. Estos proveedores pueden tratar datos personales necesarios para prestar sus servicios.",
     "retentionTitle": "6. Conservación de los datos",
     "retentionText": "Los datos utilizados para la newsletter se conservarán mientras mantengas tu suscripción o hasta que solicites su supresión o retires tu consentimiento. Los datos del formulario de contacto se conservarán durante el tiempo necesario para gestionar la consulta y, cuando corresponda, durante los plazos legales aplicables.",
     "unsubscribeTitle": "7. Baja de la newsletter",

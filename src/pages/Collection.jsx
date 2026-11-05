@@ -1,16 +1,21 @@
-import { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import { useTranslation } from 'react-i18next'
-import products, { getProductName } from '../data/products'
+import products, { CATEGORIES, getProductSeoName } from '../data/products'
 import ProductCarousel from '../components/ProductCarousel'
+import NotFound from './NotFound'
 import { useLocalePath } from '../locale'
 import '../styles/Collection.css'
 
+// /coleccion muestra todas las piezas y /coleccion/<categoría>
+// solo las de esa categoría, cada una con su URL indexable.
 function Collection() {
   const { t } = useTranslation()
   const localePath = useLocalePath()
+  const { category } = useParams()
 
-  const [activeFilter, setActiveFilter] = useState('all')
+  if (category && !CATEGORIES.includes(category)) {
+    return <NotFound />
+  }
 
   const statusText = {
     disponible: t('product.status.available'),
@@ -19,49 +24,48 @@ function Collection() {
   }
 
   // El orden es el de products.js: lo más nuevo, primero.
-  const filteredProducts =
-    activeFilter === 'all'
-      ? products
-      : products.filter((product) => product.category === activeFilter)
+  const filteredProducts = category
+    ? products.filter((product) => product.category === category)
+    : products
+
+  const filters = [
+    { path: '/coleccion', label: t('collection.all'), active: !category },
+    ...CATEGORIES.map((item) => ({
+      path: `/coleccion/${item}`,
+      label: t(`collection.${item}`),
+      active: category === item,
+    })),
+  ]
 
   return (
     <main className="collection-page">
 
       <h1 className="visually-hidden">
-        {t('collection.title')}
+        {category
+          ? t(`collection.categories.${category}.title`)
+          : t('collection.title')}
       </h1>
 
-      <div className="collection-filters">
+      <nav className="collection-filters" aria-label={t('header.collection')}>
 
-        <button
-          onClick={() => setActiveFilter('all')}
-          className={activeFilter === 'all' ? 'active' : ''}
-        >
-          {t('collection.all')}
-        </button>
+        {filters.map((filter) => (
+          <Link
+            key={filter.path}
+            to={localePath(filter.path)}
+            className={filter.active ? 'active' : ''}
+            aria-current={filter.active ? 'page' : undefined}
+          >
+            {filter.label}
+          </Link>
+        ))}
 
-        <button
-          onClick={() => setActiveFilter('tops')}
-          className={activeFilter === 'tops' ? 'active' : ''}
-        >
-          {t('collection.tops')}
-        </button>
+      </nav>
 
-        <button
-          onClick={() => setActiveFilter('blazers')}
-          className={activeFilter === 'blazers' ? 'active' : ''}
-        >
-          {t('collection.blazers')}
-        </button>
-
-        {/* <button
-          onClick={() => setActiveFilter('vestidos')}
-          className={activeFilter === 'vestidos' ? 'active' : ''}
-        >
-          {t('collection.dresses')}
-        </button> */}
-
-      </div>
+      {category && (
+        <p className="collection-intro">
+          {t(`collection.categories.${category}.intro`)}
+        </p>
+      )}
 
       <section className="collection-grid">
 
@@ -78,7 +82,7 @@ function Collection() {
 
                 <ProductCarousel
                   images={product.images}
-                  alt={t('product.imageAlt', { name: getProductName(product, t) })}
+                  alt={t('product.imageAlt', { name: getProductSeoName(product, t) })}
                 />
 
               </div>
